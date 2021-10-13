@@ -6,7 +6,7 @@
 
         <x-jet-validation-errors class="mb-4" />
 
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('register') }}" x-data="{role: 3}">
             @csrf
 
             <div>
@@ -27,6 +27,27 @@
             <div class="mt-4">
                 <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
                 <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label for="role" value="{{ __('Role:') }}" />
+                <select name="role" x-model="role" class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                    <option value="2">Host</option>
+                    <option value="3">Player</option>
+                </select>
+            </div>
+
+            <div class="mt-4" x-show="role == 2">
+                <x-jet-label for="host_key" value="{{ __('Host key:') }}" />
+                <x-jet-input id="host_key" class="block mt-1 w-full" type="text" name="host_key" :value="old('host_key')" required autofocus autocomplete="host_key" />
+            </div>
+
+            <div class="mt-4" x-show="role == 3">
+                <x-jet-label for="sport_type" value="{{ __('Sports or Esport:') }}" />
+                <select name="sport_type" x-model="sport_type" class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                    <option value="2">Sports</option>
+                    <option value="3">Esports</option>
+                </select>
             </div>
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
