@@ -27,9 +27,6 @@
                         </x-jet-button>
 
                         @endif
-                        <x-jet-button class="ml-1">
-                            <a href="#" class="text-sm text-green-700 dark:text-gray-500">Spectate</a>
-                        </x-jet-button>
                     @endauth
 
 
