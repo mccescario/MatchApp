@@ -13,7 +13,7 @@
         @endif
 
         @if (Route::has('login'))
-                <div class="px-6 py-4 item-center border">
+                <div class="px-6 py-4 item-center">
                     @auth
                         <a href="{{ url('/dashboard') }}" class=" btn text-sm dark:text-gray-500 ">Dashboard</a>
                     @else
