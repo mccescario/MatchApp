@@ -13,16 +13,17 @@
         @endif
 
         @if (Route::has('login'))
-                <div class="px-6 py-4 item-center">
+                <div class="text-center mx-2">
                     @auth
-                        <a href="{{ url('/dashboard') }}" class=" btn text-sm dark:text-gray-500 ">Dashboard</a>
+
+                        <a href="{{ url('/dashboard') }}" class=" btn text-sm dark:text-gray-500 ">Already Logged-in</a>
                     @else
-                        <x-jet-button class="ml-3">
-                            <a href="{{ route('login') }}" class=" btn text-sm dark:text-gray-500 ">Log in</a>
+                        <x-jet-button>
+                            <a href="{{ route('login') }}" class="text-sm dark:text-gray-500 ">Log in</a>
                         </x-jet-button>
 
                         @if (Route::has('register'))
-                        <x-jet-button class="ml-1">
+                        <x-jet-button>
                             <a href="{{ route('register') }}" class="text-sm text-green-700 dark:text-gray-500">Register</a>
                         </x-jet-button>
 
