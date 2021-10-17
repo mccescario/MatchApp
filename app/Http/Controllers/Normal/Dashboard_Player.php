@@ -8,4 +8,8 @@ use Illuminate\Http\Request;
 class Dashboard_Player extends Controller
 {
     //
+    public function index()
+    {
+        return view('templates.normal.dashboard');
+    }
 }
