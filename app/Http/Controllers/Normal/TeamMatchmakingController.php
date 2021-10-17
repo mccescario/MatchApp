@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Normal;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class TeamMatchingController extends Controller
+class TeamMatchmakingController extends Controller
 {
     //
 }
