@@ -39,15 +39,7 @@
 
             <div class="mt-4" x-show="role == 2">
                 <x-jet-label for="host_key" value="{{ __('Host key:') }}" />
-                <x-jet-input id="host_key" class="block mt-1 w-full" type="text" name="host_key" :value="old('host_key')" required autofocus autocomplete="host_key" />
-            </div>
-
-            <div class="mt-4" x-show="role == 3">
-                <x-jet-label for="sport_type" value="{{ __('Sports or Esport:') }}" />
-                <select name="sport_type" x-model="sport_type" class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
-                    <option value="2">Sports</option>
-                    <option value="3">Esports</option>
-                </select>
+                <x-jet-input id="host_key" class="block mt-1 w-full" type="text" name="host_key" :value="old('host_key')" aria-required="" autocomplete="host_key" />
             </div>
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
