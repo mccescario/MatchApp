@@ -17,16 +17,19 @@ class TeamTableSeeder extends Seeder
         //
         DB::table('teams')->insert([
             [
+                'id'                => 1,
                 'user_id'           => 1,
                 'name'              => 'Admin Team',
                 'personal_team'     => true,
             ],
             [
+                'id'                => 2,
                 'user_id'           => 2,
                 'name'              => 'Host Team',
                 'personal_team'     => true,
             ],
             [
+                'id'                => 3,
                 'user_id'           => 3,
                 'name'              => 'Player Team',
                 'personal_team'     => true,
