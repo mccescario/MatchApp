@@ -26,7 +26,6 @@ class CreatePlayerProfileTable extends Migration
             /* Player Sport Information */
             $table->integer('height');
             $table->integer('weight');
-            $table->string('sport_type');
             $table->string('primary_pos');
             $table->string('secondary_pos');
 
