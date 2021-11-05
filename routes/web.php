@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Host\Tournament_management;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +18,30 @@ Route::get('/', function () {
     return view('main');
 });
 
-/* Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+Route::post('logout', 'App\Http\Controllers\HomeController@logout')->name('logout');
+
+// Role Router
+Route::get('dashboard', 'App\Http\Controllers\HomeController@index');
+
+// Admin Routes
+Route::get('/admin-dashboard', 'App\Http\Controllers\Admin\Dashboard_Admin@index');
+
+// Host Routes
+Route::resource('tournament', Tournament_management::class);
+Route::get('/host-dashboard', 'App\Http\Controllers\Host\Dashboard_Host@index');
+//Route::get('/manage-tournament', 'App\Http\Controllers\Host\Tournament_management@index');
+//Route::get('/register-tournament', 'App\Http\Controllers\Host\Tournament_management@create');
+
+// Player Routes
+Route::get('/player-dashboard', 'App\Http\Controllers\Normal\Dashboard_Player@index');
+
+
+
+/*
+ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
-*/
+
 
 Route::group(['middleware' => 'auth'], function() {
 
@@ -48,5 +69,6 @@ Route::group(['middleware' => 'auth'], function() {
     });
 
 
-});
+}
+);*/
 

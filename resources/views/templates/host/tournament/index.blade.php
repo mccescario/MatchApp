@@ -3,7 +3,7 @@
 @section('tournament')
 
     <div>
-        <h1 style="padding: 20px 0px;">Tournament Management</h1>
+        <h1 style="padding: 20px 0px;">Tournament Registration</h1>
     </div>
 
     @if ($message = Session::get('success'))
@@ -12,15 +12,11 @@
         </div>
     @endif
 
-    <div class="btn btn-success">
-        <a class="text-decoration-none text-white" href="{{route('tournament.create')}}" >Add Tournament</a>
-    </div>
-
     <div class="table-responsive table mt-2" id="dataTable-1" role="grid" aria-describedby="dataTable_info">
         <table class="table my-0" id="dataTable">
             <thead>
                 <tr>
-                    <th></th>
+                    <th style="text-align: center;"><input type="checkbox"></th>
                     <th>Tournament Name</th>
                     <th>Sport / E-Sport</th>
                     <th>Sport Type</th>
@@ -32,7 +28,7 @@
                 </tr>
             </thead>
             <tbody>
-
+                12
                 @foreach ($tournaments as $tournament)
                     <tr>
 
@@ -56,6 +52,21 @@
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
                         </td>
+
+                        <td style="text-align: center;"><input type="checkbox"></td>
+                        <td>SK Paliga ng Barangay<br></td>
+                        <td>Sport</td>
+                        <td>Basketball</td>
+                        <td>Elimination<br></td>
+                        <td>12-08-2021</td>
+                        <td>10-01-2021</td>
+                        <td>
+                            <div class="text-nowrap">
+                                <button class="btn btn-primary" type="button" style="margin: 5px;">View</button>
+                                <button class="btn btn-primary" type="button" style="margin: 5px;">Edit</button>
+                                <button class="btn btn-primary" type="button" style="background: #fc1600b0;margin: 5px;">Delete</button>
+                            </div>
+                        </td>
                     </tr>
                 @endforeach
 
@@ -73,8 +84,6 @@
                 </tr>
             </tfoot>
         </table>
-
-        {!! $tournaments->links() !!}
     </div>
 
 @endsection
