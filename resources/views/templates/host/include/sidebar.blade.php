@@ -1,4 +1,4 @@
-<nav id="sidebar" class="navbar navbar-expand d-flex flex-column align-item-start active-nav">
+<nav id="sidebar" class="navbar navbar-expand shadow d-flex flex-column align-item-start active-nav">
     <a href="/host-dashboard" class="navbar-brand text-dark mt-5  pb-3 ">
         <div class="display-5 font-weight-bold ">
             MatchApp
@@ -17,7 +17,7 @@
             <a id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-expanded="false"  class="nav-link dropdown-toggle text-dark ps-4">User</a>
             <ul class="dropdown-menu w-100" aria-labelledby="navbarDropdown1">
 
-                <li><a href="#" class="dropdown-item text-dark ps-4 p-2">Manage Players</a></li>
+                <li><a href="{{ route('usermanagement') }}" class="dropdown-item text-dark ps-4 p-2">Manage Players</a></li>
                 <li><a href="#" class="dropdown-item text-dark ps-4 p-2">Manage Teams</a></li>
 
             </ul>
@@ -27,7 +27,8 @@
             <a id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#" class="nav-link dropdown-toggle text-dark ps-4">Tournament</a>
             <ul class="dropdown-menu w-100" aria-labelledby="navbarDropdown2">
 
-                <li><a href="{{route('tournament.index')}}" class="dropdown-item text-dark ps-4 p-2">Manage Tournament</a></li>
+                <li><a href="{{route('tournament')}}" class="dropdown-item text-dark ps-4 p-2">Manage Tournament</a></li>
+                <li><a href="#" class="dropdown-item text-dark ps-4 p-2">View Brackets</a></li>
                 <li><a href="#" class="dropdown-item text-dark ps-4 p-2">Schedules</a></li>
 
 

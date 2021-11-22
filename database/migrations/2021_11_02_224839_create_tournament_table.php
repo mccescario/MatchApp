@@ -18,18 +18,22 @@ class CreateTournamentTable extends Migration
             $table->id();
             $table->string('tournament_name');
             $table->date('tournament_date');
-            $table->string('tournament_sport');
-            $table->string('tournament_sport_type');
-            $table->string('tournament_bracket');
+            $table->integer('tournament_sport')->nullable();
+            $table->integer('tournament_esport')->nullable();
+            $table->integer('tournament_sport_type');
+            $table->integer('tournament_bracket');
 
-            $table->string('enable_third_place');
-            $table->string('bracket_size');
-            $table->string('best_of_rounds');
-            $table->string('num_groups');
-            $table->string('num_player_per_group');
-            $table->string('round_robin_match_style');
-            $table->string('games_per_match');
-            $table->string('tournament_fee');
+            $table->string('enable_third_place')->nullable();
+            $table->integer('single_bracket_size')->nullable();
+            $table->integer('single_best_of_rounds')->nullable();
+            $table->integer('double_bracket_size')->nullable();
+            $table->integer('double_best_of_rounds')->nullable();
+            $table->integer('num_groups')->nullable();
+            $table->integer('num_player_per_group')->nullable();
+            $table->integer('round_robin_match_style')->nullable();
+            $table->integer('games_per_match')->nullable();
+            $table->integer('tournament_fee');
+            $table->integer('tournament_price')->nullable();
             $table->timestamps();
         });
     }

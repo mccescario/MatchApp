@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Host\Tournament_management;
+use App\Http\Controllers\Host\Normal_management;
+use App\Http\Controllers\Normal\Profile_management;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +20,7 @@ Route::get('/', function () {
     return view('main');
 });
 
-Route::post('logout', 'App\Http\Controllers\HomeController@logout')->name('logout');
-
-// Role Router
+Route::get('/logout', 'App\Http\Controllers\HomeController@logout');
 Route::get('dashboard', 'App\Http\Controllers\HomeController@index');
 
 // Admin Routes
@@ -28,12 +28,21 @@ Route::get('/admin-dashboard', 'App\Http\Controllers\Admin\Dashboard_Admin@index
 
 // Host Routes
 Route::resource('tournament', Tournament_management::class);
+Route::resource('usermanagement', Normal_management::class);
+Route::get('/register-tournament', 'App\Http\Controllers\Host\Tournament_management@create')->name('tournament-register');
+Route::get('/tournament-management', 'App\Http\Controllers\Host\Tournament_management@index')->name('tournament');
 Route::get('/host-dashboard', 'App\Http\Controllers\Host\Dashboard_Host@index');
-//Route::get('/manage-tournament', 'App\Http\Controllers\Host\Tournament_management@index');
-//Route::get('/register-tournament', 'App\Http\Controllers\Host\Tournament_management@create');
+Route::get('/user-management', 'App\Http\Controllers\Host\Normal_management@index')->name('usermanagement');
+Route::get('/add-user', 'App\Http\Controllers\Host\Normal_management@create')->name('user-add');
+
+
 
 // Player Routes
-Route::get('/player-dashboard', 'App\Http\Controllers\Normal\Dashboard_Player@index');
+Route::resource('profilemanagement', Profile_management::class);
+Route::get('/player-dashboard', 'App\Http\Controllers\Normal\Dashboard_Player@index')->name('dashboard');
+Route::get('/player-profile/{id}', 'App\Http\Controllers\Normal\Profile_management@index')->name('profile');
+Route::get('/manage-team/{id}', 'App\Http\Controllers\Normal\TeamMatchmakingController@team_manage')->name('team-manage');
+Route::get('/member-profile/{member}', 'App\Http\Controllers\Normal\TeamMatchmakingController@member_view')->name('player-profile');
 
 
 

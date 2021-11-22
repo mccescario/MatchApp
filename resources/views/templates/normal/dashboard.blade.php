@@ -1,1 +1,7 @@
-<h1>Player Dashboard</h1>
+@extends('templates.normal.main')
+
+@section('content')
+
+
+
+@endsection

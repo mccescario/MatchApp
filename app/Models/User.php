@@ -31,6 +31,12 @@ class User extends Authenticatable
         'password',
         'role',
         'host_key',
+        'address',
+        'contact_number',
+        'status',
+        'sport_type',
+        'sport',
+        'esport',
     ];
 
     /**

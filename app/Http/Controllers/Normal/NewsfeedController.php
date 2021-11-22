@@ -8,4 +8,8 @@ use Illuminate\Http\Request;
 class NewsfeedController extends Controller
 {
     //
+    public function index(Request $request)
+    {
+
+    }
 }

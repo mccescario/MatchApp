@@ -21,7 +21,7 @@ class UsersTableSeeder extends Seeder
                 'email'              => 'admin.testing101@gmail.com',
                 'role'               => 1,
                 'password'           => bcrypt('adminpassword'),
-                'current_team_id'    => 1,
+                //'profile_id'         => 0,
             ],
             [
                 'id'                 => 2,
@@ -29,7 +29,7 @@ class UsersTableSeeder extends Seeder
                 'email'              => 'host.testing101@gmail.com',
                 'role'               => 2,
                 'password'           => bcrypt('host-test123'),
-                'current_team_id'    => 2,
+                //'profile_id'         => 0,
 
             ],
             [
@@ -38,9 +38,10 @@ class UsersTableSeeder extends Seeder
                 'email'              => 'normal.testing101@gmail.com',
                 'role'               => 3,
                 'password'           => bcrypt('normal-test123'),
-                'current_team_id'    => 3,
+                //'profile_id'         => 0,
 
             ],
+
         ]);
     }
 }

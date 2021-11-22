@@ -4,6 +4,7 @@ namespace App\Actions\Fortify;
 
 use App\Models\Team;
 use App\Models\User;
+use App\Models\Player\PlayerProfile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -36,8 +37,14 @@ class CreateNewUser implements CreatesNewUsers
                 'password' => Hash::make($input['password']),
                 'role' => $input['role'],
                 'host_key' => $input['host_key'] ?? null,
+                'address' => $input['address'] ?? null,
+                'contact_number' => $input['contact_number'] ?? null,
+                'status' => $input['status'] ?? null,
+                'sport_type' => $input['sport_type'] ?? null,
+                'sport' => $input['sport'] ?? null,
+                'esport' => $input['esport'] ?? null,
             ]), function (User $user) {
-                $this->createTeam($user);
+                $this->createProfile($user);
             });
         });
     }
@@ -47,13 +54,21 @@ class CreateNewUser implements CreatesNewUsers
      *
      * @param  \App\Models\User  $user
      * @return void
-     */
-    protected function createTeam(User $user)
+
+    *protected function createTeam(User $user)
+    *{
+    *    $user->ownedTeams()->save(Team::forceCreate([
+    *        'user_id' => $user->id,
+    *        'name' => explode(' ', $user->name, 2)[0]."'s Team",
+    *        'personal_team' => true,
+    *    ]));
+    *}*/
+
+    protected function createProfile(User $user)
     {
-        $user->ownedTeams()->save(Team::forceCreate([
-            'user_id' => $user->id,
-            'name' => explode(' ', $user->name, 2)[0]."'s Team",
-            'personal_team' => true,
-        ]));
+        PlayerProfile::create([
+            'user_id' => $user->id
+        ]);
     }
+
 }

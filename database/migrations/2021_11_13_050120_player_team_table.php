@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCivilStatusTable extends Migration
+class PlayerTeamTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateCivilStatusTable extends Migration
      */
     public function up()
     {
-        Schema::create('civil_status', function (Blueprint $table) {
+        Schema::create('team', function (Blueprint $table) {
             $table->id();
-            $table->string('status_name');
+            $table->string('team_name');
+            $table->string('logo_src');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateCivilStatusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('civil_status');
+        Schema::dropIfExists('team');
     }
 }

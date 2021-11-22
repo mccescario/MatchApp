@@ -46,7 +46,7 @@ class Tournament_management extends Controller
 
             'tournament_name' => 'required',
             'tournament_date' => 'required',
-            'tournament_sport' => 'required',
+
             'tournament_sport_type' => 'required',
             'tournament_bracket' => 'required',
 
@@ -54,7 +54,7 @@ class Tournament_management extends Controller
 
         TournamentModel::create($request->all());
 
-        return redirect()->route('tournaments.index')
+        return redirect()->route('tournament')
                         ->with('success','New tournament has been created successfully.');
     }
 
@@ -64,9 +64,11 @@ class Tournament_management extends Controller
      * @param  \App\Models\Host\TournamentModel  $tournamentModel
      * @return \Illuminate\Http\Response
      */
-    public function show(TournamentModel $tournamentModel)
+    public function show($tournamentModel)
     {
         //
+        $tournament = TournamentModel::find($tournamentModel);
+        return view('templates.host.tournament.tournament_view',compact('tournament'));
     }
 
     /**
@@ -75,9 +77,11 @@ class Tournament_management extends Controller
      * @param  \App\Models\Host\TournamentModel  $tournamentModel
      * @return \Illuminate\Http\Response
      */
-    public function edit(TournamentModel $tournamentModel)
+    public function edit( $tournamentModel)
     {
         //
+        $tournament = TournamentModel::find($tournamentModel);
+        return view('templates.host.tournament.tournament_edit',compact('tournament'));
     }
 
     /**
@@ -87,9 +91,13 @@ class Tournament_management extends Controller
      * @param  \App\Models\Host\TournamentModel  $tournamentModel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TournamentModel $tournamentModel)
+    public function update(Request $request, $tournamentModel)
     {
         //
+        $tournament = TournamentModel::find($tournamentModel);
+        $tournament->update($request->all());
+
+        return redirect()->route('tournament.index')->with('success','Tournament updated successfully');
     }
 
     /**
@@ -98,8 +106,18 @@ class Tournament_management extends Controller
      * @param  \App\Models\Host\TournamentModel  $tournamentModel
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TournamentModel $tournamentModel)
+    public function destroy($tournamentModel)
     {
-        //
+
+        $tournament = TournamentModel::find($tournamentModel);
+
+        if(!empty($tournamentModel)) {
+			$tournament->delete();
+            return redirect('tournament-management')->with('success', 'The Tournament has been successfully deleted!');
+          } else {
+            return redirect('tournament-management')->with('error', 'Please try again!');
+          }
+
+
     }
 }

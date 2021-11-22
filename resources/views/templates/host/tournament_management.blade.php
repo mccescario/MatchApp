@@ -1,6 +1,6 @@
 @extends('templates.host.main')
 
-@section('tournament')
+@section('content')
 
     <div>
         <h1 style="padding: 20px 0px;">Tournament Management</h1>
@@ -8,16 +8,21 @@
 
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
-            <p>{{ $message }}</p>
+            <strong>{{ $message }}</strong>
+        </div>
+    @elseif ($message = Session::get('error'))
+        <div class="alert alert-danger">
+            <strong>{{ $message }}</strong>
         </div>
     @endif
 
-    <div class="btn btn-success">
-        <a class="text-decoration-none text-white" href="{{route('tournament.create')}}" >Add Tournament</a>
-    </div>
 
-    <div class="table-responsive table mt-2" id="dataTable-1" role="grid" aria-describedby="dataTable_info">
+    <a href='{{ url("register-tournament") }}' class="text-decoration-none btn btn-bg shadow"  >Add Tournament</a>
+
+
+    <div class="table-responsive table mt-2 shadow border p-3 rounded" id="dataTable-1" role="grid" aria-describedby="dataTable_info">
         <table class="table my-0" id="dataTable">
+            @if (count($tournaments) > 0)
             <thead>
                 <tr>
                     <th></th>
@@ -27,54 +32,97 @@
                     <th>Bracket Type</th>
                     <th>Starting Date</th>
                     <th>Date Created<br></th>
-                    <th><br><br></th>
-                    <th></th>
+                    <th>Tournament Fee</th>
                 </tr>
             </thead>
             <tbody>
 
-                @foreach ($tournaments as $tournament)
-                    <tr>
 
-                        <td>{{ ++$i }}</td>
-                        <td>{{ $tournament->tournament_name }}</td>
-                        <td>{{ $tournament->tournament_sport }}</td>
-                        <td>{{ $tournament->tournament_sport_type }}</td>
-                        <td>{{ $tournament->tournament_bracket }}</td>
-                        <td>{{ $tournament->tournament_date }}</td>
-                        <td>{{ $tournament->tournament_fee }}</td>
-                        <td>
-                            <form action="{{ route('tournament.destroy',$tournament->id) }}" method="POST">
+                    @foreach ($tournaments as $tournament)
+                        <tr>
 
-                                <a class="btn btn-info" href="{{ route('tournament.show',$tournament->id) }}">Show</a>
+                            <td>{{ ++$i }}</td>
+                            <td>{{ $tournament->tournament_name }}</td>
 
-                                <a class="btn btn-primary" href="{{ route('tournament.edit',$tournament->id) }}">Edit</a>
+                            <td>
+                                @if ($tournament->tournament_sport_type == 1)
+                                    Sports
+                                @elseif ($tournament->tournament_sport_type == 2)
+                                    E-sports
+                                @endif
+                            </td>
 
-                                @csrf
-                                @method('DELETE')
+                            <td>
 
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
+                                @if ($tournament->tournament_sport_type == 1)
+                                    @if ($tournament->tournament_sport == 1)
+                                        Basketball
+                                    @elseif ($tournament->tournament_sport == 2)
+                                        Volleyaball
+                                    @endif
+                                @elseif ($tournament->tournament_sport_type == 2)
+                                    @if ($tournament->tournament_esport == 1)
+                                        Lol
+                                    @elseif ($tournament->tournament_esport == 2)
+                                        Dota
+                                    @endif
+                                @endif
+
+
+                            </td>
+                            <td>
+
+                                @if ($tournament->tournament_bracket == 1)
+                                    Single - Elimination
+                                @elseif ($tournament->tournament_bracket == 2)
+                                    Double - Elimination
+                                @elseif ($tournament->tournament_bracket == 3)
+                                    Round - Robin Elimination
+                                @endif
+
+                            </td>
+                            <td>{{ $tournament->tournament_date }}</td>
+                            <td>{{ $tournament->created_at }}</td>
+                            <td>
+                                @if ($tournament->tournament_fee == 1)
+                                    Have - Php{{$tournament->tournament_price}}
+                                @else
+                                    None
+                                @endif
+                            </td>
+                            <td>
+                                <form action="{{ route('tournament.destroy',$tournament->id) }}" method="POST">
+
+                                    @method('DELETE')
+                                    @csrf
+
+                                    <a class="btn btn-bg-inverse" href="{{ route('tournament.show',$tournament->id) }}">Details</a>
+
+                                    <a class="btn btn-bg" href="{{ route('tournament.edit',$tournament->id) }}">Edit</a>
+
+
+
+
+
+                                    <button type="submit" class="btn btn-bg-inverse">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+
+
 
             </tbody>
-            <tfoot>
-                <tr>
-                    <td><br></td>
-                    <td><strong>Tournament Name</strong></td>
-                    <td><strong>Tournament Type</strong></td>
-                    <td><strong>Sport Type</strong></td>
-                    <td style="text-align: left;"><strong style="text-align: center;">No. of Teams<br></strong></td>
-                    <td><strong style="text-align: left;">Date Created<br></strong></td>
-                    <td><strong>Starting Date<br></strong></td>
-                    <td></td>
-                </tr>
-            </tfoot>
+
+            @else
+                <h3>No Records Available!</h3>
+                <hr>
+            @endif
+
+            {!! $tournaments->links() !!}
         </table>
 
-        {!! $tournaments->links() !!}
+
     </div>
 
 @endsection

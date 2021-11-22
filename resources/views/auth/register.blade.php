@@ -6,7 +6,7 @@
 
         <x-jet-validation-errors class="mb-4" />
 
-        <form method="POST" action="{{ route('register') }}" x-data="{role: 3}">
+        <form method="POST" action="{{ route('register') }}" x-data="{ role: 3, sport_type: 0 }">
             @csrf
 
             <div>
@@ -40,6 +40,50 @@
             <div class="mt-4" x-show="role == 2">
                 <x-jet-label for="host_key" value="{{ __('Host key:') }}" />
                 <x-jet-input id="host_key" class="block mt-1 w-full" type="text" name="host_key" :value="old('host_key')" aria-required="" autocomplete="host_key" />
+            </div>
+
+            <div class="mt-4" x-show="role == 3">
+                <x-jet-label for="address" value="{{ __('Address:') }}" />
+                <x-jet-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')" aria-required="" autocomplete="address" />
+            </div>
+
+            <div class="mt-4" x-show="role == 3">
+                <x-jet-label for="status" value="{{ __('Civil Status:') }}" />
+                <select name="status"  class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                    <option value="1">Single</option>
+                    <option value="2">Married</option>
+                    <option value="3">Widowed</option>
+                </select>
+            </div>
+
+            <div class="mt-4" x-show="role == 3">
+                <x-jet-label for="contact_number" value="{{ __('Contact Number:') }}" />
+                <x-jet-input id="contact_number" class="block mt-1 w-full" type="text" name="contact_number" :value="old('contact_number')" aria-required="" autocomplete="contact_number" />
+            </div>
+
+            <div class="mt-4" x-show="role == 3">
+                <x-jet-label for="sport_type" value="{{ __('Sport type:') }}" />
+                <select name="sport_type" x-model="sport_type" class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                    <option value="0">Select Sport Type</option>
+                    <option value="1">Sport</option>
+                    <option value="2">E-Sport</option>
+                </select>
+            </div>
+
+            <div class="mt-4" x-show="sport_type == 1">
+                <x-jet-label for="sport" value="{{ __('Sport:') }}" />
+                <select name="sport" class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                    <option value="1">Basketball</option>
+                    <option value="2">Volleyball</option>
+                </select>
+            </div>
+
+            <div class="mt-4" x-show="sport_type == 2">
+                <x-jet-label for="esport" value="{{ __('E-Sport:') }}" />
+                <select name="esport" class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                    <option value="1">LoL - League of Legends</option>
+                    <option value="2">DotA 2 - Defense of the Ancients 2</option>
+                </select>
             </div>
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
