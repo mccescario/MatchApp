@@ -11,13 +11,12 @@
     <link rel="stylesheet" href="{{ url('css/style.css'); }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
 
-
 </head>
 <body>
 
     @include('templates.host.include.sidebar')
 
-    <section class="p-4 my-container active-cont">
+    <section class="p-4 my-container active-cont mb-5">
         @include('templates.host.include.header')
 
         <button id="menu-btn" class="btn btn-bg my-4 shadow">Menu</button>
@@ -25,7 +24,6 @@
         <div class="container-fluid">
             @yield('content')
         </div>
-
 
     </section>
 
@@ -43,5 +41,14 @@
             container.classList.toggle("active-cont")
         })
     </script>
+    <script>
+        var loadFile = function(event) {
+          var output = document.getElementById('output');
+          output.src = URL.createObjectURL(event.target.files[0]);
+          output.onload = function() {
+            URL.revokeObjectURL(output.src) // free memory
+          }
+        };
+      </script>
 </body>
 </html>

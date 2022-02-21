@@ -30,13 +30,14 @@
                 <li><a href="{{route('tournament')}}" class="dropdown-item text-dark ps-4 p-2">Manage Tournament</a></li>
                 <li><a href="#" class="dropdown-item text-dark ps-4 p-2">View Brackets</a></li>
                 <li><a href="#" class="dropdown-item text-dark ps-4 p-2">Schedules</a></li>
+                <li><a href="#" class="dropdown-item text-dark ps-4 p-2">Standing</a></li>
 
 
             </ul>
         </li>
 
         <li class="nav-item w-100">
-            <a href="#" class="nav-link text-dark ps-4">Standing</a>
+            <a href="{{ route('news-create') }}" class="nav-link text-dark ps-4">Manage News</a>
         </li>
 
         <li class="nav-item w-100">

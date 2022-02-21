@@ -3,8 +3,6 @@
 @section('content')
 
 
-
-
 <div class="card shadow col-9">
     <h3 class="text-dark mb-4 color-green card-header" >Team Profile -<strong> In Progress</strong></h3>
 

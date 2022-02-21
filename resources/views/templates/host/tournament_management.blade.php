@@ -119,10 +119,11 @@
                 <hr>
             @endif
 
-            {!! $tournaments->links() !!}
+
         </table>
-
-
+        <div class="m-2">
+            {!! $tournaments->links() !!}
+        </div>
     </div>
 
 @endsection

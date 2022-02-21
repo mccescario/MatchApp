@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Host\Tournament_management;
 use App\Http\Controllers\Host\Normal_management;
+use App\Http\Controllers\Normal\NewsFeedController;
 use App\Http\Controllers\Normal\Profile_management;
 
 /*
@@ -15,6 +16,7 @@ use App\Http\Controllers\Normal\Profile_management;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 
 Route::get('/', function () {
     return view('main');
@@ -29,11 +31,14 @@ Route::get('/admin-dashboard', 'App\Http\Controllers\Admin\Dashboard_Admin@index
 // Host Routes
 Route::resource('tournament', Tournament_management::class);
 Route::resource('usermanagement', Normal_management::class);
+Route::resource('news-feed', NewsFeedController::class);
 Route::get('/register-tournament', 'App\Http\Controllers\Host\Tournament_management@create')->name('tournament-register');
 Route::get('/tournament-management', 'App\Http\Controllers\Host\Tournament_management@index')->name('tournament');
 Route::get('/host-dashboard', 'App\Http\Controllers\Host\Dashboard_Host@index');
 Route::get('/user-management', 'App\Http\Controllers\Host\Normal_management@index')->name('usermanagement');
 Route::get('/add-user', 'App\Http\Controllers\Host\Normal_management@create')->name('user-add');
+Route::get('/create-news', 'App\Http\Controllers\Normal\NewsFeedController@create')->name('news-create');
+Route::get('/news-read-more/{slug}', 'App\Http\Controllers\Normal\NewsFeedController@readmore')->name('news-readmore');
 
 
 

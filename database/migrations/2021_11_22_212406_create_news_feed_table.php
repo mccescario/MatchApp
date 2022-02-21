@@ -15,12 +15,14 @@ class CreateNewsFeedTable extends Migration
     {
         Schema::create('news_feed', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->string('title');
             $table->string('slug');
-            $table->string('author');
-            $table->text('description');
-            $table->text('content');
+            $table->string('img_path');
+            $table->longText('description');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
