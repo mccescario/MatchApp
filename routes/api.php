@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\CustomAuthController;
+use App\Http\Controllers\Api\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,4 +35,11 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 
 
-
+// for mobile api
+Route::prefix('mobile')->group(function () {
+    //LoginController
+    Route::post('login',[LoginController::class,'login']);
+    Route::post('register',[LoginController::class,'register']);
+    Route::post('verify',[LoginController::class,'submit_verification']);
+    Route::post('resend-verification',[LoginController::class,'resend_verification']);
+});

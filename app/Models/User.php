@@ -38,6 +38,9 @@ class User extends Authenticatable
         'sport_type',
         'sport',
         'esport',
+        'verification_code',
+        'profile_photo_url',
+        'email_verified_at'
     ];
 
     /**
