@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSportsTable extends Migration
+class CreateSportPositionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateSportsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sports', function (Blueprint $table) {
+        Schema::create('sport_positions', function (Blueprint $table) {
             $table->id();
-            $table->string('sport_name');
-            $table->string('sport_type');
+            $table->foreignId('sport_category_id')->constrained();
+            $table->string('sport_position_name');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateSportsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sports');
+        Schema::dropIfExists('sport_positions');
     }
 }

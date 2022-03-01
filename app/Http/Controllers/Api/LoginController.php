@@ -43,6 +43,7 @@ class LoginController extends Controller
                 else{
                     $response['success'] = true;
                     $response['user'] = $user;
+
                     $return = response()->json($response, 200);
                 }
             }
@@ -56,7 +57,8 @@ class LoginController extends Controller
         $response = ['success' => false];
         $return = [];
         $validator = Validator::make($request->all(), [
-            'name' => ['required'],
+            'firstname' => ['required'],
+            'lastname' => ['required'],
             'email' => ['required','email','unique:users,email'],
             'password' => ['required'],
             'role' => ['required']
@@ -71,7 +73,8 @@ class LoginController extends Controller
             $verification_code = Str::random(6);
             $email = $request->email;
             $registerUser = User::create([
-                'name' => $request->name,
+                'firstname' => $request->firstname,
+                'lastname' => $request->lastname,
                 'email' => $email,
                 'password' => Hash::make($request->password),
                 'role' => $request->role,
