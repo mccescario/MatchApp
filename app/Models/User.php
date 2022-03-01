@@ -27,8 +27,12 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name',
+        'firstname',
+        'lastname',
         'email',
+        'username',
+        'student_number',
+        'course',
         'password',
         'role',
         'host_key',
@@ -71,7 +75,34 @@ class User extends Authenticatable
      */
     protected $appends = [
         'profile_photo_url',
+        'fullname',
+        'userrole',
     ];
 
 
+
+    public function getFullnameAttribute()
+    {
+        return "{$this->firstname} {$this->lastname}";
+    }
+
+    public function getUserRoleAttribute()
+    {
+        $userRole = "";
+        $roleInt = $this->role;
+        if($roleInt == 1){
+            $userRole = "Administrator";
+        } else if($roleInt == 2){
+            $userRole = "Host";
+        } else if($roleInt == 3) {
+            $userRole = "Player";
+        }
+
+        return $userRole;
+    }
+
+    public function olympic_games()
+    {
+        return $this->hasMany(OlympicGame::class);
+    }
 }

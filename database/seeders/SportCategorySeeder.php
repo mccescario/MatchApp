@@ -1,0 +1,30 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\SportCategory;
+use Illuminate\Database\Seeder;
+
+class SportCategorySeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        SportCategory::insert([
+            [
+                'sport_category_name' => 'Basketball',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            // [
+            //     'esport_category_name' => 'Volleybal',
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ]
+        ]);
+    }
+}

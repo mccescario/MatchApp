@@ -16,18 +16,21 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             //$table->foreignId('profile_id')->references('id')->on('sport_profile');
-            $table->string('name');
+            $table->string('firstname');
+            $table->string('lastname');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('username')->nullable();
+            $table->string('course')->nullable();
+            $table->string('student_number')->nullable();
             $table->string('password');
             $table->integer('role')->nullable();
             $table->string('host_key')->nullable();
             $table->string('address')->nullable();
             $table->string('contact_number')->nullable();
             $table->string('status')->nullable();
-            $table->string('sport_type')->nullable();
-            $table->string('sport')->nullable();
-            $table->string('esport')->nullable();
+            $table->foreignId('sport');
+            $table->foreignId('esport');
             $table->rememberToken();
             //$table->foreignId('current_team_id')->nullable();
             $table->foreignId('team')->nullable();

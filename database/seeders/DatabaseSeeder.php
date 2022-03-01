@@ -18,10 +18,19 @@ class DatabaseSeeder extends Seeder
             //PermissionsTableSeeder::class,
            // RolesTableSeeder::class,
            // PermissionRoleTableSeeder::class,
-            ProfileTableSeeder::class,
+            // ProfileTableSeeder::class,
             UsersTableSeeder::class,
             //RoleUserTableSeeder::class,
             //TeamTableSeeder::class,
+            CourseSeeder::class,
+            EsportCategorySeeder::class,
+            SportCategorySeeder::class,
+            EsportRoleSeeder::class,
+            SportPositionSeeder::class,
+            OlympicCategorySeeder::class,
+            OlympicGameSeeder::class,
+            EsportProfileSeeder::class,
+            SportProfileSeeder::class
         ]);
     }
 }

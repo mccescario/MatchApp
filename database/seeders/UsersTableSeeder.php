@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -17,31 +18,47 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             [
                 'id'                 => 1,
-                'name'               => 'Admin Testing',
-                'email'              => 'admin.testing101@gmail.com',
+                'firstname'          => 'Admin',
+                'lastname'           => 'Testing',
+                'email'              => 'admin@gmail.com',
                 'role'               => 1,
-                'password'           => bcrypt('adminpassword'),
+                'email_verified_at'  => now(),
+                'password'           => bcrypt('secret'),
                 //'profile_id'         => 0,
             ],
             [
                 'id'                 => 2,
-                'name'               => 'Host Testing',
-                'email'              => 'host.testing101@gmail.com',
+                'firstname'          => 'Host',
+                'lastname'           => 'Testing',
+                'email'              => 'host@gmail.com',
                 'role'               => 2,
-                'password'           => bcrypt('host-test123'),
+                'email_verified_at'  => now(),
+                'password'           => bcrypt('secret'),
                 //'profile_id'         => 0,
 
             ],
             [
                 'id'                 => 3,
-                'name'               => 'Normal Testing',
-                'email'              => 'normal.testing101@gmail.com',
+                'firstname'          => 'Normal',
+                'lastname'           => 'Testing',
+                'email'              => 'normal@gmail.com',
                 'role'               => 3,
-                'password'           => bcrypt('normal-test123'),
+                'email_verified_at'  => now(),
+                'password'           => bcrypt('secret'),
                 //'profile_id'         => 0,
 
             ],
+            [
+                'id'                 => 4,
+                'firstname'          => 'Bryan',
+                'lastname'           => 'Bernardo',
+                'email'              => 'bryanbernardo9828@gmail.com',
+                'role'               => 3,
+                'email_verified_at'  => now(),
+                'password'           => bcrypt('secret'),
+                //'profile_id'         => 0,
 
+            ],
         ]);
     }
 }
