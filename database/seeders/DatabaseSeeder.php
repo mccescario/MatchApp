@@ -27,10 +27,8 @@ class DatabaseSeeder extends Seeder
             SportCategorySeeder::class,
             EsportRoleSeeder::class,
             SportPositionSeeder::class,
-            OlympicCategorySeeder::class,
-            OlympicGameSeeder::class,
-            EsportProfileSeeder::class,
-            SportProfileSeeder::class
+            EsportSeeder::class,
+            SportSeeder::class,
         ]);
     }
 }

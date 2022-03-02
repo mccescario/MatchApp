@@ -5,13 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class OlympicGame extends Model
+class Sport extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var string[]
+     */
     protected $fillable = [
-        'olympic_game_name',
-        'olympic_game_type',
+        'user_id',
+        'sport_name',
+        'sport_height',
+        'sport_weight',
+        'sport_primary_position',
+        'sport_secondary_position',
         'created_at',
         'updated_at'
     ];
@@ -30,16 +39,4 @@ class OlympicGame extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    public function esport_profile()
-    {
-        return $this->hasOne(EsportProfile::class);
-    }
-
-    public function sport_profile()
-    {
-        return $this->hasOne(SportProfile::class);
-    }
-
-    
 }

@@ -5,17 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class EsportProfile extends Model
+class Esport extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'olympic_game_id',
-        'esport_profile_name',
-        'esport_profile_level',
-        'esport_profile_rank',
-        'esport_profile_role',
-        'esport_profile_win_rate',
+        'user_id',
+        'esport_name',
+        'esport_ign',
+        'esport_level',
+        'esport_rank',
+        'esport_role',
+        'esport_win_rate',
         'created_at',
         'updated_at'
     ];
@@ -30,8 +31,8 @@ class EsportProfile extends Model
         'updated_at',
     ];
 
-    public function olympic_game()
+    public function user()
     {
-        return $this->belongsTo(OlympicGame::class);
+        return $this->belongsTo(User::class);
     }
 }
