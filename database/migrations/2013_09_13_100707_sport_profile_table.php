@@ -22,13 +22,13 @@ class SportProfileTable extends Migration
             $table->string('ign')->nullable();
             $table->string('level')->nullable();
             $table->string('rank')->nullable();
-            $table->string('position')->nullable();
+            // $table->string('position')->nullable();
             $table->string('win_rate')->nullable();
             // Sports
             $table->string('height')->nullable();
             $table->string('weight')->nullable();
-            $table->string('primary_pos')->nullable();
-            $table->string('secondary_pos')->nullable();
+            // $table->string('primary_pos')->nullable();
+            // $table->string('secondary_pos')->nullable();
             $table->timestamps();
         });
 
