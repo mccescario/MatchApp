@@ -40,8 +40,6 @@ class User extends Authenticatable
         'contact_number',
         'status',
         'sport_type',
-        'sport',
-        'esport',
         'verification_code',
         'profile_photo_url',
         'email_verified_at'
@@ -101,8 +99,14 @@ class User extends Authenticatable
         return $userRole;
     }
 
-    public function olympic_games()
+
+    public function esport()
     {
-        return $this->hasMany(OlympicGame::class);
+        return $this->hasOne(Esport::class);
+    }
+
+    public function sport()
+    {
+        return $this->hasOne(Sport::class);
     }
 }

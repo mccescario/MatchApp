@@ -30,7 +30,7 @@ class LoginController extends Controller
             $return = response()->json($response, 422);
         }
         else{
-            $user = User::where('email', $request->email)->first();
+            $user = User::with(['esport','sport'])->where('email', $request->email)->first();
             if (! $user || ! Hash::check($request->password, $user->password)) {
                 $response['errors'] = 'The provided credentials are incorrect.';
                 $return = response()->json($response, 401);

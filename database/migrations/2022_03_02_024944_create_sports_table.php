@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOlympicGamesTable extends Migration
+class CreateSportsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateOlympicGamesTable extends Migration
      */
     public function up()
     {
-        Schema::create('olympic_games', function (Blueprint $table) {
+        Schema::create('sports', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->string('olympic_game_type');
-            $table->string('olympic_game_name');
+            $table->string('sport_name');
+            $table->string('sport_height')->nullable();
+            $table->string('sport_weight')->nullable();
+            $table->string('sport_primary_position')->nullable();
+            $table->string('sport_secondary_position')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +32,6 @@ class CreateOlympicGamesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('olympic_games');
+        Schema::dropIfExists('sports');
     }
 }

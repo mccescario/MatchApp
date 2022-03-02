@@ -54,7 +54,5 @@ Route::prefix('mobile')->group(function () {
 
         Route::get('esport-categories',[ProfileController::class,'getEsportsCategories']);
         Route::get('sport-categories',[ProfileController::class,'getSportsCategories']);
-
-      
     });
 });

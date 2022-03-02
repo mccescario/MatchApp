@@ -29,8 +29,8 @@ class CreateUsersTable extends Migration
             $table->string('address')->nullable();
             $table->string('contact_number')->nullable();
             $table->string('status')->nullable();
-            $table->foreignId('sport');
-            $table->foreignId('esport');
+            // $table->foreignId('sport_id')->nullable()->change();
+            // $table->foreignId('esport_id')->nullable()->change();
             $table->rememberToken();
             //$table->foreignId('current_team_id')->nullable();
             $table->foreignId('team')->nullable();
