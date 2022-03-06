@@ -109,4 +109,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Sport::class);
     }
+
+    public function team_members()
+    {
+        return $this->hasMany(TeamMember::class);
+    }
 }

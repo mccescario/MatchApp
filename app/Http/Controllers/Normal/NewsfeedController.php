@@ -54,7 +54,7 @@ class NewsFeedController extends Controller
             'img_path' => 'required|mimes:png,jpg|max:5048'
         ]);
 
-        $newImageName = uniqid().'-'.$request->title.'.'.
+        $newImageName = uniqid().'-'.now()->timestamp.'.'.
 
         $request->img_path->extension();
 
