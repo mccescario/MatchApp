@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\SportPosition;
+use App\Models\TeamMember;
 use Illuminate\Database\Seeder;
 
-class SportPositionSeeder extends Seeder
+class TeamMemberSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,40 +14,40 @@ class SportPositionSeeder extends Seeder
      */
     public function run()
     {
-        SportPosition::insert([
+        TeamMember::insert([
             [
-                'sport_category_id' => 1,
-                'sport_position_name' => 'Center',
+                'team_id' => 1,
+                'user_id' => 14,
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
-                'sport_category_id' => 1,
-                'sport_position_name' => 'Power Forward',
+                'team_id' => 1,
+                'user_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
-                'sport_category_id' => 1,
-                'sport_position_name' => 'Small Forward',
+                'team_id' => 1,
+                'user_id' => 2,
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
-                'sport_category_id' => 1,
-                'sport_position_name' => 'Point Guard',
+                'team_id' => 1,
+                'user_id' => 3,
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
-                'sport_category_id' => 1,
-                'sport_position_name' => 'Shooting Guard',
+                'team_id' => 1,
+                'user_id' => 4,
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
-                'sport_category_id' => 1,
-                'sport_position_name' => 'Coach/Captain',
+                'team_id' => 1,
+                'user_id' => 5,
                 'created_at' => now(),
                 'updated_at' => now()
             ]
