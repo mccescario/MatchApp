@@ -4,7 +4,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\CustomAuthController;
 use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\Api\NewsFeedController;
 use App\Http\Controllers\Api\ProfileController;
+use App\Http\Controllers\Api\TeamController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -54,5 +56,20 @@ Route::prefix('mobile')->group(function () {
 
         Route::get('esport-categories',[ProfileController::class,'getEsportsCategories']);
         Route::get('sport-categories',[ProfileController::class,'getSportsCategories']);
+
+        Route::patch('player-update/{id}',[ProfileController::class,'updatePlayerProfile']);
+
+        Route::post('change-password',[ProfileController::class,'changePassword']);
+    });
+
+    //NewsFeedController
+    Route::prefix('feed')->group(function () {
+        Route::get('news', [NewsFeedController::class,'news']);
+    });
+
+    //TeamController
+    Route::prefix('team')->group(function () {
+        Route::get('teams',[TeamController::class,'teams']);
+        Route::get('myteams/{id}',[TeamController::class,'myteams']);
     });
 });

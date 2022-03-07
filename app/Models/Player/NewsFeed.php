@@ -5,6 +5,7 @@ namespace App\Models\Player;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use Attribute;
 use Cviebrock\EloquentSluggable\Sluggable;
 
 class NewsFeed extends Model
@@ -38,5 +39,47 @@ class NewsFeed extends Model
                 'source' => 'title'
             ]
         ];
+    }
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'user_id'
+    ];
+
+     /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'author',
+        'date',
+    ];
+
+    public function getAuthorAttribute()
+    {
+        return "{$this->user->firstname} {$this->user->lastname}";
+    }
+
+    /**
+     * Get the user's first name.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getDateAttribute()
+    {
+        return $this->created_at->format('F d, Y');
+    }
+    
+    public function getImgPathAttribute($value)
+    {
+        return url("/images/{$value}");
     }
 }

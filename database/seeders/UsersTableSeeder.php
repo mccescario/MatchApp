@@ -17,48 +17,47 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-                'id'                 => 1,
                 'firstname'          => 'Admin',
                 'lastname'           => 'Testing',
                 'email'              => 'admin@gmail.com',
                 'role'               => 1,
                 'email_verified_at'  => now(),
                 'password'           => bcrypt('secret'),
-                //'profile_id'         => 0,
+                'created_at' => now(),
+                'updated_at' => now()
             ],
             [
-                'id'                 => 2,
                 'firstname'          => 'Host',
                 'lastname'           => 'Testing',
                 'email'              => 'host@gmail.com',
                 'role'               => 2,
                 'email_verified_at'  => now(),
                 'password'           => bcrypt('secret'),
-                //'profile_id'         => 0,
+                'created_at' => now(),
+                'updated_at' => now()
 
             ],
             [
-                'id'                 => 3,
                 'firstname'          => 'Normal',
                 'lastname'           => 'Testing',
                 'email'              => 'normal@gmail.com',
                 'role'               => 3,
                 'email_verified_at'  => now(),
                 'password'           => bcrypt('secret'),
-                //'profile_id'         => 0,
+                'created_at' => now(),
+                'updated_at' => now()
 
             ],
-            [
-                'id'                 => 4,
-                'firstname'          => 'Bryan',
-                'lastname'           => 'Bernardo',
-                'email'              => 'bryanbernardo9828@gmail.com',
-                'role'               => 3,
-                'email_verified_at'  => now(),
-                'password'           => bcrypt('secret'),
-                //'profile_id'         => 0,
-
-            ],
+            // [
+            //     'firstname'          => 'Bryan',
+            //     'lastname'           => 'Bernardo',
+            //     'email'              => 'bryanbernardo9828@gmail.com',
+            //     'role'               => 3,
+            //     'email_verified_at'  => now(),
+            //     'password'           => bcrypt('secret'),
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ]
         ]);
     }
 }

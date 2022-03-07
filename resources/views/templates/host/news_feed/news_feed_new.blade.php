@@ -73,7 +73,7 @@
                     @foreach ( $news_feed as $news)
 
                         <tr>
-                            <td class="m-2 p-4 text-start h-50">{{ ++$i }}</td>
+                            <td class="m-2 p-4 text-start h-50">{{ ++$i ?? '' ?? '' }}</td>
                             <td class="m-2 p-4 text-start h-50">{{ $news->title }}</td>
                             <td class="m-2 p-4 text-start w-50 h-50">{{ $news->description }}</td>
                             <td class="m-2 p-4 text-start h-50">{{ $news->user->name }}</td>

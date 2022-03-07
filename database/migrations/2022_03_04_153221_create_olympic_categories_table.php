@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTeamsTable extends Migration
+class CreateOlympicCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateTeamsTable extends Migration
      */
     public function up()
     {
-        Schema::create('teams', function (Blueprint $table) {
+        Schema::create('olympic_categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('olympic_category_id');
-            $table->foreignId('team_game_id');
-            $table->string('team_name');
-            $table->string('team_logo')->nullable();
+            $table->string('olympic_category_name');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateTeamsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('teams');
+        Schema::dropIfExists('olympic_categories');
     }
 }

@@ -16,19 +16,18 @@ class TeamMembers extends Migration
         //
         Schema::create('team_members', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('team_id');
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('sport_profile_id');
+            $table->foreignId('team_id');
+            $table->foreignId('user_id');
             $table->timestamps();
         });
 
-        Schema::table('team_members', function ($table) {
+        // Schema::table('team_members', function ($table) {
 
-            /* Sport Profile */
-            $table->foreign('team_id')->references('id')->on('team')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('sport_profile_id')->references('id')->on('sport_profile')->onDelete('cascade');
-        });
+        //     /* Sport Profile */
+        //     $table->foreign('team_id')->references('id')->on('team')->onDelete('cascade');
+        //     $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+        //     $table->foreign('sport_profile_id')->references('id')->on('sport_profile')->onDelete('cascade');
+        // });
     }
 
     /**

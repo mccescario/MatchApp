@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
+use App\Models\Esport;
 use App\Models\EsportCategory;
 use App\Models\SportCategory;
 use App\Models\User;
@@ -70,5 +71,33 @@ class ProfileController extends Controller
     {
         $sport = SportCategory::with('sport_positions')->get();
         return response()->json($sport, 200);
+    }
+
+    public function updatePlayerProfile(Request $request, $id)
+    {
+        $player = User::find($id);
+        $player->esport->update([
+            'esport_name' => $request->esport_name,
+            'esport_ign' => $request->esport_ign,
+            'esport_level' => $request->esport_level,
+            'esport_rank' => $request->esport_rank,
+            'esport_role' => $request->esport_role,
+            'esport_win_rate' => $request->esport_win_rate,
+        ]);
+
+        $player->sport->update([
+            'sport_name' => $request->sport_name,
+            'sport_height' => $request->sport_name,
+            'sport_weight' => $request->sport_name,
+            'sport_primary_position' => $request->sport_name,
+            'sport_secondary_position' => $request->sport_name
+        ]);
+
+        return response()->json(['success' => true], 200);
+    }
+
+    public function changePassword(Request $request)
+    {
+        
     }
 }
