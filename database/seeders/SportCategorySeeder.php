@@ -16,6 +16,7 @@ class SportCategorySeeder extends Seeder
     {
         SportCategory::insert([
             [
+                'olympic_category_id' => 1,
                 'sport_category_name' => 'Basketball',
                 'created_at' => now(),
                 'updated_at' => now()

@@ -26,15 +26,16 @@ class DatabaseSeeder extends Seeder
             //RoleUserTableSeeder::class,
             //TeamTableSeeder::class,
             CourseSeeder::class,
+            OlympicCategorySeeder::class,
             EsportCategorySeeder::class,
             SportCategorySeeder::class,
             EsportRoleSeeder::class,
             SportPositionSeeder::class,
             EsportSeeder::class,
             SportSeeder::class,
-            OlympicCategorySeeder::class,
             TeamTableSeeder::class,
-            TeamMemberSeeder::class
+            // TeamMemberSeeder::class
+            TeamUserSeeder::class
         ]);
 
         
