@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\NewsFeedController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\TeamController;
+use App\Models\Team;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -70,6 +71,17 @@ Route::prefix('mobile')->group(function () {
     //TeamController
     Route::prefix('team')->group(function () {
         Route::get('teams',[TeamController::class,'teams']);
-        Route::get('myteams/{id}',[TeamController::class,'myteams']);
+        Route::get('my-esport-teams/{id}',[TeamController::class,'esport_user_teams']);
+        Route::get('my-sport-teams/{id}',[TeamController::class,'sport_user_teams']);
+
+        Route::get('team-members/{team_id}/{user_id}/{olympic_category_id}',[TeamController::class,'get_team_members']);
+
+        // Route::get('esport-team-members/{team_id}/{user_id}',[TeamController::class,'get_esport_team_members']);
+        // Route::get('sport-team-members/{team_id}/{user_id}',[TeamController::class,'get_sport_team_members']);
+
+        Route::get('game-categories', [TeamController::class,'game_categories']);
+        Route::get('get-games-by-category/{olympic_category_name}', [TeamController::class,'getGameByCategory']);
+
+        Route::post('create-team', [TeamController::class,'createTeam']);
     });
 });

@@ -35,4 +35,9 @@ class EsportRole extends Model
     {
         return $this->belongsTo(EsportCategory::class);
     }
+
+    public function esport()
+    {
+        return $this->hasMany(Esport::class);
+    }
 }

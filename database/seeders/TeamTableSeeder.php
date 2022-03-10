@@ -23,6 +23,20 @@ class TeamTableSeeder extends Seeder
                 'team_name' => 'Team Secret',
                 'created_at' => now(),
                 'updated_at' => now()
+            ],
+            [
+                'olympic_category_id' => 2,
+                'team_game_id' => 1,
+                'team_name' => 'Team Secret',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'olympic_category_id' => 1,
+                'team_game_id' => 1,
+                'team_name' => 'Gilas Pilipinas',
+                'created_at' => now(),
+                'updated_at' => now()
             ]
         ]);
     }
