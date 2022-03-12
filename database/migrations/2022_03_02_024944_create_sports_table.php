@@ -19,9 +19,12 @@ class CreateSportsTable extends Migration
             $table->string('sport_name');
             $table->string('sport_height')->nullable();
             $table->string('sport_weight')->nullable();
-            $table->string('sport_primary_position')->nullable();
-            $table->string('sport_secondary_position')->nullable();
+            $table->unsignedBigInteger('sport_primary_position_id')->nullable();
+            $table->unsignedBigInteger('sport_secondary_position_id')->nullable();
             $table->timestamps();
+
+            $table->foreign('sport_primary_position_id')->references('id')->on('sport_positions');
+            $table->foreign('sport_secondary_position_id')->references('id')->on('sport_positions');
         });
     }
 

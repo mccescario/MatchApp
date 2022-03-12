@@ -48,16 +48,16 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => now()
 
             ],
-            // [
-            //     'firstname'          => 'Bryan',
-            //     'lastname'           => 'Bernardo',
-            //     'email'              => 'bryanbernardo9828@gmail.com',
-            //     'role'               => 3,
-            //     'email_verified_at'  => now(),
-            //     'password'           => bcrypt('secret'),
-            //     'created_at' => now(),
-            //     'updated_at' => now()
-            // ]
+            [
+                'firstname'          => 'Jason',
+                'lastname'           => 'Doe',
+                'email'              => 'jasondoe@gmail.com',
+                'role'               => 3,
+                'email_verified_at'  => now(),
+                'password'           => bcrypt('secret'),
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
         ]);
     }
 }
