@@ -44,6 +44,12 @@ class SportPositionSeeder extends Seeder
                 'sport_position_name' => 'Shooting Guard',
                 'created_at' => now(),
                 'updated_at' => now()
+            ],
+            [
+                'sport_category_id' => 1,
+                'sport_position_name' => 'Coach/Captain',
+                'created_at' => now(),
+                'updated_at' => now()
             ]
         ]);
     }

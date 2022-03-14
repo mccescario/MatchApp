@@ -15,6 +15,7 @@ class EsportCategory extends Model
      * @var string[]
      */
     protected $fillable = [
+        'olympic_category_id',
         'esport_category_name',
         'created_at',
         'updated_at'
@@ -33,5 +34,15 @@ class EsportCategory extends Model
     public function esport_roles()
     {
         return $this->hasMany(EsportRole::class);
+    }
+
+    public function teams()
+    {
+        return $this->hasMany(Team::class);
+    }
+
+    public function olympic_category()
+    {
+        return $this->belongsTo(OlympicCategory::class);
     }
 }

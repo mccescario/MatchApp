@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Models\Player;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TeamMembers extends Model
+class TeamUser extends Model
 {
     use HasFactory;
 
-    protected $table = 'team_members';
+    protected $table = 'team_user';
 }

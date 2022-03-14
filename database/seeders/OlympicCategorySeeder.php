@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\EsportCategory;
+use App\Models\OlympicCategory;
 use Illuminate\Database\Seeder;
 
-class EsportCategorySeeder extends Seeder
+class OlympicCategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,20 +14,17 @@ class EsportCategorySeeder extends Seeder
      */
     public function run()
     {
-        EsportCategory::insert([
+        OlympicCategory::insert([
             [
-                'olympic_category_id' => 2,
-                'esport_category_name' => 'Dota 2',
+                'olympic_category_name' => 'Sport',
                 'created_at' => now(),
                 'updated_at' => now()
-                
             ],
             [
-                'olympic_category_id' => 2,
-                "esport_category_name" => "Valorant",
+                'olympic_category_name' => 'Esport',
                 'created_at' => now(),
                 'updated_at' => now()
             ]
-        ]);
+            ]);
     }
 }

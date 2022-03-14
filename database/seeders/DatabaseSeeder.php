@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
+use Faker\Factory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,6 +16,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+        User::factory(10)->create();
         $this->call([
             //PermissionsTableSeeder::class,
            // RolesTableSeeder::class,
@@ -23,12 +26,18 @@ class DatabaseSeeder extends Seeder
             //RoleUserTableSeeder::class,
             //TeamTableSeeder::class,
             CourseSeeder::class,
+            OlympicCategorySeeder::class,
             EsportCategorySeeder::class,
             SportCategorySeeder::class,
             EsportRoleSeeder::class,
             SportPositionSeeder::class,
             EsportSeeder::class,
             SportSeeder::class,
+            TeamTableSeeder::class,
+            // TeamMemberSeeder::class
+            TeamUserSeeder::class
         ]);
+
+        
     }
 }

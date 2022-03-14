@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Team;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -15,25 +16,28 @@ class TeamTableSeeder extends Seeder
     public function run()
     {
         //
-        DB::table('teams')->insert([
+        Team::insert([
             [
-                'id'                => 1,
-                'user_id'           => 1,
-                'name'              => 'Admin Team',
-                'personal_team'     => true,
+                'olympic_category_id' => 2,
+                'team_game_id' => 2,
+                'team_name' => 'Team Secret',
+                'created_at' => now(),
+                'updated_at' => now()
             ],
             [
-                'id'                => 2,
-                'user_id'           => 2,
-                'name'              => 'Host Team',
-                'personal_team'     => true,
+                'olympic_category_id' => 2,
+                'team_game_id' => 1,
+                'team_name' => 'Team Secret',
+                'created_at' => now(),
+                'updated_at' => now()
             ],
             [
-                'id'                => 3,
-                'user_id'           => 3,
-                'name'              => 'Player Team',
-                'personal_team'     => true,
-            ],
+                'olympic_category_id' => 1,
+                'team_game_id' => 1,
+                'team_name' => 'Gilas Pilipinas',
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
         ]);
     }
 }

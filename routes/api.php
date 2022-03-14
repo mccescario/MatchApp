@@ -4,7 +4,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\CustomAuthController;
 use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\Api\NewsFeedController;
 use App\Http\Controllers\Api\ProfileController;
+use App\Http\Controllers\Api\TeamController;
+use App\Models\Team;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -54,5 +57,31 @@ Route::prefix('mobile')->group(function () {
 
         Route::get('esport-categories',[ProfileController::class,'getEsportsCategories']);
         Route::get('sport-categories',[ProfileController::class,'getSportsCategories']);
+
+        Route::patch('player-update/{id}',[ProfileController::class,'updatePlayerProfile']);
+
+        Route::post('change-password',[ProfileController::class,'changePassword']);
+    });
+
+    //NewsFeedController
+    Route::prefix('feed')->group(function () {
+        Route::get('news', [NewsFeedController::class,'news']);
+    });
+
+    //TeamController
+    Route::prefix('team')->group(function () {
+        Route::get('teams',[TeamController::class,'teams']);
+        Route::get('my-esport-teams/{id}',[TeamController::class,'esport_user_teams']);
+        Route::get('my-sport-teams/{id}',[TeamController::class,'sport_user_teams']);
+
+        Route::get('team-members/{team_id}/{user_id}/{olympic_category_id}',[TeamController::class,'get_team_members']);
+
+        // Route::get('esport-team-members/{team_id}/{user_id}',[TeamController::class,'get_esport_team_members']);
+        // Route::get('sport-team-members/{team_id}/{user_id}',[TeamController::class,'get_sport_team_members']);
+
+        Route::get('game-categories', [TeamController::class,'game_categories']);
+        Route::get('get-games-by-category/{olympic_category_name}', [TeamController::class,'getGameByCategory']);
+
+        Route::post('create-team', [TeamController::class,'createTeam']);
     });
 });

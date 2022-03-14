@@ -40,6 +40,12 @@ class EsportRoleSeeder extends Seeder
                 "created_at" => now(),
                 "updated_at" => now()
             ],
+            [
+                "esport_category_id" => 1,
+                "esport_role_name" => "Coach/Captain",
+                "created_at" => now(),
+                "updated_at" => now()
+            ],
             
 
             //for valorant
@@ -64,6 +70,12 @@ class EsportRoleSeeder extends Seeder
             [
                 "esport_category_id" => 2,
                 "esport_role_name" => "Initiator",
+                "created_at" => now(),
+                "updated_at" => now()
+            ],
+            [
+                "esport_category_id" => 2,
+                "esport_role_name" => "Coach/Captain",
                 "created_at" => now(),
                 "updated_at" => now()
             ],

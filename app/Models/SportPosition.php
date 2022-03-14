@@ -36,4 +36,14 @@ class SportPosition extends Model
     {
         return $this->belongsTo(SportCategory::class);
     }
+
+    public function sport_primaries()
+    {
+        return $this->hasMany(Sport::class,'sport_primary_position_id');
+    }
+
+    public function sport_secondaries()
+    {
+        return $this->hasMany(Sport::class,'sport_secondary_position_id');
+    }
 }
