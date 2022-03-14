@@ -16,9 +16,141 @@
     @endif
 
     <div>
-        <a href="{{ url()->previous() }}" class="btn btn-bg mb-3"> Back</a>
+        <a href="{{ url()->previous() }}" class="btn btn-primary mb-3"> Back</a>
     </div>
 
+    <div class="container-fluid">
+        <h3 class="text-dark mb-4">Tournament Hosting</h3>
+        <form class="row mb-3" action="{{ url('tournament') }}" method="POST">
+            <div class="col-lg-4">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="text-primary fw-bold m-0">Set Schedule</h6>
+                    </div>
+                    <div class="card-body"><label class="form-label" for="email"><strong>Select Date</strong></label>
+                        <div></div>
+                        <h4 class="small fw-bold"></h4>
+                        <div class="form-group mb-3">
+                            <div class="input-group mb-4">
+                                <span class="input-group-text" style="width: 63px;">From</span>
+                                <input class="form-control" type="date" id="datePicker"></div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <div class="input-group mb-4">
+                                <span class="input-group-text" style="width: 63px;">To</span>
+                                <input class="form-control" type="date" id="datePicker-1"></div>
+                        </div><label class="form-label" for=""><strong>Select Time</strong></label>
+                        <div class="form-group mb-3">
+                            <div class="input-group mb-4">
+                                <span class="input-group-text">Time</span>
+                                <input class="form-control" type="time" id="datePicker-2"></div>
+                        </div>
+                        <h4 class="small fw-bold"><span class="float-end"></span></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="col">
+                        <div class="card shadow mb-3">
+                            <div class="card-header py-3">
+                                <p class="text-primary m-0 fw-bold">Customize Tournament</p>
+                            </div>
+                            <div class="card-body">
+                                <form>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="mb-3"><label class="form-label" for="t_name"><strong>Tournament Name</strong></label>
+                                                <input class="form-control" type="text" id="t_name" placeholder="" name="t_name" style="color: rgb(133, 135, 150);">
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="t_type"><strong>Tournament Type</strong></label>
+                                                <select class="form-select" id="t_type" placeholder="" name="t_type">
+                                                    <option value="1">Sports</option>
+                                                    <option value="2">eSports</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="t_size">
+                                                <strong>Tournament Size</strong></label>
+                                                <select class="form-select" name="t_size" id="t_size">
+                                                    <option selected>Select Tournament Size</option>
+                                                    <option value="1">2</option>
+                                                    <option value="2">4</option>
+                                                    <option value="3">8</option>
+                                                    <option value="4">16</option>
+                                                    <option value="5">32</option>
+                                                    <option value="6">64</option>
+                                                    <option value="7">128</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label" for="t_format">
+                                                <strong>Tournament Format</strong><br></label>
+                                                <select class="form-select" id="t_format" name="t_format">
+                                                    <option selected>Select Tournament Format</option>
+                                                    <option value="1">Single-Elimination</option>
+                                                    <option value="2">Double-Elimination</option>
+                                                    <option value="3">Round Robin</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="t_game"><strong>Select Game</strong></label>
+                                                <select class="form-select" id="t_game" name="t_game">
+                                                    <option selected>Select a Game</option>
+                                                    <option value="1">Basketball</option>
+                                                    <option value="2">Volleyball</option>
+                                                    <option value="3">Badminton</option>
+                                                    <option value="4">Chess</option>
+                                                </select>
+                                                <select class="form-select" id="t_game" name="t_game">
+                                                    <option value="1">Valorant</option>
+                                                    <option value="2">Mobile Legends</option>
+                                                    <option value="3">Dota 2</option>
+                                                    <option value="4">Counter Strike: Global Offensive</option>
+                                                    <option value="5">League of Legends</option>
+                                                    <option value="6">Call of Duty: Mobile</option>
+                                                    <option value="7">Hearthstone</option>
+                                                    <option value="8">PlayerUnkown's Battleground</option>
+                                                    <option value="9">Overwatch</option>
+                                                    <option value="10">Fortnite</option>
+                                                    <option value="11">Apex Legends</option>
+                                                    <option value="12">League of Legends: Wild Rift</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label" for="t_series"><strong>Series</strong><br></label>
+                                                <select class="form-select" id="t_series" name="t_series">
+                                                    <option value="1">Knockouts</option>
+                                                    <option value="2">Championship Best of 3</option>
+                                                    <option value="3">Championship Best of 5</option>
+                                                    <option value="4">Championship Best of 7</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+
+                                        <button class="btn btn-primary btn-sm" type="submit" style="width: 150.5px;height: 38px;">Create Tournament</button></div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!--
     <div class=" card shadow mb-5" style="padding: 0px; padding-top:0px;">
         <div class="card-header">
             <h2 style="padding: 0px 0px;">Tournament Registration</h2>
@@ -188,5 +320,5 @@
             </div>
         </form>
 </div>
-
+-->
 @endsection
