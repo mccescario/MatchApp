@@ -29,6 +29,7 @@ class User extends Authenticatable
     protected $fillable = [
         'firstname',
         'lastname',
+        'age',
         'email',
         'username',
         'student_number',
@@ -116,5 +117,10 @@ class User extends Authenticatable
     public function teams()
     {
         return $this->belongsToMany(Team::class)->withTimestamps();
+    }
+
+    public function team_invitations()
+    {
+        return $this->hasMany(TeamInvitation::class);
     }
 }

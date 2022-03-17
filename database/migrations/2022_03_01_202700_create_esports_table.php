@@ -17,7 +17,7 @@ class CreateEsportsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('esport_role_id')->nullable()->constrained();
-            $table->string('esport_name')->nullable();
+            $table->foreignId('esport_category_id')->constrained();
             $table->string('esport_ign')->nullable();
             $table->string('esport_level')->nullable();
             $table->string('esport_rank')->nullable();

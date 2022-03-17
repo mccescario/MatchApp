@@ -12,7 +12,7 @@ class Esport extends Model
     protected $fillable = [
         'user_id',
         'esport_role_id',
-        'esport_name',
+        'esport_category_id',
         'esport_ign',
         'esport_level',
         'esport_rank',
@@ -31,7 +31,9 @@ class Esport extends Model
         'updated_at',
         'id',
         'user_id',
-        'esport_role'
+        'esport_role',
+        'esport_category',
+        'esport_category_id'
     ];
 
     /**
@@ -40,7 +42,8 @@ class Esport extends Model
      * @var array
      */
     protected $appends = [
-        'esport_role_name'
+        'esport_role_name',
+        'esport_name'
     ];
 
     public function user()
@@ -55,6 +58,17 @@ class Esport extends Model
 
     public function getEsportRoleNameAttribute()
     {
-        return $this->esport_role->esport_role_name;
+        $esportRoleName = $this->esport_role != null ? $this->esport_role->esport_role_name : null;
+        return $esportRoleName;
+    }
+
+    public function esport_category()
+    {
+        return $this->belongsTo(EsportCategory::class);
+    }
+
+    public function getEsportNameAttribute()
+    {
+        return $this->esport_category->esport_category_name;
     }
 }

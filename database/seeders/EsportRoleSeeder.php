@@ -19,30 +19,35 @@ class EsportRoleSeeder extends Seeder
             [
                 "esport_category_id" => 1,
                 "esport_role_name" => "Carry",
+                "is_captain" => false,
                 "created_at" => now(),
                 "updated_at" => now()
             ],
             [
                 "esport_category_id" => 1,
                 "esport_role_name" => "Mid",
+                "is_captain" => false,
                 "created_at" => now(),
                 "updated_at" => now()
             ],
             [
                 "esport_category_id" => 1,
                 "esport_role_name" => "Offlaner",
+                "is_captain" => false,
                 "created_at" => now(),
                 "updated_at" => now()
             ],
             [
                 "esport_category_id" => 1,
                 "esport_role_name" => "Support",
+                "is_captain" => false,
                 "created_at" => now(),
                 "updated_at" => now()
             ],
             [
                 "esport_category_id" => 1,
                 "esport_role_name" => "Coach/Captain",
+                "is_captain" => true,
                 "created_at" => now(),
                 "updated_at" => now()
             ],
@@ -52,30 +57,35 @@ class EsportRoleSeeder extends Seeder
             [
                 "esport_category_id" => 2,
                 "esport_role_name" => "Sentinel",
+                "is_captain" => false,
                 "created_at" => now(),
                 "updated_at" => now()
             ],
             [
                 "esport_category_id" => 2,
                 "esport_role_name" => "Controller",
+                "is_captain" => false,
                 "created_at" => now(),
                 "updated_at" => now()
             ],
             [
                 "esport_category_id" => 2,
                 "esport_role_name" => "Duelist",
+                "is_captain" => false,
                 "created_at" => now(),
                 "updated_at" => now()
             ],
             [
                 "esport_category_id" => 2,
                 "esport_role_name" => "Initiator",
+                "is_captain" => false,
                 "created_at" => now(),
                 "updated_at" => now()
             ],
             [
                 "esport_category_id" => 2,
                 "esport_role_name" => "Coach/Captain",
+                "is_captain" => true,
                 "created_at" => now(),
                 "updated_at" => now()
             ],

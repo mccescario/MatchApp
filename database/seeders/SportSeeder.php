@@ -3,10 +3,42 @@
 namespace Database\Seeders;
 
 use App\Models\Sport;
+use App\Models\SportCategory;
+use App\Models\SportPosition;
+use App\Models\User;
+use Illuminate\Container\Container;
+use Faker\Generator;
 use Illuminate\Database\Seeder;
 
 class SportSeeder extends Seeder
 {
+    /**
+     * The current Faker instance.
+     *
+     * @var \Faker\Generator
+     */
+    protected $faker;
+    
+    /**
+     * Create a new seeder instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->faker = $this->withFaker();
+    }
+
+    /**
+     * Get a new Faker instance.
+     *
+     * @return \Faker\Generator
+     */
+    protected function withFaker()
+    {
+        return Container::getInstance()->make(Generator::class);
+    }
+
     /**
      * Run the database seeds.
      *
@@ -14,117 +46,27 @@ class SportSeeder extends Seeder
      */
     public function run()
     {
-        Sport::insert([
-            [
-                'user_id'     => 14,
-                'sport_name' => 'Basketball',
-                'sport_height' => '123',
-                'sport_weight' => '321',
-                'sport_primary_position_id' => 6,
-                'sport_secondary_position_id' => 3,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'user_id'     => 1,
-                'sport_name' => 'Basketball',
-                'sport_height' => '123',
-                'sport_weight' => '123',
-                'sport_primary_position_id' => 1,
-                'sport_secondary_position_id' => 2,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'user_id'     => 2,
-                'sport_name' => 'Basketball',
-                'sport_height' => '321',
-                'sport_weight' => '111',
-                'sport_primary_position_id' => 2,
-                'sport_secondary_position_id' => 3,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'user_id'     => 3,
-                'sport_name' => 'Basketball',
-                'sport_height' => '123',
-                'sport_weight' => '321',
-                'sport_primary_position_id' => 5,
-                'sport_secondary_position_id' => 2,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'user_id'     => 4,
-                'sport_name' => 'Basketball',
-                'sport_height' => '123',
-                'sport_weight' => '321',
-                'sport_primary_position_id' => 4,
-                'sport_secondary_position_id' => 5,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'user_id'     => 5,
-                'sport_name' => 'Basketball',
-                'sport_height' => '123',
-                'sport_weight' => '321',
-                'sport_primary_position_id' => 1,
-                'sport_secondary_position_id' => 2,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'user_id'     => 6,
-                'sport_name' => 'Basketball',
-                'sport_height' => '123',
-                'sport_weight' => '321',
-                'sport_primary_position_id' => 2,
-                'sport_secondary_position_id' => 3,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'user_id'     => 7,
-                'sport_name' => 'Basketball',
-                'sport_height' => '111',
-                'sport_weight' => '222',
-                'sport_primary_position_id' => 2,
-                'sport_secondary_position_id' => 3,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'user_id'     => 8,
-                'sport_name' => 'Basketball',
-                'sport_height' => '333',
-                'sport_weight' => '444',
-                'sport_primary_position_id' => 2,
-                'sport_secondary_position_id' => 3,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'user_id'     => 9,
-                'sport_name' => 'Basketball',
-                'sport_height' => '555',
-                'sport_weight' => '666',
-                'sport_primary_position_id' => 2,
-                'sport_secondary_position_id' => 3,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'user_id'     => 10,
-                'sport_name' => 'Basketball',
-                'sport_height' => '112',
-                'sport_weight' => '221',
-                'sport_primary_position_id' => 2,
-                'sport_secondary_position_id' => 3,
-                'created_at' => now(),
-                'updated_at' => now()
-            ]
-        ]);
+
+        $count = 50;
+        for($i = 0;$i < $count; $i++){
+            $sports = Sport::pluck('user_id')->all();
+            $sports[] = 101;
+            $sports[] = 102;
+            $filterUser = User::whereNotIn('id',$sports)->get()->random()->id;
+            
+            $game = SportCategory::all()->random()->id;
+    
+            $primary_position = SportPosition::where('sport_category_id',1)->whereNotIn('id',[6])->get()->random()->id;
+            $secondary_position = SportPosition::where('sport_category_id',1)->whereNotIn('id',[6])->get()->random()->id;
+
+            Sport::create([
+                'user_id'     => $filterUser,
+                'sport_category_id' => $game,
+                'sport_height' => rand(80,150),
+                'sport_weight' => rand(80,150),
+                'sport_primary_position_id' => $primary_position,
+                'sport_secondary_position_id' => $secondary_position,
+            ]);
+        }
     }
 }

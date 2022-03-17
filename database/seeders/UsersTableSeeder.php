@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Course;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -36,11 +38,17 @@ class UsersTableSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now()
 
-            ],
+            ]
+        ]);
+
+        User::insert([
             [
                 'firstname'          => 'Normal',
                 'lastname'           => 'Testing',
                 'email'              => 'normal@gmail.com',
+                'student_number' => "2016".rand(10000,99999),
+                'age' => rand(20,25),
+                'course' => Course::all()->random()->course_title,
                 'role'               => 3,
                 'email_verified_at'  => now(),
                 'password'           => bcrypt('secret'),
@@ -52,12 +60,16 @@ class UsersTableSeeder extends Seeder
                 'firstname'          => 'Jason',
                 'lastname'           => 'Doe',
                 'email'              => 'jasondoe@gmail.com',
+                'student_number' => "2016".rand(10000,99999),
+                'age' => rand(20,25),
+                'course' => Course::all()->random()->course_title,
                 'role'               => 3,
                 'email_verified_at'  => now(),
                 'password'           => bcrypt('secret'),
                 'created_at' => now(),
                 'updated_at' => now()
-            ]
+            ],
+
         ]);
     }
 }
