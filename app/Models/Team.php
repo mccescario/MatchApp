@@ -25,24 +25,13 @@ class Team extends Model
         'team_logo',
     ];
 
-    // /**
-    //  * The event map for the model.
-    //  *
-    //  * @var array
-    //  */
-    // protected $dispatchesEvents = [
-    //     'created' => TeamCreated::class,
-    //     'updated' => TeamUpdated::class,
-    //     'deleted' => TeamDeleted::class,
-    // ];
-    
     /**
      * The attributes that should be hidden for serialization.
      *
      * @var array
      */
     protected $hidden = [
-        'olympic_category_id',
+        // 'olympic_category_id',
         'team_game_id',
         'created_at',
         'updated_at',
@@ -60,7 +49,8 @@ class Team extends Model
      */
     protected $appends = [
         'team_members',
-        'game'
+        'game',
+        'game_id'
     ];
 
 
@@ -85,9 +75,16 @@ class Team extends Model
         return $game;
     }
 
+    public function getGameIdAttribute()
+    {
+        $game_id = $this->olympic_category_id == 2 ? $this->EsportCategory->id : $this->SportCategory->id;
+        return $game_id;
+    }
+
     public function members()
     {
-        return $this->users()->union($this->users()->esport);
+        $members = $this->olympic_category_id == 2 ? $this->users()->union($this->users()->esport) : $this->users()->union($this->users()->sport);
+        return $members;
     }
 
     public function olympic_category()
@@ -95,4 +92,8 @@ class Team extends Model
         return $this->belongsTo(OlympicCategory::class);
     }
 
+    public function team_invitations()
+    {
+        return $this->hasMany(TeamInvitation::class);
+    }
 }

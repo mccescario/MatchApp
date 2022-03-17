@@ -17,6 +17,7 @@ class CreateSportPositionsTable extends Migration
             $table->id();
             $table->foreignId('sport_category_id')->constrained();
             $table->string('sport_position_name');
+            $table->boolean('is_captain')->default(false);
             $table->timestamps();
         });
     }
