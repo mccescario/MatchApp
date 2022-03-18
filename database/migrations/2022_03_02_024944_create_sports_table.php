@@ -16,7 +16,7 @@ class CreateSportsTable extends Migration
         Schema::create('sports', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->string('sport_name');
+            $table->foreignId('sport_category_id')->constrained();
             $table->string('sport_height')->nullable();
             $table->string('sport_weight')->nullable();
             $table->unsignedBigInteger('sport_primary_position_id')->nullable();

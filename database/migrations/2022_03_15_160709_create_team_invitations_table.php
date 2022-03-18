@@ -15,12 +15,13 @@ class CreateTeamInvitationsTable extends Migration
     {
         Schema::create('team_invitations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('team_id')->constrained()->cascadeOnDelete();
-            $table->string('email');
-            $table->string('role')->nullable();
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('team_id')->constrained('teams');
+            // $table->foreignId('olympic_category_id')->constrained();
+            $table->string('recruite_message')->nullable();
+            $table->string('invite_message')->nullable();
+            $table->boolean('status')->nullable();
             $table->timestamps();
-
-            $table->unique(['team_id', 'email']);
         });
     }
 

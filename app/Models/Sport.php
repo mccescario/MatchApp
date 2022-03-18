@@ -16,7 +16,7 @@ class Sport extends Model
      */
     protected $fillable = [
         'user_id',
-        'sport_name',
+        'sport_category_id',
         'sport_height',
         'sport_weight',
         'sport_primary_position_id',
@@ -66,11 +66,11 @@ class Sport extends Model
 
     public function getSportPrimaryPositionAttribute()
     {
-        return $this->sport_position1->sport_position_name;
+        return $this->sport_position1 != null ? $this->sport_position1->sport_position_name : null;
     }
 
     public function getSportSecondaryPositionAttribute()
     {
-        return $this->sport_position2->sport_position_name;
+        return $this->sport_position2 != null ? $this->sport_position2->sport_position_name : null;
     }
 }
