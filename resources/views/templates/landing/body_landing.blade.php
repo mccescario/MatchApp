@@ -17,11 +17,118 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 mx-auto">
-                        <a href="{{route('login')}}"><button class="button" type="button" data-hover="PROCEED"><span>SIGN IN</span></button></a>
-                        <a href="{{route('register')}}"><button class="button" type="button" data-hover="REGISTER"><span>DON'T HAVE AN ACCOUNT?</span></button></a>
+                        <!--<a href="{{route('login')}}"><button class="button" type="button" ><span>SIGN IN</span></button></a>-->
+                        <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#signin" data-hover="PROCEED">
+                            <span>SIGN IN</span>
+                        </button>
+
+                        <!--<a href="{{route('register')}}"><button class="button" type="button" ><span>DON'T HAVE AN ACCOUNT?</span></button></a>-->
+                        <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#register" data-hover="REGISTER">
+                            <span>DON'T HAVE AN ACCOUNT?</span>
+                        </button>
+
                         <p style="margin: 40px;">&nbsp;MatchApp is a tournament management app specialized for sports and eSports available through web and mobile platform with key features such as tournament hosting, real-time management, livestreaming, and team matchmaking.</p>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!--Login Modal-->
+        <div class="modal fade" id="signin" tabindex="-1" aria-labelledby="signinLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl " >
+              <div class="modal-content" >
+                <div class="modal-body">
+                    @if (session('status'))
+                    <div class="mb-4 font-medium text-sm text-green-600">
+                        {{ session('status') }}
+                    </div>
+                    @endif
+
+                    <form method="POST" action="{{ route('login') }}">
+                    @csrf
+
+                    <div class="row">
+                        <div class="col-lg-5 d-none d-lg-flex" style="">
+                            <img src="{{ asset('images/matchapp-icon.png') }}" style="height: 300px;width: 300px;margin: 100px;margin-top: 170px;"></div>
+                        <div class="col-lg-7">
+                            <div class="p-5 ms-10%">
+                                <div class="text-center">
+                                    <h4 class="text-dark mb-4" style="height: 50px;">Login</h4>
+                                </div>
+                                <form class="user">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-6 mb-3 mb-sm-0" style="margin-top: 35px;">
+                                            <!--<input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Email" name="email"></div>-->
+
+                                            <x-jet-input id="email" class="form-control form-control-user" type="email" name="email" :value="old('email')" required autofocus placeholder="{{ __('Email') }}" />
+                                        </div>
+
+                                        <div class="col-sm-6" style="margin-top: 35px;">
+                                            <!--<input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Password" name="password"></div>-->
+
+                                            <x-jet-input id="password" class="form-control form-control-user" type="password" name="password" required autocomplete="current-password" placeholder="{{ __('Password') }}" />
+
+                                        </div>
+
+                                    </div>
+                                    <div class="mb-3"></div><button class="btn btn-primary d-block btn-user w-100" type="submit" style="background: #1b1b1b;margin-top: 100px;">Login</button>
+                                    <hr>
+                                </form>
+                                <div class="text-center"><a class="small" href="forgot-password.html">Forgot Password?</a></div>
+                                <div class="text-center"><a class="small" href="tournaments.html">Don't have an account? Register</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary float-end" style="background: #1b1b1b;" data-bs-dismiss="modal">Close</button>
+                </form>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+
+          <!--Registration Modal-->
+          <div class="modal fade" id="register" tabindex="-1" aria-labelledby="registerLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+              <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-5 d-none d-lg-flex"><img src="{{ asset('images/matchapp-icon.png') }}" style="height: 300px;width: 300px;margin: 115px;margin-top: 170px;"></div>
+                        <div class="col-lg-7">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h4 class="text-dark mb-4" style="height: 50px;">Create an Account!</h4>
+                                </div>
+                                <form class="user" method="POST" action="{{ route('register') }}">
+                                    @csrf
+                                    <div class="row mb-3">
+                                        <div class="col-sm-6 mb-3 mb-sm-0" style="margin-top: 35px;">
+                                            <input class="form-control form-control-user" type="text" id="email" placeholder="Email" name="email">
+                                            <input class="form-control form-control-user" type="text" id="firstname" placeholder="First Name" name="firstname" style="margin-top: 20px;"></div>
+                                        <div class="col-sm-6" style="margin-top: 35px;">
+                                            <input class="form-control form-control-user" type="text" id="password" placeholder="Password" name="password">
+                                            <input class="form-control form-control-user" type="text" id="lastname" placeholder="Last Name" name="lastname" style="margin-top: 20px;"></div>
+                                            <input class="form-control form-control-user" type="text" id="role" placeholder="Role" name="role" style="margin-top: 20px;width: 640px;margin-left: 10px;">
+                                        <div class="col-sm-6" style="margin-top: 20px;">
+                                            <input class="form-control form-control-user" type="text" id="course" placeholder="Course/Program" name="course">
+                                            <input class="form-control form-control-user" type="text" id="bday" placeholder="Birthdate" name="birthdate" style="margin-top: 20px;"></div>
+                                        <div class="col-sm-6" style="margin-top: 20px;">
+                                            <input class="form-control form-control-user" type="text" id="studnum" placeholder="Student Number" name="student_number">
+                                            <input class="form-control form-control-user" type="text" id="contnum" placeholder="Contact Number" name="contact_number" style="margin-top: 20px;"></div>
+                                    </div>
+                                    <div class="mb-3"></div><button class="btn btn-primary d-block btn-user w-100" type="submit" style="background: #1b1b1b;margin-top: 20px;">Register Account</button>
+                                    <hr>
+                                </form>
+
+                                <div class="text-center"><a class="small" href="tournaments.html">Already have an account? Login</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary float-end" style="background: #1b1b1b;" data-bs-dismiss="modal">Close</button>
+                </div>
+
+              </div>
+            </div>
+          </div>
 
