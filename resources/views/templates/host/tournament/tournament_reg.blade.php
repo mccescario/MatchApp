@@ -21,7 +21,7 @@
 
     <div class="container-fluid">
         <h3 class="text-dark mb-4">Tournament Hosting</h3>
-        <form class="row mb-3" action="{{ url('tournament') }}" method="POST">
+        <form class="row mb-3" action="{{ url('tournament') }}" method="POST" x-data="{tour_type: 0, tour_format: 0}">
             <div class="col-lg-4">
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
@@ -60,14 +60,17 @@
                                 <form>
                                     <div class="row">
                                         <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="t_name"><strong>Tournament Name</strong></label>
-                                                <input class="form-control" type="text" id="t_name" placeholder="" name="t_name" style="color: rgb(133, 135, 150);">
+                                            <div class="mb-3"><label class="form-label" for="t_name">
+                                                <strong>Tournament Name</strong></label>
+                                                <input class="form-control" type="text" id="t_name" placeholder="Enter Tournament Name" name="t_name" style="color: rgb(133, 135, 150);">
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="mb-3">
-                                                <label class="form-label" for="t_type"><strong>Tournament Type</strong></label>
-                                                <select class="form-select" id="t_type" placeholder="" name="t_type">
+                                                <label class="form-label" for="t_type">
+                                                    <strong>Tournament Type</strong></label>
+                                                <select class="form-select" id="t_type" name="t_type" x-model="tour_type">
+                                                    <option value="0" selected>Select a Type</option>
                                                     <option value="1">Sports</option>
                                                     <option value="2">eSports</option>
                                                 </select>
@@ -93,8 +96,8 @@
                                             <div class="mb-3">
                                                 <label class="form-label" for="t_format">
                                                 <strong>Tournament Format</strong><br></label>
-                                                <select class="form-select" id="t_format" name="t_format">
-                                                    <option selected>Select Tournament Format</option>
+                                                <select class="form-select" id="t_format" name="t_format" x-model="tour_format">
+                                                    <option value="0" selected>Select Tournament Format</option>
                                                     <option value="1">Single-Elimination</option>
                                                     <option value="2">Double-Elimination</option>
                                                     <option value="3">Round Robin</option>
@@ -102,33 +105,41 @@
                                             </div>
                                         </div>
                                         <div class="col">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="t_game"><strong>Select Game</strong></label>
-                                                <select class="form-select" id="t_game" name="t_game">
+                                            <div class="mb-3" x-show="tour_type == 1" x-transition>
+                                                <label class="form-label" for="t_game">
+                                                    <strong>Select Game</strong></label>
+                                                <select class="form-select" id="t_game" name="t_game" >
                                                     <option selected>Select a Game</option>
                                                     <option value="1">Basketball</option>
                                                     <option value="2">Volleyball</option>
                                                     <option value="3">Badminton</option>
                                                     <option value="4">Chess</option>
                                                 </select>
-                                                <select class="form-select" id="t_game" name="t_game">
-                                                    <option value="1">Valorant</option>
-                                                    <option value="2">Mobile Legends</option>
-                                                    <option value="3">Dota 2</option>
-                                                    <option value="4">Counter Strike: Global Offensive</option>
-                                                    <option value="5">League of Legends</option>
-                                                    <option value="6">Call of Duty: Mobile</option>
-                                                    <option value="7">Hearthstone</option>
-                                                    <option value="8">PlayerUnkown's Battleground</option>
-                                                    <option value="9">Overwatch</option>
-                                                    <option value="10">Fortnite</option>
-                                                    <option value="11">Apex Legends</option>
-                                                    <option value="12">League of Legends: Wild Rift</option>
-                                                </select>
                                             </div>
-                                            <div class="mb-3">
-                                                <label class="form-label" for="t_series"><strong>Series</strong><br></label>
+                                            <div class="mb-3" x-show="tour_type == 2" x-transition>
+                                                <label class="form-label" for="t_game">
+                                                    <strong>Select Game</strong></label>
+                                                    <select class="form-select" id="t_game" name="t_game" x-show="tour_type == 2">
+                                                        <option selected>Select a Video Game</option>
+                                                        <option value="1">Valorant</option>
+                                                        <option value="2">Mobile Legends</option>
+                                                        <option value="3">Dota 2</option>
+                                                        <option value="4">Counter Strike: Global Offensive</option>
+                                                        <option value="5">League of Legends</option>
+                                                        <option value="6">Call of Duty: Mobile</option>
+                                                        <option value="7">Hearthstone</option>
+                                                        <option value="8">PlayerUnkown's Battleground</option>
+                                                        <option value="9">Overwatch</option>
+                                                        <option value="10">Fortnite</option>
+                                                        <option value="11">Apex Legends</option>
+                                                        <option value="12">League of Legends: Wild Rift</option>
+                                                    </select>
+                                            </div>
+                                            <div class="mb-3" x-show="tour_format <=2" x-transition>
+                                                <label class="form-label" for="t_series">
+                                                    <strong>Series</strong><br></label>
                                                 <select class="form-select" id="t_series" name="t_series">
+                                                    <option value="0" selected>Select a Series</option>
                                                     <option value="1">Knockouts</option>
                                                     <option value="2">Championship Best of 3</option>
                                                     <option value="3">Championship Best of 5</option>
