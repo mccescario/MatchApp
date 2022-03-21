@@ -7,8 +7,12 @@ use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\NewsFeedController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\TeamController;
+use App\Models\Esport;
+use App\Models\EsportRole;
 use App\Models\Team;
+use App\Models\TeamInvitation;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -43,6 +47,11 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 // for mobile api
 Route::prefix('mobile')->group(function () {
+    Route::get('users', function () {
+        $users = User::with(['esport'])->get();
+        return response()->json($users, 200);
+    });
+
     //LoginController
     Route::post('login',[LoginController::class,'login']);
     Route::post('register',[LoginController::class,'register']);
@@ -80,8 +89,21 @@ Route::prefix('mobile')->group(function () {
         // Route::get('sport-team-members/{team_id}/{user_id}',[TeamController::class,'get_sport_team_members']);
 
         Route::get('game-categories', [TeamController::class,'game_categories']);
-        Route::get('get-games-by-category/{olympic_category_name}', [TeamController::class,'getGameByCategory']);
+        Route::get('get-games-by-category-name/{olympic_category_name}', [TeamController::class,'getGameByCategoryName']);
 
         Route::post('create-team', [TeamController::class,'createTeam']);
+        Route::get('get-filters/{game_id}/{category_id}', [TeamController::class,'getFilters']);
+        Route::get('filter-user', [TeamController::class,'filterUser']);
+
+        Route::post('recruite-member',[TeamController::class,'recruiteMember']);
+
+        Route::get('invitations/{user_id}/{category_id}', [TeamController::class,'invitations']);
+        Route::get('invitations-category', [TeamController::class,'invitationsCategory']);
+        Route::post('invite-response', [TeamController::class,'inviteResponse']);
+
+        Route::get('all-members/{id}/{category_id}', function ($id,$category_id) {
+            
+ 
+        });
     });
 });

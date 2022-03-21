@@ -2,28 +2,45 @@
 
 namespace App\Models;
 
-use Laravel\Jetstream\Jetstream;
-use Laravel\Jetstream\TeamInvitation as JetstreamTeamInvitation;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class TeamInvitation extends JetstreamTeamInvitation
+class TeamInvitation extends Model
 {
+    use HasFactory;
+    
     /**
      * The attributes that are mass assignable.
      *
      * @var string[]
      */
     protected $fillable = [
-        'email',
-        'role',
+        'user_id',
+        'team_id',
+        // 'olympic_category_id',
+        'recruit_message',
+        'invite_message',
+        'created_at',
+        'updated_at'
     ];
 
     /**
-     * Get the team that the invitation belongs to.
+     * The attributes that should be hidden for serialization.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @var array
      */
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function team()
     {
-        return $this->belongsTo(Jetstream::teamModel());
+        return $this->belongsTo(Team::class);
     }
 }

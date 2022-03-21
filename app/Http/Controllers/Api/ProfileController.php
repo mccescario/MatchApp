@@ -20,6 +20,7 @@ class ProfileController extends Controller
             'username' => ['nullable','string', 'max:20'],
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required','string', 'max:255'],
+            'age' => ['required','string'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($id)],
             'student_number' => ['string', 'nullable',Rule::unique('users')->ignore($id)],
             'course' => ['nullable','string']

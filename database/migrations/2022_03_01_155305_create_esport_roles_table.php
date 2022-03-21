@@ -17,6 +17,7 @@ class CreateEsportRolesTable extends Migration
             $table->id();
             $table->foreignId('esport_category_id')->constrained();
             $table->string('esport_role_name');
+            $table->boolean('is_captain')->default(false);
             $table->timestamps();
         });
     }

@@ -22,7 +22,9 @@ class OlympicCategory extends Model
      */
     protected $hidden = [
         'sport_categories',
-        'esport_categories'
+        'esport_categories',
+        'created_at',
+        'updated_at'
     ];
 
     /**
@@ -47,6 +49,11 @@ class OlympicCategory extends Model
     public function teams()
     {
         return $this->hasMany(Team::class);
+    }
+
+    public function TeamInvitations()
+    {
+        return $this->hasMany(TeamInvitation::class);
     }
 
     public function getGamesAttribute()
