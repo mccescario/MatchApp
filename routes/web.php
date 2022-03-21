@@ -35,10 +35,14 @@ Route::resource('news-feed', NewsFeedController::class);
 Route::get('/register-tournament', 'App\Http\Controllers\Host\Tournament_management@create')->name('tournament-register');
 Route::get('/tournament-management', 'App\Http\Controllers\Host\Tournament_management@index')->name('tournament');
 Route::get('/host-dashboard', 'App\Http\Controllers\Host\Dashboard_Host@index');
+Route::get('/profile', 'App\Http\Controllers\Host\ProfileController@index')->name('host-profile');
+Route::get('/team', 'App\Http\Controllers\Host\TeamController@index')->name('host-team');
 Route::get('/user-management', 'App\Http\Controllers\Host\Normal_management@index')->name('usermanagement');
 Route::get('/add-user', 'App\Http\Controllers\Host\Normal_management@create')->name('user-add');
 Route::get('/create-news', 'App\Http\Controllers\Normal\NewsFeedController@create')->name('news-create');
 Route::get('/news-read-more/{slug}', 'App\Http\Controllers\Normal\NewsFeedController@readmore')->name('news-readmore');
+Route::get('/livestream', 'App\Http\Controllers\Host\Stream_management@index')->name('host-livestream');
+
 
 
 

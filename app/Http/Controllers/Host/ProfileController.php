@@ -3,13 +3,16 @@
 namespace App\Http\Controllers\Host;
 
 use App\Http\Controllers\Controller;
+use App\Models\Host\Profile;
 use Illuminate\Http\Request;
 
-class Stream_management extends Controller
+class ProfileController extends Controller
 {
     //
     public function index()
     {
-        return view('templates.host.stream_management');
+
+        return view('templates.host.profile');
     }
 }
+?>
