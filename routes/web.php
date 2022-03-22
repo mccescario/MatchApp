@@ -34,7 +34,7 @@ Route::resource('usermanagement', Normal_management::class);
 Route::resource('news-feed', NewsFeedController::class);
 Route::get('/register-tournament', 'App\Http\Controllers\Host\Tournament_management@create')->name('tournament-register');
 Route::get('/tournament-management', 'App\Http\Controllers\Host\Tournament_management@index')->name('tournament');
-Route::get('/host-dashboard', 'App\Http\Controllers\Host\Dashboard_Host@index');
+Route::get('/host-dashboard', 'App\Http\Controllers\Host\Dashboard_Host@index')->name('host-dashboard');
 Route::get('/profile', 'App\Http\Controllers\Host\ProfileController@index')->name('host-profile');
 Route::get('/team', 'App\Http\Controllers\Host\TeamController@index')->name('host-team');
 Route::get('/user-management', 'App\Http\Controllers\Host\Normal_management@index')->name('usermanagement');
@@ -48,10 +48,10 @@ Route::get('/livestream', 'App\Http\Controllers\Host\Stream_management@index')->
 
 // Player Routes
 Route::resource('profilemanagement', Profile_management::class);
-Route::get('/player-dashboard', 'App\Http\Controllers\Normal\Dashboard_Player@index')->name('dashboard');
+Route::get('/player-dashboard', 'App\Http\Controllers\Normal\Dashboard_Player@index')->name('player-dashboard');
 Route::get('/player-profile/{id}', 'App\Http\Controllers\Normal\Profile_management@index')->name('profile');
-Route::get('/manage-team/{id}', 'App\Http\Controllers\Normal\TeamMatchmakingController@team_manage')->name('team-manage');
-Route::get('/member-profile/{member}', 'App\Http\Controllers\Normal\TeamMatchmakingController@member_view')->name('player-profile');
+Route::get('/player-team', 'App\Http\Controllers\Normal\TeamController@index')->name('team');
+//Route::get('/member-profile/{member}', 'App\Http\Controllers\Normal\TeamController@member_view')->name('player-profile');
 
 
 

@@ -1,4 +1,4 @@
-@extends('templates.host.main')
+@extends('templates.normal.main')
 
 @section('content')
 
@@ -22,7 +22,7 @@
                     <div class="text-md-end dataTables_filter" id="dataTable_filter"><label class="form-label"><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
                 </div>
             </div>
-            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+            <div class="table-responsive table mt-2" id="dataTable-2" role="grid" aria-describedby="dataTable_info">
                 <table class="table my-0" id="dataTable">
                     <thead>
                         <tr>
@@ -30,7 +30,7 @@
                             <th style="width: 100px;">Type</th>
                             <th style="width: 150px;">Game</th>
                             <th style="width: 100px;">Members</th>
-                            <th style="width: 220px;">Captain</th>
+                            <th style="width: 220px;">Representative</th>
                             <th style="width: 120px;">Date Created</th>
                         </tr>
                     </thead>
@@ -43,7 +43,78 @@
                             <td>Marthen Christ C. Escario</td>
                             <td>3/28/2022</td>
                         </tr>
-
+                        <tr>
+                            <td>Team BSITWMA</td>
+                            <td>Sports<br></td>
+                            <td>Basketball</td>
+                            <td>14</td>
+                            <td>Jhervie T. Tumaliuan<br></td>
+                            <td>3/30/2022<br></td>
+                        </tr>
+                        <tr>
+                            <td>Team BSITAGD</td>
+                            <td>Sports<br></td>
+                            <td>Basketball<br></td>
+                            <td>12</td>
+                            <td>Mark Joseph A. Granada<br></td>
+                            <td>2/23/2021</td>
+                        </tr>
+                        <tr>
+                            <td>Team BSITSMBA</td>
+                            <td>Sports<br></td>
+                            <td>Basketball</td>
+                            <td>15</td>
+                            <td>Angelo U. Payod<br></td>
+                            <td>11/24/2021</td>
+                        </tr>
+                        <tr>
+                            <td>Team BSITDA</td>
+                            <td>Sports<br></td>
+                            <td>Basketball<br></td>
+                            <td>15</td>
+                            <td>Firstname X. Surname</td>
+                            <td>10/10/2020<br></td>
+                        </tr>
+                        <tr>
+                            <td>Team Civil Engineering</td>
+                            <td>eSports<br></td>
+                            <td style="width: 175px;">Mobile Legends</td>
+                            <td>6</td>
+                            <td>Firstname X. Surname<br></td>
+                            <td>2/2/2022<br></td>
+                        </tr>
+                        <tr>
+                            <td>Los Angeles Lakers</td>
+                            <td>Sports<br></td>
+                            <td>Basketball</td>
+                            <td>15</td>
+                            <td>LeBron James<br></td>
+                            <td>12/2/2021</td>
+                        </tr>
+                        <tr>
+                            <td>Team Secret</td>
+                            <td>eSports<br></td>
+                            <td>Valorant</td>
+                            <td>6</td>
+                            <td>Jessie Vash<br></td>
+                            <td>1/15/2020<br></td>
+                        </tr>
+                        <tr>
+                            <td>Nigma</td>
+                            <td>eSports<br></td>
+                            <td>Dota 2<br></td>
+                            <td>6</td>
+                            <td>Amer Al-Barkawi<br></td>
+                            <td>1/31/2021<br></td>
+                        </tr>
+                        <tr>
+                            <td>Faculty</td>
+                            <td>Sports<br></td>
+                            <td>Volleyball<br></td>
+                            <td>12</td>
+                            <td>Heintjie N. Vicente<br></td>
+                            <td>6/22/2021</td>
+                        </tr>
                     </tbody>
                     <tfoot>
                         <tr>
@@ -51,7 +122,7 @@
                             <td><strong>Type</strong></td>
                             <td><strong>Game</strong></td>
                             <td><strong>Members</strong></td>
-                            <td><strong>Captain</strong></td>
+                            <td><strong>Representative</strong></td>
                             <td><strong>Date Created</strong></td>
                         </tr>
                     </tfoot>

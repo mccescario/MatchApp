@@ -10,9 +10,13 @@ use App\Models\Team;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class TeamMatchmakingController extends Controller
+class TeamController extends Controller
 {
     //
+    public function index()
+    {
+        return view('templates.normal.team.team');
+    }
 
     public function team_manage($id)
     {

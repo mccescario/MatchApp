@@ -45,7 +45,7 @@
         @include('templates.host.include.footer')
     </div>
     <!--</section>-->
-
+    </div>
 
 
 

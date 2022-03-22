@@ -5,14 +5,15 @@
         </a>
         <hr class="sidebar-divider my-0">
         <ul class="navbar-nav text-light" id="accordionSidebar">
-            <li class="nav-item"><a class="nav-link active" href="/host-dashboard"><i class="fas fa-tachometer-alt" style="width: 20px;"></i><span>Dashboard</span></a></li>
+            <li class="nav-item"><a class="nav-link active" href="{{ route('host-dashboard') }}"><i class="fas fa-tachometer-alt" style="width: 20px;"></i><span>Dashboard</span></a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('host-profile') }}"><i class="fas fa-user-alt" style="width: 20px;"></i><span>Profile</span></a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('usermanagement') }}"><i class="fas fa-user-cog" style="width: 20px;"></i><span style="color: rgba(255, 255, 255, 0.8);">Users</span></a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('host-team') }}"><i class="fas fa-users" style="width: 20px;"></i><span style="color: rgba(255, 255, 255, 0.8);">Teams</span></a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('tournament') }}"><i class="fas fa-trophy" style="width: 20px;"></i><span>Tournaments</span></a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('host-livestream') }}"><i class="fab fa-twitch" style="width: 20px;"></i><span>Livestream</span></a></li>
         </ul>
-        <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
+        <div class="text-center d-none d-md-inline">
+            <button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
     </div>
 </nav>
 
