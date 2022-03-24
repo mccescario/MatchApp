@@ -17,12 +17,22 @@ class CreateTournamentTable extends Migration
 
             $table->id();
             $table->string('tournament_name');
-            $table->date('tournament_date');
+            $table->integer('tournament_sport_type');
             $table->integer('tournament_sport')->nullable();
             $table->integer('tournament_esport')->nullable();
-            $table->integer('tournament_sport_type');
-            $table->integer('tournament_bracket');
 
+            $table->integer('tournament_format');
+            $table->integer('tournament_size');
+            $table->integer('tournament_series')->nullable();
+            $table->integer('tournament_participant_play')->nullable();
+
+            $table->date('tournament_date_from');
+            $table->date('tournament_date_to');
+            $table->string('tournament_time');
+
+            $table->timestamps();
+
+            /*
             $table->string('enable_third_place')->nullable();
             $table->integer('single_bracket_size')->nullable();
             $table->integer('single_best_of_rounds')->nullable();
@@ -34,7 +44,8 @@ class CreateTournamentTable extends Migration
             $table->integer('games_per_match')->nullable();
             $table->integer('tournament_fee');
             $table->integer('tournament_price')->nullable();
-            $table->timestamps();
+            */
+
         });
     }
 
