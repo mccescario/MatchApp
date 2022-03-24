@@ -15,10 +15,10 @@ class Tournament_management extends Controller
      */
     public function index()
     {
-        //
+
         $tournaments = TournamentModel::latest()->paginate(5);
 
-        return view('templates/host/tournament_management', compact('tournaments'))
+        return view('templates.host.tournament_management', compact('tournaments'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -45,10 +45,15 @@ class Tournament_management extends Controller
         $request->validate([
 
             'tournament_name' => 'required',
-            'tournament_date' => 'required',
-
             'tournament_sport_type' => 'required',
-            'tournament_bracket' => 'required',
+            'tournament_format' => 'required',
+            'tournament_size' => 'required',
+            'tournament_series' => 'required',
+            'tournament_date_from' => 'required',
+            'tournament_date_to' => 'required',
+            'tournament_time' => 'required',
+
+
 
         ]);
 
