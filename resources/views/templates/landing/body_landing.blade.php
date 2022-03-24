@@ -104,18 +104,23 @@
                                     @csrf
                                     <div class="row mb-3">
                                         <div class="col-sm-6 mb-3 mb-sm-0" style="margin-top: 35px;">
-                                            <input class="form-control form-control-user" type="text" id="email" placeholder="Email" name="email">
-                                            <input class="form-control form-control-user" type="text" id="firstname" placeholder="First Name" name="firstname" style="margin-top: 20px;"></div>
+                                            <input class="form-control form-control-user" type="text" id="firstname" placeholder="First Name" name="firstname" >
+                                            <input class="form-control form-control-user" type="text" id="email" placeholder="Email" name="email" style="margin-top: 20px;"></div>
                                         <div class="col-sm-6" style="margin-top: 35px;">
-                                            <input class="form-control form-control-user" type="text" id="password" placeholder="Password" name="password">
-                                            <input class="form-control form-control-user" type="text" id="lastname" placeholder="Last Name" name="lastname" style="margin-top: 20px;"></div>
-                                            <input class="form-control form-control-user" type="text" id="role" placeholder="Role" name="role" style="margin-top: 20px;width: 640px;margin-left: 10px;">
-                                        <div class="col-sm-6" style="margin-top: 20px;">
-                                            <input class="form-control form-control-user" type="text" id="course" placeholder="Course/Program" name="course">
-                                            <input class="form-control form-control-user" type="text" id="bday" placeholder="Birthdate" name="birthdate" style="margin-top: 20px;"></div>
-                                        <div class="col-sm-6" style="margin-top: 20px;">
-                                            <input class="form-control form-control-user" type="text" id="studnum" placeholder="Student Number" name="student_number">
+                                            <input class="form-control form-control-user" type="text" id="lastname" placeholder="Last Name" name="lastname" >
+                                            <input class="form-control form-control-user" type="text" id="password" placeholder="Password" name="password" style="margin-top: 20px;"></div>
+                                            <hr style="margin-top: 15px;">
+                                        <div class="col-sm-6" style="margin-top: 15px;">
+                                            <input class="form-control form-control-user" type="text" id="role" placeholder="Role" name="role" >
+                                            <input class="form-control form-control-user" type="text" id="gender" placeholder="Gender" name="gender" style="margin-top: 20px;"></div>
+                                        <div class="col-sm-6" style="margin-top: 15px;">
+                                            <input class="form-control form-control-user" type="text" id="bday" placeholder="Birthdate" name="birthdate">
                                             <input class="form-control form-control-user" type="text" id="contnum" placeholder="Contact Number" name="contact_number" style="margin-top: 20px;"></div>
+                                        <div class="col-sm-6" style="margin-top: 35px;">
+                                            <input class="form-control form-control-user" type="text" id="course" placeholder="Course/Program" name="course"></div>
+                                        <div class="col-sm-6" style="margin-top: 35px;">
+                                            <input class="form-control form-control-user" type="text" id="studnum" placeholder="Student Number" name="student_number"></div>
+
                                     </div>
                                     <div class="mb-3"></div><button class="btn btn-primary d-block btn-user w-100" type="submit" style="background: #1b1b1b;margin-top: 20px;">Register Account</button>
                                     <hr>
