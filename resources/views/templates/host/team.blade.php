@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container-fluid">
-    <h3 class="text-dark mb-4">Teams</h3>
+    <h3 class="text-dark mb-4">Teams(Static Values)</h3>
     <div class="card shadow">
         <div class="card-header py-3">
             <p class="text-primary m-0 fw-bold">View Teams</p>
