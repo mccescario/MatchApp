@@ -9,24 +9,21 @@ class TournamentModel extends Model
 {
     use HasFactory;
 
+    protected $table = 'tournament_models';
+
     protected $fillable = [
 
         'tournament_name',
-        'tournament_date',
+        'tournament_sport_type',
         'tournament_sport',
         'tournament_esport',
-        'tournament_sport_type',
-        'tournament_bracket',
-        'tournament_fee',
-        'enable_third_place',
-        'single_bracket_size',
-        'single_best_of_rounds',
-        'double_bracket_size',
-        'double_best_of_rounds',
-        'num_groups',
-        'round_robin_match_style',
-        'num_player_per_group',
-        'games_per_match',
-        'tournament_price'
+        'tournament_format',
+        'tournament_size',
+        'tournament_series',
+        'tournament_series',
+
+        'tournament_date_from',
+        'tournament_date_to',
+        'tournament_time'
     ];
 }
