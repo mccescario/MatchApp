@@ -25,17 +25,14 @@ Route::get('/', function () {
 Route::get('/logout', 'App\Http\Controllers\HomeController@logout');
 Route::get('dashboard', 'App\Http\Controllers\HomeController@index');
 
-// Admin Routes
-Route::get('/admin-dashboard', 'App\Http\Controllers\Admin\Dashboard_Admin@index');
-
 // Host Routes
 Route::resource('tournament', Tournament_management::class);
 Route::resource('usermanagement', Normal_management::class);
 Route::resource('news-feed', NewsFeedController::class);
 Route::get('/register-tournament', 'App\Http\Controllers\Host\Tournament_management@create')->name('tournament-register');
-Route::get('/tournament-management', 'App\Http\Controllers\Host\Tournament_management@index')->name('tournament');
+Route::get('/tournament-management', 'App\Http\Controllers\Host\Tournament_management@index')->name('tournament_manage');
 Route::get('/host-dashboard', 'App\Http\Controllers\Host\Dashboard_Host@index')->name('host-dashboard');
-Route::get('/profile', 'App\Http\Controllers\Host\ProfileController@index')->name('host-profile');
+Route::get('/profile/{id}', 'App\Http\Controllers\Host\Profile_Host@index')->name('host-profile');
 Route::get('/team', 'App\Http\Controllers\Host\TeamController@index')->name('host-team');
 Route::get('/user-management', 'App\Http\Controllers\Host\Normal_management@index')->name('usermanagement');
 Route::get('/add-user', 'App\Http\Controllers\Host\Normal_management@create')->name('user-add');
