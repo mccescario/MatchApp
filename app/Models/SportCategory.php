@@ -46,4 +46,9 @@ class SportCategory extends Model
     {
         return $this->belongsTo(OlympicCategory::class);
     }
+
+    public function sports()
+    {
+        return $this->hasMany(Sport::class);
+    }
 }

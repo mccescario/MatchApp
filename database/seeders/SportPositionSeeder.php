@@ -52,7 +52,7 @@ class SportPositionSeeder extends Seeder
             ],
             [
                 'sport_category_id' => 1,
-                'sport_position_name' => 'Coach/Captain',
+                'sport_position_name' => 'Representative',
                 "is_captain" => true,
                 'created_at' => now(),
                 'updated_at' => now()

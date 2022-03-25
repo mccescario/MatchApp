@@ -33,10 +33,11 @@ class Sport extends Model
     protected $hidden = [
         'created_at',
         'updated_at',
-        'sport_primary_position_id',
-        'sport_secondary_position_id',
+        // 'sport_primary_position_id',
+        // 'sport_secondary_position_id',
         'sport_position1',
-        'sport_position2'
+        'sport_position2',
+        'sport_category'
     ];
 
     /**
@@ -46,7 +47,9 @@ class Sport extends Model
      */
     protected $appends = [
         'sport_primary_position',
-        'sport_secondary_position'
+        'sport_secondary_position',
+        'is_captain',
+        'game'
     ];
 
     public function user()
@@ -72,5 +75,20 @@ class Sport extends Model
     public function getSportSecondaryPositionAttribute()
     {
         return $this->sport_position2 != null ? $this->sport_position2->sport_position_name : null;
+    }
+
+    public function sport_category()
+    {
+        return $this->belongsTo(SportCategory::class);
+    }
+
+    public function getGameAttribute()
+    {
+        return $this->sport_category != null ? $this->sport_category->sport_category_name : null;
+    }
+
+    public function getIsCaptainAttribute()
+    {
+        return $this->sport_position1 != null ? $this->sport_position1->is_captain : 0;
     }
 }
