@@ -78,6 +78,8 @@ Route::prefix('mobile')->group(function () {
         Route::post('insert-update-useresport', [ProfileController::class,'insertOrUpdateNewUserEsport']);
 
         Route::post('change-password',[ProfileController::class,'changePassword']);
+
+        Route::post('update-profile-photo', [ProfileController::class,'updateProfilePhoto']);
     });
 
     //NewsFeedController

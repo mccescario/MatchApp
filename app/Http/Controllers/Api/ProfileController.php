@@ -12,8 +12,11 @@ use App\Models\Sport;
 use App\Models\SportCategory;
 use App\Models\SportPosition;
 use App\Models\User;
+use App\Rules\MatchOldPasswordRule;
 use App\Rules\SportSecondaryPositionRule;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -104,7 +107,34 @@ class ProfileController extends Controller
 
     public function changePassword(Request $request)
     {
+        $user = User::find($request->user_id);
+
+        $rules = [
+            'old_password' => ['required','string',new MatchOldPasswordRule($user), 'max:20','min:8'],
+            'new_password' => ['required', 'string','confirmed', 'max:20','min:8'],
+            'new_password_confirmation' => ['required','string', 'max:20','min:8'],
+        ];
+
+        $response = ['success' => false];
+        $return = [];
+
+        $validator = Validator::make($request->all(), $rules);
         
+        if($validator->fails()){
+            $errors = $validator->errors();
+            $response['errors'] = $errors;
+            $return = response()->json($response, 422);
+        } else {
+            $response['success'] = true;
+            $user->fill([
+                'password' => Hash::make($request->new_password)
+            ]);
+            $user->save();
+
+            $return = response()->json($response, 200);
+        } 
+
+        return $return;
     }
 
     public function updatePlayerProfileFields($user_id,$olympic_category_id)
@@ -284,6 +314,43 @@ class ProfileController extends Controller
                     $response['message'] = "No changes has been made.";
                     $return = response()->json($response, 200);
                 }
+            }
+        }
+
+        return $return;
+    }
+
+    public function updateProfilePhoto(Request $request)
+    {
+        $rules = [
+            'profile_photo_path' => ['mimes:png,jpg','max:5048']
+        ];
+
+        $response = ['success' => false];
+        $return = [];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if($validator->fails()){
+            $errors = $validator->errors();
+            $response['errors'] = $errors;
+            $return = response()->json($response, 422);
+        } else {
+            if($request->has('profile_photo_path')){
+                $newImageName = uniqid().'-'.now()->timestamp.'.'.$request->profile_photo_path->extension();
+        
+                $request->profile_photo_path->move(public_path('images'), $newImageName);
+    
+                $data = [
+                    'profile_photo_path' => $newImageName
+                ];
+    
+                $user = User::find($request->id);
+                $user->fill($data);
+                $user->save();
+                $response['success'] = true;
+                $response['user'] = $user->only(['profile_photo_path']);
+                $return = response()->json($response, 200);
             }
         }
 
