@@ -17,6 +17,7 @@ class EsportRole extends Model
     protected $fillable = [
         'esport_category_id',
         'esport_role_name',
+        'is_captain',
         'created_at',
         'updated_at'
     ];

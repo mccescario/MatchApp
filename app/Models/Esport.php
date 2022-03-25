@@ -33,7 +33,7 @@ class Esport extends Model
         'user_id',
         'esport_role',
         'esport_category',
-        'esport_category_id'
+        // 'esport_category_id'
     ];
 
     /**
@@ -43,7 +43,8 @@ class Esport extends Model
      */
     protected $appends = [
         'esport_role_name',
-        'esport_name'
+        'esport_name',
+        'is_captain'
     ];
 
     public function user()
@@ -70,5 +71,10 @@ class Esport extends Model
     public function getEsportNameAttribute()
     {
         return $this->esport_category->esport_category_name;
+    }
+
+    public function getIsCaptainAttribute()
+    {
+        return $this->esport_role != null ? $this->esport_role->is_captain : 0;
     }
 }

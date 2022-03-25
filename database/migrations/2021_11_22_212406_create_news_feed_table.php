@@ -17,8 +17,8 @@ class CreateNewsFeedTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('title');
-            $table->string('slug');
-            $table->string('img_path');
+            $table->string('slug')->nullable();
+            $table->string('img_path')->nullable();
             $table->longText('description');
             $table->timestamps();
 
