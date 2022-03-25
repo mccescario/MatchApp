@@ -45,26 +45,54 @@ class TeamController extends Controller
         return response()->json($user->teams, 200);
     }
 
-    public function get_team_members($team_id, $user_id, $olympic_category_id)
+    public function get_team_members($user_id, $olympic_category_id)
     {
-        $team = Team::with(['users' => function ($q) use ($user_id, $olympic_category_id) {
-            $with = $olympic_category_id == 2 ? 'esport' : 'sport';
-            $q->with($with);
-            $q->where('users.id', '!=', $user_id);
-        }])->where('id', $team_id)->first();
+        $myinfo = [];
 
-        $members = collect([]);
-        $team->users->map(function ($data) use ($members, $olympic_category_id) {
-            $push = [
-                'real_firstname' => $data->firstname,
-                'real_lastname' => $data->lastname
-            ];
-            $userOlympic = $olympic_category_id == 2 ? $data->esport : $data->sport;
-            $appendNames = collect($userOlympic)->merge(collect($push));
-            $members->push($appendNames);
-        });
+        if($olympic_category_id == 1){
+            $myinfo = User::with(['teams' => function ($q) use ($olympic_category_id){
+                $q->with('SportCategory');
+                $q->where('olympic_category_id', $olympic_category_id);
+            }])->where('id', $user_id)->first();
+        } else if ($olympic_category_id == 2){
+            $myinfo = User::with(['teams' => function ($q) use ($olympic_category_id){
+                $q->with('EsportCategory');
+                $q->where('olympic_category_id', $olympic_category_id);
+            }])->where('id', $user_id)->first();
+        }
 
-        $team = collect($team)->except('users')->put('team_members', $members);
+        $team = ['has_team' => false];
+
+        if(!$myinfo->teams->isEmpty()){
+            $team = Team::with(['users' => function ($q) use ($user_id, $olympic_category_id) {
+                $with = $olympic_category_id == 2 ? 'esport' : 'sport';
+                $q->with($with);
+                $q->where('users.id', '!=', $user_id);
+            }])->where('id', $myinfo->teams->first()->id)->first();
+    
+            $members = collect([]);
+            $team->users->map(function ($data) use ($members, $olympic_category_id) {
+                $push = [
+                    'real_firstname' => $data->firstname,
+                    'real_lastname' => $data->lastname
+                ];
+                $userOlympic = $olympic_category_id == 2 ? $data->esport : $data->sport;
+                $appendNames = collect($userOlympic)->merge(collect($push));
+                $members->push($appendNames);
+            });
+
+            $team = collect($team)->except('users')->put('team_members', $members);
+            $team['has_team'] = true;
+        }
+
+        
+        
+        // $myinfo = User::find($user_id);
+        if($olympic_category_id == 1){
+            $team['player_info'] = $myinfo->sport;
+        } else if ($olympic_category_id == 2) {
+            $team['player_info'] = $myinfo->esport;
+        }
 
         return response()->json($team, 200);
     }
