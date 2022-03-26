@@ -101,6 +101,7 @@ class LoginController extends Controller
             $return = response()->json($response, 422);
         }
         else{
+            $parseBirthdate = Carbon::createFromFormat('m-d-Y', $request->birthdate)->format('d-m-Y');
             $verification_code = Str::random(6);
             $email = $request->email;
             $firstname = $request->firstname;
@@ -108,8 +109,7 @@ class LoginController extends Controller
             $password = Hash::make($request->password);
             $contact_number = $request->contact_number;
             $gender = $request->gender;
-            $birthdate = $request->birthdate;
-            $age = Carbon::parse($birthdate)->age;
+            $age = Carbon::parse($parseBirthdate)->age;
             $role = $request->role;
             $user = [];
             $registerUser = [];
@@ -122,7 +122,7 @@ class LoginController extends Controller
                     'password' => $password,
                     'contact_number' => $contact_number,
                     'gender' => $gender,
-                    'birthdate' => $birthdate,
+                    'birthdate' => $parseBirthdate,
                     'age' => $age,
                     'role' => $role,
                     'verification_code' => $verification_code
@@ -138,7 +138,7 @@ class LoginController extends Controller
                     'password' => $password,
                     'contact_number' => $contact_number,
                     'gender' => $gender,
-                    'birthdate' => $birthdate,
+                    'birthdate' => $parseBirthdate,
                     'course' => $course,
                     'student_number' => $student_number,
                     'age' => $age,
