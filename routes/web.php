@@ -22,7 +22,7 @@ Route::get('/', function () {
     return view('main');
 });
 
-Route::get('/logout', 'App\Http\Controllers\HomeController@logout');
+Route::get('/', 'App\Http\Controllers\HomeController@logout')-name('logout');
 Route::get('dashboard', 'App\Http\Controllers\HomeController@index');
 
 // Host Routes
@@ -45,9 +45,11 @@ Route::get('/livestream', 'App\Http\Controllers\Host\Stream_management@index')->
 
 // Player Routes
 Route::resource('profilemanagement', Profile_management::class);
+//Route::resource('player-tournament', TournamentManagement::class);
 Route::get('/player-dashboard', 'App\Http\Controllers\Normal\Dashboard_Player@index')->name('player-dashboard');
-Route::get('/player-profile/{id}', 'App\Http\Controllers\Normal\Profile_management@index')->name('profile');
+Route::get('/player-profile', 'App\Http\Controllers\Normal\Profile_management@index')->name('profile');
 Route::get('/player-team', 'App\Http\Controllers\Normal\TeamController@index')->name('team');
+Route::get('/player-tournament', 'App\Http\Controllers\Normal\TournamentManagement@index')->name('player-tournament');
 //Route::get('/member-profile/{member}', 'App\Http\Controllers\Normal\TeamController@member_view')->name('player-profile');
 
 

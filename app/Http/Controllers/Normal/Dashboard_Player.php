@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class Dashboard_Player extends Controller
 {
     //
-    public function index(Request $request)
+    public function index()
     {
         return view('templates.normal.dashboard')
                 ->with('news_feed',NewsFeed::orderBy('updated_at','DESC')->get());

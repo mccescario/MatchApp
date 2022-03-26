@@ -3,15 +3,17 @@
 @section('content')
 
 <div class="container-fluid">
-    <h3 class="text-dark mb-4">Teams</h3>
+    <h3 class="text-dark mb-4">Teams (Static)</h3>
     <div class="card shadow">
         <div class="card-header py-3">
             <p class="text-primary m-0 fw-bold">View Teams</p>
+
         </div>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6 text-nowrap">
-                    <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Show&nbsp;<select class="d-inline-block form-select form-select-sm">
+                    <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Show&nbsp;
+                        <select class="d-inline-block form-select form-select-sm">
                                 <option value="10" selected="">10</option>
                                 <option value="25">25</option>
                                 <option value="50">50</option>
@@ -19,7 +21,10 @@
                             </select>&nbsp;</label></div>
                 </div>
                 <div class="col-md-6">
-                    <div class="text-md-end dataTables_filter" id="dataTable_filter"><label class="form-label"><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
+                    <button  class="btn btn-info btn-sm float-end mb-3 add-row" type="button" data-toggle="modal" data-target="#exampleModal"    style="margin: 0px;width: 170px;background: rgb(78,115,223);border-color: rgb(78,115,223);color: var(--bs-gray-300);margin-right: 5px;">
+                        <i class="fas fa-plus"></i>
+                        <strong>&nbsp;Create Team</strong>
+                    </button>
                 </div>
             </div>
             <div class="table-responsive table mt-2" id="dataTable-2" role="grid" aria-describedby="dataTable_info">
@@ -32,6 +37,7 @@
                             <th style="width: 100px;">Members</th>
                             <th style="width: 220px;">Representative</th>
                             <th style="width: 120px;">Date Created</th>
+                            <th  style="width: 120px;">Join</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,79 +48,9 @@
                             <td>13</td>
                             <td>Marthen Christ C. Escario</td>
                             <td>3/28/2022</td>
+                            <td><a class="btn btn-sm disabled btn-primary m-0 shadow ">Request to Join</a></td>
                         </tr>
-                        <tr>
-                            <td>Team BSITWMA</td>
-                            <td>Sports<br></td>
-                            <td>Basketball</td>
-                            <td>14</td>
-                            <td>Jhervie T. Tumaliuan<br></td>
-                            <td>3/30/2022<br></td>
-                        </tr>
-                        <tr>
-                            <td>Team BSITAGD</td>
-                            <td>Sports<br></td>
-                            <td>Basketball<br></td>
-                            <td>12</td>
-                            <td>Mark Joseph A. Granada<br></td>
-                            <td>2/23/2021</td>
-                        </tr>
-                        <tr>
-                            <td>Team BSITSMBA</td>
-                            <td>Sports<br></td>
-                            <td>Basketball</td>
-                            <td>15</td>
-                            <td>Angelo U. Payod<br></td>
-                            <td>11/24/2021</td>
-                        </tr>
-                        <tr>
-                            <td>Team BSITDA</td>
-                            <td>Sports<br></td>
-                            <td>Basketball<br></td>
-                            <td>15</td>
-                            <td>Firstname X. Surname</td>
-                            <td>10/10/2020<br></td>
-                        </tr>
-                        <tr>
-                            <td>Team Civil Engineering</td>
-                            <td>eSports<br></td>
-                            <td style="width: 175px;">Mobile Legends</td>
-                            <td>6</td>
-                            <td>Firstname X. Surname<br></td>
-                            <td>2/2/2022<br></td>
-                        </tr>
-                        <tr>
-                            <td>Los Angeles Lakers</td>
-                            <td>Sports<br></td>
-                            <td>Basketball</td>
-                            <td>15</td>
-                            <td>LeBron James<br></td>
-                            <td>12/2/2021</td>
-                        </tr>
-                        <tr>
-                            <td>Team Secret</td>
-                            <td>eSports<br></td>
-                            <td>Valorant</td>
-                            <td>6</td>
-                            <td>Jessie Vash<br></td>
-                            <td>1/15/2020<br></td>
-                        </tr>
-                        <tr>
-                            <td>Nigma</td>
-                            <td>eSports<br></td>
-                            <td>Dota 2<br></td>
-                            <td>6</td>
-                            <td>Amer Al-Barkawi<br></td>
-                            <td>1/31/2021<br></td>
-                        </tr>
-                        <tr>
-                            <td>Faculty</td>
-                            <td>Sports<br></td>
-                            <td>Volleyball<br></td>
-                            <td>12</td>
-                            <td>Heintjie N. Vicente<br></td>
-                            <td>6/22/2021</td>
-                        </tr>
+
                     </tbody>
                     <tfoot>
                         <tr>
@@ -147,5 +83,38 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body">
+            <div class="text-center">
+                <h4 class="text-dark mb-4" style="height: 50px;font-weight: bold;width: 450px;">Create Team</h4>
+            </div>
+            <form class="user">
+                <div class="row mb-3" style="margin-top: -50px;">
+                    <div class="col-sm-6 mb-3 mb-sm-0" style="margin-top: 35px;">
+                        <input class="form-control form-control-user" type="text" id="Team_Name" placeholder="Team Name" name="team_name" style="width: 450px;height: 50px;border-radius: 10px;margin-bottom: 15px;">
+                        <select class="form-select" style="height: 50px;padding-top: 3px;padding-bottom: 3px;font-size: 12px;width: 450px;border-radius: 10px;">
+                            <option value="0" selected="">Select a Game Category</option>
+                            <option value="1">Sport</option>
+                            <option value="2">eSport</option>
+                        </select>
+
+                        <select class="form-select" style="height: 50px;padding-top: 3px;padding-bottom: 3px;font-size: 12px;width: 450px;border-radius: 10px;margin-top: 16px;">
+                            <option value="0" selected="">Select a Sport</option>
+                            <option value="1"></option>
+                            <option value="2"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3"></div>
+            </form>
+            <div class="text-center"></div><button class="btn btn-primary d-block btn-user" type="submit" style="margin-top: 25px;width: 150px;margin-left: 300px;"><i class="fas fa-users-cog" style="margin-right: 10px;"></i>Create Team</button>
+            <div class="text-center"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
 
 @endsection

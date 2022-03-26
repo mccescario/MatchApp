@@ -137,11 +137,13 @@
 
                             </tr>
                             @endforeach
-                        </tbody>
-                    @else
+
+                        @else
                             <h3>No Records Available!</h3>
                             <hr>
-                    @endif
+                        @endif
+                        </tbody>
+
                         <tfoot>
                             <tr>
                                 <td><strong>Tournament Name</strong></td>
