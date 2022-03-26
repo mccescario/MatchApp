@@ -38,7 +38,7 @@
 </div>
 <script type="text/javascript">
     var options = {
-      channel: "beyondthesummit", // TODO: Change this to the streams username you want to embed
+      channel: "HostTesting123", // TODO: Change this to the streams username you want to embed
       height: 360,
       width: 640,
     };
