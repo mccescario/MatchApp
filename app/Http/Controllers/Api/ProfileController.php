@@ -329,8 +329,12 @@ class ProfileController extends Controller
         $response = ['success' => false];
         $return = [];
 
+        $attributes = array(
+            'profile_photo_path' => 'profile photo'
+        );
         $validator = Validator::make($request->all(), $rules);
-
+        $validator->setAttributeNames($attributes);
+        
         if($validator->fails()){
             $errors = $validator->errors();
             $response['errors'] = $errors;
