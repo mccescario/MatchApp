@@ -38,8 +38,7 @@
                         @foreach ($user as $users)
                         @if ($users->role > 2)
                         <tr>
-                            <td>
-                                <img class="rounded-circle me-2" width="30" height="30" src="assets/img/avatars/avatar1.jpeg">{{ $users->name }}</td>
+                            <td>{{ $users->firstname }} {{ $users->lastname }}</td>
                             <td>{{ $users->email }}</td>
                             <td>{{ $users->course }}</td>
                             <td>{{ $users->birthdate }}</td>
@@ -69,7 +68,7 @@
                 </div>
                 <div class="col-md-6">
                     <nav class=" d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers" style="height: 20px">
-                        {!! $user->links() !!}
+                        {{ $user->links() }}
 
                         <!--<ul class="pagination">
                             <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
