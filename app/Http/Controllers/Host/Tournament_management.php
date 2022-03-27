@@ -53,13 +53,11 @@ class Tournament_management extends Controller
             'tournament_date_to' => 'required',
             'tournament_time' => 'required',
 
-
-
         ]);
 
         TournamentModel::create($request->all());
 
-        return redirect()->route('tournament')
+        return redirect()->route('tournament_manage')
                         ->with('success','New tournament has been created successfully.');
     }
 
