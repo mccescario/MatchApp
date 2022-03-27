@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container-fluid">
-    <h3 class="text-dark mb-4">Livestream(Static)</h3>
+    <h3 class="text-dark mb-4">Livestream</h3>
     <div class="row mb-3">
         <div class="col-lg-4">
             <div class="card mb-3">

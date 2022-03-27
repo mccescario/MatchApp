@@ -21,7 +21,7 @@
 
     <div class="container-fluid">
         <h3 class="text-dark mb-4">Tournament Hosting</h3>
-        <form class="row mb-3" action="{{ url('tournament.create') }}" method="POST" x-data="{tour_type: 0, tour_format: 0}">
+        <form class="row mb-3" action="{{ url('tournament-store') }}" method="POST" x-data="{tour_type: 0, tour_format: 0}">
             @csrf
             <div class="col-lg-4">
                 <div class="card shadow mb-4">
@@ -59,7 +59,7 @@
                                 <p class="text-primary m-0 fw-bold">Customize Tournament</p>
                             </div>
                             <div class="card-body">
-                                <form>
+                                <form action="{{ url('tournament.store')}}" method="post" enctype="multipart/form-data">
                                     <div class="row">
                                         <div class="col">
                                             <div class="mb-3"><label class="form-label" for="tournament_name">
