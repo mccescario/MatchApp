@@ -30,6 +30,9 @@ class User extends Authenticatable
         'firstname',
         'lastname',
         'birthdate',
+        'gender',
+        'contact_number',
+        'age',
         'email',
         'username',
         'student_number',
@@ -43,6 +46,7 @@ class User extends Authenticatable
         'sport_type',
         'verification_code',
         'profile_photo_url',
+        'profile_photo_path',
         'email_verified_at'
     ];
 
@@ -69,6 +73,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $dates = ['birthdate'];
 
     /**
      * The accessors to append to the model's array form.

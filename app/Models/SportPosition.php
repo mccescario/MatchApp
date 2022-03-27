@@ -17,6 +17,7 @@ class SportPosition extends Model
     protected $fillable = [
         'sport_category_id',
         'sport_position_name',
+        'is_captain',
         'created_at',
         'updated_at'
     ];

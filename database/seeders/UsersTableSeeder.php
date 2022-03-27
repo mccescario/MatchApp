@@ -24,7 +24,7 @@ class UsersTableSeeder extends Seeder
                 'email'              => 'admin@gmail.com',
                 'role'               => 1,
                 'email_verified_at'  => now(),
-                'password'           => bcrypt('secret'),
+                'password'           => bcrypt('secret12'),
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -34,7 +34,7 @@ class UsersTableSeeder extends Seeder
                 'email'              => 'host@gmail.com',
                 'role'               => 2,
                 'email_verified_at'  => now(),
-                'password'           => bcrypt('secret'),
+                'password'           => bcrypt('secret12'),
                 'created_at' => now(),
                 'updated_at' => now()
 
@@ -51,7 +51,7 @@ class UsersTableSeeder extends Seeder
                 'course' => Course::all()->random()->course_title,
                 'role'               => 3,
                 'email_verified_at'  => now(),
-                'password'           => bcrypt('secret'),
+                'password'           => bcrypt('secret12'),
                 'created_at' => now(),
                 'updated_at' => now()
 
@@ -65,7 +65,7 @@ class UsersTableSeeder extends Seeder
                 'course' => Course::all()->random()->course_title,
                 'role'               => 3,
                 'email_verified_at'  => now(),
-                'password'           => bcrypt('secret'),
+                'password'           => bcrypt('secret12'),
                 'created_at' => now(),
                 'updated_at' => now()
             ],

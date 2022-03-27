@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\NewsFeedController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\TeamController;
+use App\Http\Controllers\Api\TournamentController;
 use App\Models\Esport;
 use App\Models\EsportRole;
 use App\Models\Team;
@@ -57,6 +58,7 @@ Route::prefix('mobile')->group(function () {
     Route::post('register',[LoginController::class,'register']);
     Route::post('verify',[LoginController::class,'submit_verification']);
     Route::post('resend-verification',[LoginController::class,'resend_verification']);
+    Route::get('register-details',[LoginController::class,'register_details']);
 
 
     //ProfileController
@@ -69,12 +71,21 @@ Route::prefix('mobile')->group(function () {
 
         Route::patch('player-update/{id}',[ProfileController::class,'updatePlayerProfile']);
 
+        Route::get('player-profile-fields/{user_id}/{olympic_category_id}', [ProfileController::class,'updatePlayerProfileFields']);
+
+        Route::post('insert-update-usersport', [ProfileController::class,'insertOrUpdateNewUserSport']);
+
+        Route::post('insert-update-useresport', [ProfileController::class,'insertOrUpdateNewUserEsport']);
+
         Route::post('change-password',[ProfileController::class,'changePassword']);
+
+        Route::post('update-profile-photo', [ProfileController::class,'updateProfilePhoto']);
     });
 
     //NewsFeedController
     Route::prefix('feed')->group(function () {
         Route::get('news', [NewsFeedController::class,'news']);
+        Route::post('create', [NewsFeedController::class,'create']);
     });
 
     //TeamController
@@ -83,7 +94,7 @@ Route::prefix('mobile')->group(function () {
         Route::get('my-esport-teams/{id}',[TeamController::class,'esport_user_teams']);
         Route::get('my-sport-teams/{id}',[TeamController::class,'sport_user_teams']);
 
-        Route::get('team-members/{team_id}/{user_id}/{olympic_category_id}',[TeamController::class,'get_team_members']);
+        Route::get('team-members/{user_id}/{olympic_category_id}',[TeamController::class,'get_team_members']);
 
         // Route::get('esport-team-members/{team_id}/{user_id}',[TeamController::class,'get_esport_team_members']);
         // Route::get('sport-team-members/{team_id}/{user_id}',[TeamController::class,'get_sport_team_members']);
@@ -102,8 +113,11 @@ Route::prefix('mobile')->group(function () {
         Route::post('invite-response', [TeamController::class,'inviteResponse']);
 
         Route::get('all-members/{id}/{category_id}', function ($id,$category_id) {
-            
- 
+        
         });
+    });
+
+    Route::prefix('tournament')->group(function () {
+        Route::get('tournaments', [TournamentController::class,'tournamentList']);
     });
 });

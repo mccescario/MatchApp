@@ -46,7 +46,7 @@ class EsportRoleSeeder extends Seeder
             ],
             [
                 "esport_category_id" => 1,
-                "esport_role_name" => "Coach/Captain",
+                "esport_role_name" => "Representative",
                 "is_captain" => true,
                 "created_at" => now(),
                 "updated_at" => now()
@@ -84,7 +84,7 @@ class EsportRoleSeeder extends Seeder
             ],
             [
                 "esport_category_id" => 2,
-                "esport_role_name" => "Coach/Captain",
+                "esport_role_name" => "Representative",
                 "is_captain" => true,
                 "created_at" => now(),
                 "updated_at" => now()
