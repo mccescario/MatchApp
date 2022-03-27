@@ -47,7 +47,7 @@ class UsersTableSeeder extends Seeder
                 'lastname'           => 'Testing',
                 'email'              => 'normal@gmail.com',
                 'student_number' => "2016".rand(10000,99999),
-                'birthdate' => "02/29/2001",
+
                 'course' => Course::all()->random()->course_title,
                 'role'               => 3,
                 'email_verified_at'  => now(),
@@ -61,7 +61,6 @@ class UsersTableSeeder extends Seeder
                 'lastname'           => 'Escario',
                 'email'              => 'mccescario@gmail.com',
                 'student_number' => "201811926",
-                'birthdate' => "01/31/1995",
                 'course' => Course::all()->random()->course_title,
                 'role'               => 3,
                 'email_verified_at'  => now(),
