@@ -62,15 +62,12 @@
             <li class="nav-item dropdown no-arrow">
                 <div class="nav-item dropdown no-arrow">
                     <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">
-                        <span class="d-none d-lg-inline me-2 text-gray-600 small">User</span>
-                        <img class="border rounded-circle img-profile" src="assets/img/avatars/avatar1.jpeg"></a>
+                        <span class="d-none d-lg-inline me-2 text-gray-600 small">{{ Auth::user()->firstname }}</span>
+                        <img class="border rounded-circle img-profile" src="{{asset('/images/profile_images/'.Auth::user()->profile_photo_path ) }}"></a>
                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
                         <a class="dropdown-item" href="#">
                             <i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a>
-                        <a class="dropdown-item" href="#">
-                            <i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Settings</a>
-                        <a class="dropdown-item" href="#">
-                            <i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Activity log</a>
+
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}">
                             <i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
@@ -83,21 +80,3 @@
     </div>
 </nav>
 
-<!--<div class="float-end">
-    <li class="nav-item dropdown w-100 list-style">
-        <a id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#" class="nav-link dropdown-toggle ps-4 rounded btn-bg-inverse" >Welcome, {{ Auth::user()->name }}</a>
-        <ul class="dropdown-menu w-50 list-style " aria-labelledby="navbarDropdown2">
-
-
-
-            <li class="btn-logout float-right" >
-                <form method="POST" action="{{ route('logout') }}">
-                    {{ csrf_field() }}
-                    <button type="submit" class="dropdown-item text-dark ps-4 p-2">Logout</button>
-                </form>
-            </li>
-
-        </ul>
-    </li>
-
-</div>-->
