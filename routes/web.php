@@ -26,11 +26,14 @@ Route::get('/', function () {
 Route::get('dashboard', 'App\Http\Controllers\HomeController@index');
 
 // Host Routes
-Route::resource('tournament', Tournament_management::class);
+// Route::resource('tournament', Tournament_management::class);
 Route::resource('usermanagement', Normal_management::class);
 Route::resource('news-feed', NewsFeedController::class);
 Route::get('/register-tournament', 'App\Http\Controllers\Host\Tournament_management@create')->name('tournament-register');
-Route::get('/store-tournament', 'App\Http\Controllers\Host\Tournament_management@store')->name('tournament-store');
+Route::post('/store-tournament', 'App\Http\Controllers\Host\Tournament_management@store');
+Route::get('/show-tournament/{id}', 'App\Http\Controllers\Host\Tournament_management@show')->name('tournament-show');
+Route::get('/delete-tournament/{id}', 'App\Http\Controllers\Host\Tournament_management@destroy')->name('tournament-delete');
+// Route::post('/store-tournament', 'App\Http\Controllers\Host\Tournament_management@store');
 Route::get('/tournament-management', 'App\Http\Controllers\Host\Tournament_management@index')->name('tournament_manage');
 Route::get('/host-dashboard', 'App\Http\Controllers\Host\Dashboard_Host@index')->name('host-dashboard');
 Route::get('/profile/{id}', 'App\Http\Controllers\Host\Profile_Host@index')->name('host-profile');
@@ -51,7 +54,7 @@ Route::get('/player-dashboard', 'App\Http\Controllers\Normal\Dashboard_Player@in
 Route::get('/player-profile', 'App\Http\Controllers\Normal\Profile_management@index')->name('profile');
 Route::get('/player-team', 'App\Http\Controllers\Normal\TeamController@index')->name('team');
 Route::get('/player-tournament', 'App\Http\Controllers\Normal\TournamentManagement@index')->name('player-tournament');
-Route::get('/stream', 'StreamController@index')->name('stream');
+//Route::get('/stream', 'StreamController@index')->name('stream');
 //Route::get('/member-profile/{member}', 'App\Http\Controllers\Normal\TeamController@member_view')->name('player-profile');
 
 

@@ -101,14 +101,16 @@
                                     <h4 class="text-dark mb-4" style="height: 50px;">Create an Account!</h4>
                                 </div>
                                 <form class="user" method="POST" action="{{ route('register') }}">
+
                                     @csrf
+
                                     <div class="row mb-3">
                                         <div class="col-sm-6 mb-3 mb-sm-0" style="margin-top: 35px;">
                                             <input class="form-control form-control-user" type="text" id="firstname" placeholder="First Name" name="firstname" >
-                                            <input class="form-control form-control-user" type="text" id="email" placeholder="Email" name="email" style="margin-top: 20px;"></div>
+                                            <input class="form-control form-control-user" type="email" id="email" placeholder="Email" name="email" style="margin-top: 20px;"></div>
                                         <div class="col-sm-6" style="margin-top: 35px;">
                                             <input class="form-control form-control-user" type="text" id="lastname" placeholder="Last Name" name="lastname" >
-                                            <input class="form-control form-control-user" type="text" id="password" placeholder="Password" name="password" style="margin-top: 20px;"></div>
+                                            <input class="form-control form-control-user" type="password" id="password" placeholder="Password" name="password" style="margin-top: 20px;"></div>
                                             <hr style="margin-top: 15px;">
                                         <div class="col-sm-6" style="margin-top: 15px;">
                                             <select class="form-select form-control-user" type="text" id="role" placeholder="Role" name="role" >
@@ -123,7 +125,7 @@
                                             </select>
                                         </div>
                                         <div class="col-sm-6" style="margin-top: 15px;">
-                                            <input class="form-control form-control-user" type="text" id="bday" placeholder="Birthdate" name="birthdate">
+                                            <input class="form-control form-control-user" type="date" id="bday" placeholder="Birthdate" name="birthdate">
                                             <input class="form-control form-control-user" type="text" id="contnum" placeholder="Contact Number" name="contact_number" style="margin-top: 20px;"></div>
                                         <div class="col-sm-6" style="margin-top: 35px;">
                                             <select class="form-select form-control-user" type="text" id="course" placeholder="Course/Program" name="course">
@@ -135,7 +137,8 @@
                                             </select>
                                         </div>
                                         <div class="col-sm-6" style="margin-top: 35px;">
-                                            <input class="form-control form-control-user" type="text" id="student_number" placeholder="Student Number" name="student_number"></div>
+                                            <input class="form-control form-control-user" type="text" id="student_number" placeholder="Student Number" name="student_number">
+                                        </div>
 
                                     </div>
                                     <div class="mb-3"></div><button class="btn btn-primary d-block btn-user w-100" type="submit" style="background: #1b1b1b;margin-top: 20px;">Register Account</button>

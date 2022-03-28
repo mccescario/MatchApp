@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
+use Carbon\Carbon;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -25,25 +26,30 @@ class CreateNewUser implements CreatesNewUsers
     {
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
+
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '',
         ])->validate();
 
         return DB::transaction(function () use ($input) {
-            return tap(User::create([
-                'name' => $input['name'],
+            return tap(Users::create([
+
+                'firstname' => $input['firstname'],
+                'lastname' => $input['lastname'],
                 'email' => $input['email'],
+                'birthdate' => $input['birthdate'],
+                'gender' => $input['gender'],
+                'age' => Carbon::parse($request->birthdate)->diff(Carbon::now())->y,
+                'course' => $input['course'],
+                'student_number' => $input['student_number'],
                 'password' => Hash::make($input['password']),
                 'role' => $input['role'],
-                'host_key' => $input['host_key'] ?? null,
                 'address' => $input['address'] ?? null,
                 'contact_number' => $input['contact_number'] ?? null,
-                'status' => $input['status'] ?? null,
-                'sport_type' => $input['sport_type'] ?? null,
-                'sport' => $input['sport'] ?? null,
-                'esport' => $input['esport'] ?? null,
-            ]), function (User $user) {
+
+
+            ]), function (Users $user) {
                 $this->createProfile($user);
             });
         });
@@ -64,11 +70,11 @@ class CreateNewUser implements CreatesNewUsers
     *    ]));
     *}*/
 
-    protected function createProfile(User $user)
-    {
-        PlayerProfile::create([
-            'user_id' => $user->id
-        ]);
-    }
+        protected function createProfile(User $user)
+        {
+            PlayerProfile::create([
+                'id' => $user->id
+            ]);
+        }
 
 }
