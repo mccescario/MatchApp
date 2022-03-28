@@ -59,7 +59,6 @@
                                 <p class="text-primary m-0 fw-bold">Customize Tournament</p>
                             </div>
                             <div class="card-body">
-                                <form action="{{ url('tournament.store')}}" method="post" enctype="multipart/form-data">
                                     <div class="row">
                                         <div class="col">
                                             <div class="mb-3"><label class="form-label" for="tournament_name">
@@ -156,8 +155,6 @@
                                     <div class="mb-3">
 
                                         <button class="btn btn-primary btn-sm" type="submit" style="width: 150.5px;height: 38px;">Create Tournament</button></div>
-
-                                </form>
                             </div>
                         </div>
                     </div>
