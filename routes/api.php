@@ -113,11 +113,11 @@ Route::prefix('mobile')->group(function () {
         Route::post('invite-response', [TeamController::class,'inviteResponse']);
 
         Route::get('all-members/{id}/{category_id}', function ($id,$category_id) {
-        
+
         });
     });
 
-    Route::prefix('tournament')->group(function () {
-        Route::get('tournaments', [TournamentController::class,'tournamentList']);
-    });
+    //Route::prefix('tournament')->group(function () {
+      //  Route::get('tournaments', [TournamentController::class,'tournamentList']);
+    //});
 });
