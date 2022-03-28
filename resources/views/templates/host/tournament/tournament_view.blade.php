@@ -2,9 +2,13 @@
 
 @section('content')
 
-
 <div class="container-fluid">
     <h3 class="text-dark mb-4">{{ $tournament->tournament_name }}</h3><button class="btn btn-primary btn-sm" type="submit" style="margin-top: 18px;margin-left: 0px;"><i class="fas fa-code-branch" style="width: 20px;"></i>&nbsp;Generate Bracket</button>
+
+    <div>
+        <a href="{{ url()->previous() }}" class="btn btn-primary mb-3"> Back</a>
+    </div>
+
     <div class="row mb-3">
         <div class="col-lg-8" style="width: 897.6600000000002px;">
             <div class="row">
