@@ -111,15 +111,31 @@
                                             <input class="form-control form-control-user" type="text" id="password" placeholder="Password" name="password" style="margin-top: 20px;"></div>
                                             <hr style="margin-top: 15px;">
                                         <div class="col-sm-6" style="margin-top: 15px;">
-                                            <input class="form-control form-control-user" type="text" id="role" placeholder="Role" name="role" >
-                                            <input class="form-control form-control-user" type="text" id="gender" placeholder="Gender" name="gender" style="margin-top: 20px;"></div>
+                                            <select class="form-select form-control-user" type="text" id="role" placeholder="Role" name="role" >
+                                                <option value="0" selected>Select a Role</option>
+                                                <option value="2">Host</option>
+                                                <option value="3">Player</option>
+                                            </select>
+                                            <select class="form-select form-control-user" type="text" id="gender" placeholder="Gender" name="gender" style="margin-top: 20px;">
+                                                <option value="0" selected>Select a Gender</option>
+                                                <option value="1">Male</option>
+                                                <option value="2">Female</option>
+                                            </select>
+                                        </div>
                                         <div class="col-sm-6" style="margin-top: 15px;">
                                             <input class="form-control form-control-user" type="text" id="bday" placeholder="Birthdate" name="birthdate">
                                             <input class="form-control form-control-user" type="text" id="contnum" placeholder="Contact Number" name="contact_number" style="margin-top: 20px;"></div>
                                         <div class="col-sm-6" style="margin-top: 35px;">
-                                            <input class="form-control form-control-user" type="text" id="course" placeholder="Course/Program" name="course"></div>
+                                            <select class="form-select form-control-user" type="text" id="course" placeholder="Course/Program" name="course">
+                                                <option value="0">Select a Course</option>
+                                                <option value="1">BSITWMA</option>
+                                                <option value="2">BSITSMBA</option>
+                                                <option value="3">BSITDA</option>
+                                                <option value="4">BSITGA</option>
+                                            </select>
+                                        </div>
                                         <div class="col-sm-6" style="margin-top: 35px;">
-                                            <input class="form-control form-control-user" type="text" id="studnum" placeholder="Student Number" name="student_number"></div>
+                                            <input class="form-control form-control-user" type="text" id="student_number" placeholder="Student Number" name="student_number"></div>
 
                                     </div>
                                     <div class="mb-3"></div><button class="btn btn-primary d-block btn-user w-100" type="submit" style="background: #1b1b1b;margin-top: 20px;">Register Account</button>
