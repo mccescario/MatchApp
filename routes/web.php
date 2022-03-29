@@ -8,6 +8,9 @@ use App\Http\Controllers\Normal\NewsFeedController;
 use App\Http\Controllers\Normal\Profile_management;
 use App\Models\Course;
 use App\Models\OlympicCategory;
+use App\Models\EsportCategory;
+use App\Models\EsportRole;
+use App\Models\Sport_Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,13 +41,21 @@ Route::get('/', function () {
             });
         } else {
             unset($olympic->esport_categories);
-        }  
+        }
     });
     $olympics->makeHidden(['games']);
     $course = Course::all();
+    $esport = EsportCategory::all();
+    $esportrole = EsportRole::all();
+    $sport = SportCategory::all();
+    $sportrole = SportCategory::all();
 
     $data['olympics'] = $olympics;
     $data['courses'] = $course;
+    $data['esport'] = $esport;
+    $data['esportrole']= $esportrole;
+    $data['sport'] = $sport;
+    $data['sportrole'] = $sportrole;
     return view('main',$data);
 });
 
@@ -56,7 +67,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('dashboard', 'App\Http\Controllers\HomeController@index');
     Route::middleware(['rolehost:host'])->group(function () {
         // Host Routes
-        Route::get('logout', 'App\Http\Controllers\HomeController@logout')->name('logout');
+        //Route::get('logout', 'App\Http\Controllers\HomeController@logout')->name('logout');
         Route::resource('tournament', Tournament_management::class);
         Route::resource('usermanagement', Normal_management::class);
         Route::resource('news-feed', NewsFeedController::class);
@@ -83,7 +94,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/player-tournament', 'App\Http\Controllers\Normal\TournamentManagement@index')->name('player-tournament');
         // Route::get('/stream', 'StreamController@index')->name('stream');
     });
-    
+
 });
 //Route::get('/member-profile/{member}', 'App\Http\Controllers\Normal\TeamController@member_view')->name('player-profile');
 
