@@ -18,7 +18,6 @@
 <body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="77">
 
     @include('templates.landing.nav_landing')
-
     @include('templates.landing.body_landing')
 
     <div class="map-clean"></div>
@@ -30,44 +29,115 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="{{ asset('bootstrap/js/bootstrap.min.js')}}"></script>
     <script>
+        var olympics = @json($olympics);
+        var olympic_id = null;
+        $(".player-fields").hide();
+        $("#select-category").on("change",function(){
+            olympic_id = this.value;
+            let games = olympics.filter(x=> x.id == olympic_id);
+            var select_game = $('.select-game');
+            select_game.find('option').not(':first').remove();
+            select_game.val("").change();
+            if(games[0].olympic_category_name == 'Esport'){
+                var esports = games[0];
+                esports.esport_categories.forEach(function (esport) {
+                    select_game.append($('<option>', {
+                        value: esport.id,
+                        text: esport.esport_category_name
+                    }));
+                });
+            } else if(games[0].olympic_category_name == 'Sport'){
+                var sports = games[0];
+                sports.sport_categories.forEach(function (sport) {
+                    select_game.append($('<option>', {
+                        value: sport.id,
+                        text: sport.sport_category_name
+                    }));
+                });
+            }
+            // console.log(game[0].olympic_category_name);
+        });
+
+        $('.select-game').on("change",function(){
+            let game_id = this.value;
+            let games = olympics.filter(x=> x.id == olympic_id);
+            var select_role = $(".select-game-role");
+            select_role.find('option').not(':first').remove();
+            select_role.val("").change();
+            // let roles = games[0].esport_categories.filter(game => game.id == game_id);
+            if(games[0].olympic_category_name.toLowerCase() == 'esport'){
+                let roles = games[0].esport_categories.filter(game => game.id == game_id)[0];
+                if(typeof roles !== 'undefined'){
+                    roles.esport_roles.forEach(function (role) {
+                        select_role.append($('<option>', {
+                            value: role.id,
+                            text: role.esport_role_name
+                        }));
+                    });
+                }
+                
+            } else if(games[0].olympic_category_name.toLowerCase() == 'sport'){
+                let roles = games[0].sport_categories.filter(game => game.id == game_id)[0];
+                if(typeof roles !== 'undefined'){
+                    roles.sport_positions.forEach(function (position) {
+                        select_role.append($('<option>', {
+                            value: position.id,
+                            text: position.sport_position_name
+                        }));
+                    });
+                }
+            }
+        });
+
+        $(".select-role").on("change",function(){
+            let role = this.value;
+            if(role === "2") {
+                $(".player-fields").hide();
+            } else if(role === "3"){
+                $(".player-fields").show();
+            }
+        });
+
           var mainNav = document.querySelector('#mainNav');
 
             if (mainNav) {
 
-            var navbarCollapse = mainNav.querySelector('.navbar-collapse');
+                var navbarCollapse = mainNav.querySelector('.navbar-collapse');
 
-            if (navbarCollapse) {
+                if (navbarCollapse) {
 
-                var collapse = new bootstrap.Collapse(navbarCollapse, {
-                toggle: false
-                });
+                    var collapse = new bootstrap.Collapse(navbarCollapse, {
+                    toggle: false
+                    });
 
-                var navbarItems = navbarCollapse.querySelectorAll('a');
+                    var navbarItems = navbarCollapse.querySelectorAll('a');
 
-                // Closes responsive menu when a scroll trigger link is clicked
-                for (var item of navbarItems) {
-                item.addEventListener('click', function (event) {
-                    collapse.hide();
-                });
+                    // Closes responsive menu when a scroll trigger link is clicked
+                    for (var item of navbarItems) {
+                    item.addEventListener('click', function (event) {
+                        collapse.hide();
+                    });
+                    }
                 }
+
+                // Collapse Navbar
+                var collapseNavbar = function() {
+
+                    var scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+
+                    if (scrollTop > 100) {
+                    mainNav.classList.add("navbar-shrink");
+                    } else {
+                    mainNav.classList.remove("navbar-shrink");
+                    }
+                };
+                // Collapse now if page is not at top
+                collapseNavbar();
+                // Collapse the navbar when page is scrolled
+                document.addEventListener("scroll", collapseNavbar);
             }
 
-            // Collapse Navbar
-            var collapseNavbar = function() {
 
-                var scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
-
-                if (scrollTop > 100) {
-                mainNav.classList.add("navbar-shrink");
-                } else {
-                mainNav.classList.remove("navbar-shrink");
-                }
-            };
-            // Collapse now if page is not at top
-            collapseNavbar();
-            // Collapse the navbar when page is scrolled
-            document.addEventListener("scroll", collapseNavbar);
-            }
     </script>
 </body>
 

@@ -117,7 +117,7 @@ Route::prefix('mobile')->group(function () {
         });
     });
 
-    Route::prefix('tournament')->group(function () {
-        Route::get('tournaments', [TournamentController::class,'tournamentList']);
-    });
+    // Route::prefix('tournament')->group(function () {
+    //     Route::get('tournaments', [TournamentController::class,'tournamentList']);
+    // });
 });

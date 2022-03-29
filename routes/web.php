@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Host\Tournament_management;
 use App\Http\Controllers\Host\Normal_management;
 use App\Http\Controllers\Normal\NewsFeedController;
 use App\Http\Controllers\Normal\Profile_management;
+use App\Models\Course;
+use App\Models\OlympicCategory;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,39 +22,69 @@ use App\Http\Controllers\Normal\Profile_management;
 
 
 Route::get('/', function () {
-    return view('main');
+    $olympics = OlympicCategory::all()->each(function($olympic){
+        $olympic->makeVisible(['sport_categories','esport_categories']);
+        if($olympic->sport_categories->count() != 0){
+            $olympic->sport_categories->each(function($sport){
+                $sport->sport_positions;
+            });
+        } else {
+            unset($olympic->sport_categories);
+        }
+
+        if($olympic->esport_categories->count() != 0){
+            $olympic->esport_categories->each(function($esport){
+                $esport->esport_roles;
+            });
+        } else {
+            unset($olympic->esport_categories);
+        }  
+    });
+    $olympics->makeHidden(['games']);
+    $course = Course::all();
+
+    $data['olympics'] = $olympics;
+    $data['courses'] = $course;
+    return view('main',$data);
 });
+
+Route::post('register-user', [HomeController::class,'store'])->name('register-user');
 
 //Route::get('/', 'App\Http\Controllers\HomeController@logout')->name('logout');
 Route::get('dashboard', 'App\Http\Controllers\HomeController@index');
 
-// Host Routes
-Route::resource('tournament', Tournament_management::class);
-Route::resource('usermanagement', Normal_management::class);
-Route::resource('news-feed', NewsFeedController::class);
-Route::get('/register-tournament', 'App\Http\Controllers\Host\Tournament_management@create')->name('tournament-register');
-Route::get('/store-tournament', 'App\Http\Controllers\Host\Tournament_management@store')->name('tournament-store');
-Route::get('/tournament-management', 'App\Http\Controllers\Host\Tournament_management@index')->name('tournament_manage');
-Route::get('/host-dashboard', 'App\Http\Controllers\Host\Dashboard_Host@index')->name('host-dashboard');
-Route::get('/profile/{id}', 'App\Http\Controllers\Host\Profile_Host@index')->name('host-profile');
-Route::get('/team', 'App\Http\Controllers\Host\TeamController@index')->name('host-team');
-Route::get('/user-management', 'App\Http\Controllers\Host\Normal_management@index')->name('usermanagement');
-Route::get('/add-user', 'App\Http\Controllers\Host\Normal_management@create')->name('user-add');
-Route::get('/create-news', 'App\Http\Controllers\Normal\NewsFeedController@create')->name('news-create');
-Route::get('/news-read-more/{slug}', 'App\Http\Controllers\Normal\NewsFeedController@readmore')->name('news-readmore');
-Route::get('/livestream', 'App\Http\Controllers\Host\Stream_management@index')->name('host-livestream');
+Route::middleware(['auth'])->group(function () {
+    Route::middleware(['rolehost:host'])->group(function () {
+        // Host Routes
+        Route::get('logout', 'App\Http\Controllers\HomeController@logout')->name('logout');
+        Route::resource('tournament', Tournament_management::class);
+        Route::resource('usermanagement', Normal_management::class);
+        Route::resource('news-feed', NewsFeedController::class);
+        Route::get('/register-tournament', 'App\Http\Controllers\Host\Tournament_management@create')->name('tournament-register');
+        Route::get('/store-tournament', 'App\Http\Controllers\Host\Tournament_management@store')->name('tournament-store');
+        Route::get('/tournament-management', 'App\Http\Controllers\Host\Tournament_management@index')->name('tournament_manage');
+        Route::get('/host-dashboard', 'App\Http\Controllers\Host\Dashboard_Host@index')->name('host-dashboard');
+        Route::get('/profile/{id}', 'App\Http\Controllers\Host\Profile_Host@index')->name('host-profile');
+        Route::get('/team', 'App\Http\Controllers\Host\TeamController@index')->name('host-team');
+        Route::get('/user-management', 'App\Http\Controllers\Host\Normal_management@index')->name('usermanagement');
+        Route::get('/add-user', 'App\Http\Controllers\Host\Normal_management@create')->name('user-add');
+        Route::get('/create-news', 'App\Http\Controllers\Normal\NewsFeedController@create')->name('news-create');
+        Route::get('/news-read-more/{slug}', 'App\Http\Controllers\Normal\NewsFeedController@readmore')->name('news-readmore');
+        Route::get('/livestream', 'App\Http\Controllers\Host\Stream_management@index')->name('host-livestream');
+    });
 
-
-
-
-// Player Routes
-Route::resource('profilemanagement', Profile_management::class);
-//Route::resource('player-tournament', TournamentManagement::class);
-Route::get('/player-dashboard', 'App\Http\Controllers\Normal\Dashboard_Player@index')->name('player-dashboard');
-Route::get('/player-profile', 'App\Http\Controllers\Normal\Profile_management@index')->name('profile');
-Route::get('/player-team', 'App\Http\Controllers\Normal\TeamController@index')->name('team');
-Route::get('/player-tournament', 'App\Http\Controllers\Normal\TournamentManagement@index')->name('player-tournament');
-Route::get('/stream', 'StreamController@index')->name('stream');
+    Route::middleware(['roleplayer:player'])->group(function () {
+        // Player Routes
+        Route::resource('profilemanagement', Profile_management::class);
+        //Route::resource('player-tournament', TournamentManagement::class);
+        Route::get('/player-dashboard', 'App\Http\Controllers\Normal\Dashboard_Player@index')->name('player-dashboard');
+        Route::get('/player-profile', 'App\Http\Controllers\Normal\Profile_management@index')->name('profile');
+        Route::get('/player-team', 'App\Http\Controllers\Normal\TeamController@index')->name('team');
+        Route::get('/player-tournament', 'App\Http\Controllers\Normal\TournamentManagement@index')->name('player-tournament');
+        // Route::get('/stream', 'StreamController@index')->name('stream');
+    });
+    
+});
 //Route::get('/member-profile/{member}', 'App\Http\Controllers\Normal\TeamController@member_view')->name('player-profile');
 
 
