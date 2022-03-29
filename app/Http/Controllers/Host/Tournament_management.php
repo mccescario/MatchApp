@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Host;
 
 use App\Http\Controllers\Controller;
 use App\Models\Host\TournamentModel;
+use App\Models\TeamParticipant;
+use App\Models\TeamBracket;
 use Illuminate\Http\Request;
+use DB;
 
 class Tournament_management extends Controller
 {
@@ -71,7 +74,10 @@ class Tournament_management extends Controller
     {
         //
         $tournament = TournamentModel::find($tournamentModel);
-        return view('templates.host.tournament.tournament_view',compact('tournament'));
+        $joining_participants = TeamParticipant::where('tournament_model_id', $tournamentModel)->where('status','JOINING')->get();
+        //dd($joining_participants);
+        $participants = TeamParticipant::where('tournament_model_id', $tournamentModel)->where('status','ACCEPTED')->get();
+        return view('templates.host.tournament.tournament_view',compact('tournament', 'participants', 'joining_participants'));
     }
 
     /**
@@ -122,5 +128,37 @@ class Tournament_management extends Controller
           }
 
 
+    }
+
+    public function accept($tournamentModel)
+    {
+        //
+        $tournament = TeamParticipant::find($tournamentModel);
+        $tournament->status = 'ACCEPTED';
+        $tournament->save();
+        return redirect()->back();
+    }
+
+    public function updatebracket(Request $request)
+    {
+        $input = $request->all();
+        
+        $results = DB::select('select * from team_brackets where num = ? and tournament_model_id = ?', [$input['num'], $input['tournament_model_id']]);
+        if($results) {
+            DB::update("update team_brackets set ".$input['team_col']." = '".$input['team_data']."', ".$input['score_col']." = '".$input['score_data']."' where num = ? and tournament_model_id = ?", [$input['num'], $input['tournament_model_id']]);    
+        }else{
+            DB::insert("insert into team_brackets (num, tournament_model_id, ".$input['team_col'].", ".$input['score_col'].") values (?, ?, ?, ?)", [$input['num'], $input['tournament_model_id'], $input['team_data'], $input['score_data']]);
+        }
+
+        return response()->json(['result' => 'success', 'title' => 'Success!', 'message'=> $input]);
+    }
+
+    public function databracket($tournament_model_id)
+    {        
+        //$results = DB::select('select num, team1, team2, score1, score2 from team_brackets where tournament_model_id = ?', [$tournament_model_id]);
+        $results = TeamBracket::where('tournament_model_id', $tournament_model_id)
+            ->select('num', 'team1', 'team2', 'score1', 'score2')
+            ->get();
+        return response()->json(['matches'=> $results]);
     }
 }

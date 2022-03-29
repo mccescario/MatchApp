@@ -26,4 +26,9 @@ class TournamentModel extends Model
         'tournament_date_to',
         'tournament_time'
     ];
+
+    public function participants()
+    {
+        return $this->hasMany(TeamParticipant::class);
+    }
 }

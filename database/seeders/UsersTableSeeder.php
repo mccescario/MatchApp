@@ -58,18 +58,6 @@ class UsersTableSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now()
             ],
-            [
-                'firstname'          => 'MC',
-                'lastname'           => 'Escario',
-                'email'              => 'mcforgames2@gmail.com',
-                'student_number' => "201811926",
-                'course' => Course::all()->random()->course_title,
-                'role'               => 3,
-                'email_verified_at'  => now(),
-                'password'           => bcrypt('secret12'),
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
 
         ]);
     }

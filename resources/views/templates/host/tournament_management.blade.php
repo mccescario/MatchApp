@@ -27,9 +27,11 @@
               <button class="btn btn-info btn-sm float-end mb-3 add-row" onclick="document.location='{{ url('register-tournament') }}'" type="button" style="margin: 0px;width: 170px;background: rgb(78,115,223);border-color: rgb(78,115,223);color: var(--bs-gray-300);">
                 <i class="fas fa-plus"></i><strong>&nbsp;Add Tournament</strong>
               </button>
-                <p class="text-primary m-0 fw-bold" style="width: 978px;">List of Tournaments</p>
+                <p class="text-primary m-0 fw-bold" style="width: 978px;">List of Tournaments </p>
+                
             </div>
             <div class="card-body">
+            <a href="/bracket?data=tournament&type=generator" target="_blank" class="btn btn-sm btn-primary"><i class="fas fa-code-branch" style="width: 20px;"></i>&nbsp;Generate Bracket</a>
                 <div class="row">
                     <div class="col-md-6 text-nowrap">
                         <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Show&nbsp;<select class="d-inline-block form-select form-select-sm">
@@ -62,7 +64,7 @@
 
                             <tr>
 
-                                <td><a href="{{ route('tournament-show',$tournament->id) }}">{{ $tournament->tournament_name }}</a></td>
+                                <td><a href="{{ route('tournament.show',$tournament->id) }}">{{ $tournament->tournament_name }}</a></td>
                                 <td>
                                     @if ($tournament->tournament_sport_type == 1)
                                         Sports
@@ -125,11 +127,12 @@
                                 <td> {{$tournament->tournament_date_from }} - {{$tournament->tournament_date_to }} </td>
 
                                 <td class="text-center align-middle" style="max-height: 60px;height: 40px;width: 114px;">
-                                    <form action="{{ route('tournament-delete',$tournament->id)}} " method="POST">
+                                    <form action="{{ route('tournament.destroy',$tournament->id)}} " method="POST">
 
                                         @method('DELETE')
                                         @csrf
-
+                                    <a class="btn btnMaterial btn-flat success semicircle" role="button" href="{{ route('tournament.edit',$tournament->id) }}" style="margin: -15px;">
+                                        <i class="fas fa-pen"></i></a>
                                     <button class="btn btnMaterial btn-flat accent btnNoBorders checkboxHover" role="button" style="margin: 0px;margin-left: 5px;" data-bs-toggle="modal" data-bs-target="#delete-modal" href="#">
                                         <i class="fas fa-trash btnNoBorders" style="color: #DC3545;"></i></button>
                                 </td>

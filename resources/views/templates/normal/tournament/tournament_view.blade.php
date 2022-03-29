@@ -51,6 +51,7 @@
                             <th style="background: transparent;color: rgb(133,135,150);height: 25px;width: 150px;">Format</th>
                             <th style="background: transparent;color: rgb(133,135,150);width: 100px;">Schedule</th>
                             <th style="background: transparent;color: rgb(133,135,150);width: 95px;">Slot</th>
+                            <th style="background: transparent;color: rgb(133,135,150);width: 95px;">Action</th>
                         </tr>
                     </thead>
                     @if (count($tournaments) > 0)
@@ -114,11 +115,16 @@
                                     Round- Robin Elimination
                                 @endif
                             </td>
-                            <td> <b> From:</b> {{$tournament->tournament_date_from }} <br>
-                                 <b>To:</b> {{$tournament->tournament_date_to }} </td>
+                            <td> <b> From:</b> <br>{{ $tournament->tournament_date_from }} <br>
+                                 <b>To:</b> <br>{{ $tournament->tournament_date_to }} </td>
                             <td>2/16
 
 
+                            </td>
+                            <td>
+                                
+                                <a class="btn btn-sm btn-primary" href="{{ route('join.tournament', $tournament->id) }}">Join</a>
+                                
                             </td>
                         </tr>
 
@@ -137,6 +143,7 @@
                             <td><strong>Format</strong></td>
                             <td><strong>Schedule</strong></td>
                             <td><strong>Slot</strong></td>
+                            <td><strong>Action</strong></td>
                         </tr>
                     </tfoot>
                 </table>
@@ -160,6 +167,5 @@
         </div>
     </div>
 </div>
-
 
 @endsection

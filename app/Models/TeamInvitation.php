@@ -20,6 +20,7 @@ class TeamInvitation extends Model
         // 'olympic_category_id',
         'recruit_message',
         'invite_message',
+        'invite_status',
         'created_at',
         'updated_at'
     ];

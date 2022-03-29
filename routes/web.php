@@ -11,6 +11,7 @@ use App\Models\OlympicCategory;
 use App\Models\EsportCategory;
 use App\Models\EsportRole;
 use App\Models\Sport_Category;
+use App\Models\SportCategory;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,17 +63,17 @@ Route::get('/', function () {
 Route::post('register-user', [HomeController::class,'store'])->name('register-user');
 
 //Route::get('/', 'App\Http\Controllers\HomeController@logout')->name('logout');
-
+Route::get('logout', 'App\Http\Controllers\HomeController@logout')->name('logout');
 Route::middleware(['auth'])->group(function () {
     Route::get('dashboard', 'App\Http\Controllers\HomeController@index');
     Route::middleware(['rolehost:host'])->group(function () {
         // Host Routes
-        //Route::get('logout', 'App\Http\Controllers\HomeController@logout')->name('logout');
+        
         Route::resource('tournament', Tournament_management::class);
         Route::resource('usermanagement', Normal_management::class);
         Route::resource('news-feed', NewsFeedController::class);
         Route::get('/register-tournament', 'App\Http\Controllers\Host\Tournament_management@create')->name('tournament-register');
-        Route::get('/store-tournament', 'App\Http\Controllers\Host\Tournament_management@store')->name('tournament-store');
+        Route::post('/store-tournament', 'App\Http\Controllers\Host\Tournament_management@store')->name('tournament-store');
         Route::get('/tournament-management', 'App\Http\Controllers\Host\Tournament_management@index')->name('tournament_manage');
         Route::get('/host-dashboard', 'App\Http\Controllers\Host\Dashboard_Host@index')->name('host-dashboard');
         Route::get('/profile/{id}', 'App\Http\Controllers\Host\Profile_Host@index')->name('host-profile');
@@ -82,6 +83,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/create-news', 'App\Http\Controllers\Normal\NewsFeedController@create')->name('news-create');
         Route::get('/news-read-more/{slug}', 'App\Http\Controllers\Normal\NewsFeedController@readmore')->name('news-readmore');
         Route::get('/livestream', 'App\Http\Controllers\Host\Stream_management@index')->name('host-livestream');
+        Route::get('/accept-tournament/{id}', 'App\Http\Controllers\Host\Tournament_management@accept')->name('accept.tournament');
     });
 
     Route::middleware(['roleplayer:player'])->group(function () {
@@ -91,8 +93,15 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/player-dashboard', 'App\Http\Controllers\Normal\Dashboard_Player@index')->name('player-dashboard');
         Route::get('/player-profile', 'App\Http\Controllers\Normal\Profile_management@index')->name('profile');
         Route::get('/player-team', 'App\Http\Controllers\Normal\TeamController@index')->name('team');
-        Route::get('/player-tournament', 'App\Http\Controllers\Normal\TournamentManagement@index')->name('player-tournament');
         // Route::get('/stream', 'StreamController@index')->name('stream');
+        Route::get('/player-team/{id}', 'App\Http\Controllers\Normal\TeamController@show')->name('player-team');
+        Route::post('/add-member-team', 'App\Http\Controllers\Normal\TeamController@add_member')->name('add.member.team');
+        Route::post('/store-team', 'App\Http\Controllers\Normal\TeamController@store')->name('store.team');
+        Route::get('/player-tournament', 'App\Http\Controllers\Normal\TournamentManagement@index')->name('player-tournament');
+        Route::get('/join-tournament/{id}', 'App\Http\Controllers\Normal\TournamentManagement@join')->name('join.tournament');
+        Route::post('/tournament-join/{id}', 'App\Http\Controllers\Normal\TournamentManagement@joining')->name('tournament.join');
+        Route::get('/stream', 'StreamController@index')->name('stream');
+        Route::get('/invites/{id}', 'App\Http\Controllers\Normal\TeamController@invites')->name('invites');
     });
 
 });

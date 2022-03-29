@@ -2,13 +2,9 @@
 
 @section('content')
 
+
 <div class="container-fluid">
     <h3 class="text-dark mb-4">{{ $tournament->tournament_name }}</h3><button class="btn btn-primary btn-sm" type="submit" style="margin-top: 18px;margin-left: 0px;"><i class="fas fa-code-branch" style="width: 20px;"></i>&nbsp;Generate Bracket</button>
-
-    <div>
-        <a href="{{ url()->previous() }}" class="btn btn-primary mb-3"> Back</a>
-    </div>
-
     <div class="row mb-3">
         <div class="col-lg-8" style="width: 897.6600000000002px;">
             <div class="row">
@@ -140,24 +136,74 @@
                                         <thead>
                                             <tr>
                                                 <th style="width: 275px;">Team Name</th>
-                                                <th style="text-align: center;">Members</th>
+                                                <!-- <th style="text-align: center;">Members</th> -->
                                                 <th style="text-align: left;width: 75px;">Course</th>
                                                 <th style="width: 250px;">Representative</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach($participants as $participant)
                                             <tr>
-                                                <td style="text-align: left;">Team ABAI</td>
-                                                <td style="width: 110px;text-align: center;">5</td>
-                                                <td>BSITWMA</td>
-                                                <td>Marthen Christ Escario</td>
+                                                <td style="text-align: left;">{{ $participant->team->team_name }}</td>
+                                                <!-- <td style="width: 110px;text-align: center;">5</td> -->
+                                                <td></td>
+                                                <td></td>
                                             </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3" style="height: 25px;"><button class="btn btn-primary btn-sm" type="submit"><i class="fas fa-edit" style="width: 20px;"></i>Update</button></div>
+                        <!-- <div class="mb-3" style="height: 25px;"><button class="btn btn-primary btn-sm" type="submit"><i class="fas fa-edit" style="width: 20px;"></i>Update</button></div> -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <h3 class="text-dark mb-4">Joining Teams</h3>
+        <div class="col">
+            <div class="card shadow">
+                <div class="card-header py-3" style="height: 48px;">
+                    <p class="text-primary fw-bold" style="margin-top: -4px;">List of Teams</p>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="row">
+                            <div class="col">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 275px;">Status</th>
+                                                <th style="width: 275px;">Team Name</th>
+                                                <th style="text-align: left;width: 75px;">Course</th>
+                                                <th style="width: 250px;">Representative</th>
+                                                <th style="width: 250px;">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($joining_participants as $joining_participant)
+                                            <tr>
+                                                <td style="text-align: left;"><span class="btn btn-sm btn-primary">{{ $joining_participant->status }}</span></td>
+                                                <td style="text-align: left;">{{ $joining_participant->team->team_name }}</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>
+                                                    <a href="{{ route('accept.tournament', $joining_participant->id) }}">
+                                                        <span class="btn btn-sm btn-success">ACCEPT</span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="mb-3" style="height: 25px;"><button class="btn btn-primary btn-sm" type="submit"><i class="fas fa-edit" style="width: 20px;"></i>Update</button></div> -->
                     </form>
                 </div>
             </div>
