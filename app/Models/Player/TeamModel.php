@@ -9,5 +9,12 @@ class TeamModel extends Model
 {
     use HasFactory;
 
-    protected $table = 'team';
+    protected $table = 'teams';
+
+    protected $fillable = [
+        'olympic_category_id',
+        'team_game_id',
+        'team_name',
+        'team_logo'
+    ];
 }

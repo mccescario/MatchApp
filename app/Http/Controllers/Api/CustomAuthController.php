@@ -48,16 +48,15 @@ class CustomAuthController extends Controller
         }
 
         $user = User::create([
-            'name' => $request->name,
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role' => $request->role ,
             'address' => $request->address ,
             'contact_number' => $request->contact_number ,
             'status' => $request->status,
-            'sport_type' => $request->sport_type,
-            'sport' => $request->sport,
-            'esport' => $request->esport,
+            'birthdate' => $request->birthdate
 
          ]);
 

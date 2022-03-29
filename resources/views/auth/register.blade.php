@@ -1,3 +1,85 @@
+<!DOCTYPE html>
+<html style="background: var(--bs-gray-300);">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@yield('title','MatchApp') </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
+    <link rel="stylesheet" href="{{ url('fonts/fontawesome-all.min.css'); }}">
+    <link rel="stylesheet" href="{{ url('fonts/font-awesome.min.css'); }}">
+    <link rel="stylesheet" href="{{ url('fonts/fontawesome5-overrides.min.css'); }}">
+    <link rel="stylesheet" href="{{ url('css/Bold-BS4-Header-with-HTML5-Video-Background.css'); }}">
+    <link rel="stylesheet" href="{{ url('css/Community-ChatComments.css'); }}">
+    <link rel="stylesheet" href="{{ url('css/Form-Select---Full-Date---Month-Day-Year.css'); }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightpick@1.3.4/css/lightpick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/css/theme.bootstrap_4.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <link rel="stylesheet" href="{{ url('css/Ludens---1-Index-Table-with-Search--Sort-Filters-v20.css'); }}">
+    <link rel="stylesheet" href="{{ url('css/newsfeed-post.css'); }}">
+</head>
+
+<body class="bg-gradient-primary" style="background: var(--bs-gray-300);">
+    <div class="container">
+        <div class="card shadow-lg o-hidden border-0 my-5">
+            <div class="card-body p-0">
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-flex" style="background: #1b1b1b;"><img src="{{ asset('images/matchapp-icon.png') }}" style="height: 256px;width: 256px;margin: 124px;"></div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h4 class="text-dark mb-4" style="height: 50px;">Create an Account!</h4>
+                            </div>
+                            <form class="user">
+                                <div class="row mb-3">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="First Name" name="first_name"></div>
+                                    <div class="col-sm-6">
+                                        <input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Last Name" name="last_name"></div>
+                                </div>
+                                <div class="mb-3">
+                                    <input class="form-control form-control-user" type="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Email Address" name="email"></div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input class="form-control form-control-user" type="password" id="examplePasswordInput" placeholder="Password" name="password"></div>
+                                    <div class="col-sm-6">
+                                        <input class="form-control form-control-user" type="password" id="exampleRepeatPasswordInput" placeholder="Repeat Password" name="password_repeat"></div>
+                                </div><button class="btn btn-primary d-block btn-user w-100" type="submit" style="background: #1b1b1b;">Register Account</button>
+                                <hr>
+                            </form>
+                            <div class="text-center"><a class="small text-gray-600 hover:text-black-900" href="{{route('login')}}">Already have an account? Login!</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lightpick@1.3.4/lightpick.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/jquery.tablesorter.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-filter.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-storage.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="{{ asset('js/Ludens---1-Index-Table-with-Search--Sort-Filters-v20-1.js')}}"></script>
+    <script src="{{ asset('js/Ludens---1-Index-Table-with-Search--Sort-Filters-v20.js')}}"></script>
+    <script src="{{ asset('js/theme.js')}}"></script>
+    <script src="{{ asset('js/Date-Range-Picker.js')}}"></script>
+    <script src="{{ asset('js/DateRangePicker.js')}}"></script>
+    <script src="{{ asset('js/Dynamically-Add-Remove-Table-Row.js')}}"></script>
+</body>
+
+</html>
+{{--
+
+
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
@@ -117,3 +199,4 @@
         </form>
     </x-jet-authentication-card>
 </x-guest-layout>
+--}}
