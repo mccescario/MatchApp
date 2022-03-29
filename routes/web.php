@@ -51,9 +51,9 @@ Route::get('/', function () {
 Route::post('register-user', [HomeController::class,'store'])->name('register-user');
 
 //Route::get('/', 'App\Http\Controllers\HomeController@logout')->name('logout');
-Route::get('dashboard', 'App\Http\Controllers\HomeController@index');
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('dashboard', 'App\Http\Controllers\HomeController@index');
     Route::middleware(['rolehost:host'])->group(function () {
         // Host Routes
         Route::get('logout', 'App\Http\Controllers\HomeController@logout')->name('logout');
