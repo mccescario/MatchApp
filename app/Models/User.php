@@ -26,6 +26,9 @@ class User extends Authenticatable
      *
      * @var string[]
      */
+
+    protected $table = 'users';
+
     protected $fillable = [
         'firstname',
         'lastname',
@@ -43,7 +46,6 @@ class User extends Authenticatable
         'address',
         'contact_number',
         'status',
-        'sport_type',
         'verification_code',
         'profile_photo_url',
         'profile_photo_path',

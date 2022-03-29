@@ -1,6 +1,13 @@
 @extends('templates.host.main')
 
 @section('content')
+
+
+
+<div>
+    <a href="{{ url()->previous() }}" class="btn btn-primary mb-3"> Back</a>
+</div>
+
     <div>
         <h1 style="padding: 20px 0px;">Edit Tournament Details</h1>
     </div>

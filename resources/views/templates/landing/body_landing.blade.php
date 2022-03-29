@@ -104,6 +104,7 @@
                                 @endif
                                 <form class="user" method="POST" action="{{ route('register-user') }}">
                                     @csrf
+
                                     <div class="row mb-3">
                                         <div class="row">
                                             <div class="col-sm-6 mb-3 mb-sm-0" style="margin-top: 35px;">

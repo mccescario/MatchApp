@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Host;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Http\Request;
 
 class Normal_management extends Controller
@@ -19,8 +20,7 @@ class Normal_management extends Controller
 
         $user = User::latest()->paginate(5);
 
-        return view('templates/host/player_management', compact('user'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('templates/host/player_management', compact('user'));
     }
 
     /**

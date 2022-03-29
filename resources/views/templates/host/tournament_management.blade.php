@@ -62,7 +62,7 @@
 
                             <tr>
 
-                                <td><a href="{{ route('tournament.show',$tournament->id) }}">{{ $tournament->tournament_name }}</a></td>
+                                <td><a href="{{ route('tournament-show',$tournament->id) }}">{{ $tournament->tournament_name }}</a></td>
                                 <td>
                                     @if ($tournament->tournament_sport_type == 1)
                                         Sports
@@ -125,12 +125,11 @@
                                 <td> {{$tournament->tournament_date_from }} - {{$tournament->tournament_date_to }} </td>
 
                                 <td class="text-center align-middle" style="max-height: 60px;height: 40px;width: 114px;">
-                                    <form action="{{ route('tournament.destroy',$tournament->id)}} " method="POST">
+                                    <form action="{{ route('tournament-delete',$tournament->id)}} " method="POST">
 
                                         @method('DELETE')
                                         @csrf
-                                    <a class="btn btnMaterial btn-flat success semicircle" role="button" href="{{ route('tournament.edit',$tournament->id) }}" style="margin: -15px;">
-                                        <i class="fas fa-pen"></i></a>
+
                                     <button class="btn btnMaterial btn-flat accent btnNoBorders checkboxHover" role="button" style="margin: 0px;margin-left: 5px;" data-bs-toggle="modal" data-bs-target="#delete-modal" href="#">
                                         <i class="fas fa-trash btnNoBorders" style="color: #DC3545;"></i></button>
                                 </td>
