@@ -68,7 +68,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('dashboard', 'App\Http\Controllers\HomeController@index');
     Route::middleware(['rolehost:host'])->group(function () {
         // Host Routes
-        
+
         Route::resource('tournament', Tournament_management::class);
         Route::resource('usermanagement', Normal_management::class);
         Route::resource('news-feed', NewsFeedController::class);
@@ -82,7 +82,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/add-user', 'App\Http\Controllers\Host\Normal_management@create')->name('user-add');
         Route::get('/create-news', 'App\Http\Controllers\Normal\NewsFeedController@create')->name('news-create');
         Route::get('/news-read-more/{slug}', 'App\Http\Controllers\Normal\NewsFeedController@readmore')->name('news-readmore');
-        Route::get('/livestream', 'App\Http\Controllers\Host\Stream_management@index')->name('host-livestream');
+        //Route::get('/livestream', 'App\Http\Controllers\Host\Stream_management@index')->name('host-livestream');
         Route::get('/accept-tournament/{id}', 'App\Http\Controllers\Host\Tournament_management@accept')->name('accept.tournament');
     });
 
@@ -100,7 +100,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/player-tournament', 'App\Http\Controllers\Normal\TournamentManagement@index')->name('player-tournament');
         Route::get('/join-tournament/{id}', 'App\Http\Controllers\Normal\TournamentManagement@join')->name('join.tournament');
         Route::post('/tournament-join/{id}', 'App\Http\Controllers\Normal\TournamentManagement@joining')->name('tournament.join');
-        Route::get('/stream', 'StreamController@index')->name('stream');
+        //Route::get('/stream', 'StreamController@index')->name('stream');
         Route::get('/invites/{id}', 'App\Http\Controllers\Normal\TeamController@invites')->name('invites');
     });
 
