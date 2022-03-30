@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container-fluid">
-    <h3 class="text-dark mb-4">Teams (Static)</h3>
+    <h3 class="text-dark mb-4">Teams</h3>
     <div class="card shadow">
         <div class="card-header py-3">
             <p class="text-primary m-0 fw-bold">View Teams</p>
@@ -62,13 +62,14 @@
                         @endforeach --}}
                         @foreach ($teams as $team)
                         <tr>
-                            <td style="width: 264.828px;">
+                            <td >
                                 <a href="{{ route('player-team',$team->team_id) }}">{{ $team->team_name }}</a>
                             </td>
+
                             <td>Sports</td>
                             <td>Basketball</td>
                             <td>13</td>
-                            <td>{{ $team->users[0]->firstname }} {{ $team->users[0]->lastname }}</td>
+                            <td> representative </td>
                             <td>{{ $team->created_at }}</td>
                             <td>
                                 @if(isset($team->tournament_name))
