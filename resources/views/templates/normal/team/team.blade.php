@@ -10,6 +10,11 @@
 
         </div>
         <div class="card-body">
+            @if (session('response'))
+                @if (session('response.error'))
+                    {{ session('response.message') }}
+                @endif
+            @endif
             <div class="row">
                 <div class="col-md-6 text-nowrap">
                     <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Show&nbsp;
@@ -63,11 +68,11 @@
                         @foreach ($teams as $team)
                         <tr>
                             <td style="width: 264.828px;">
-                                <a href="{{ route('player-team',$team->team_id) }}">{{ $team->team_name }}</a>
+                                <a href="{{ route('player-team',$team->id) }}">{{ $team->team_name }}</a>
                             </td>
-                            <td>Sports</td>
-                            <td>Basketball</td>
-                            <td>13</td>
+                            <td>{{$team->olympic_category->olympic_category_name}}</td>
+                            <td>{{$team->game}}</td>
+                            <td>{{$team->users_count}}</td>
                             <td>{{ $team->users[0]->firstname }} {{ $team->users[0]->lastname }}</td>
                             <td>{{ $team->created_at }}</td>
                             <td>
@@ -113,40 +118,40 @@
 </div>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-body">
-            <div class="text-center">
-                <h4 class="text-dark mb-4" style="height: 50px;font-weight: bold;width: 450px;">Create Team</h4>
-            </div>
-            <form class="user" method="POST" action="{{url('store-team')}}">
-                @csrf
-                <div class="row mb-3" style="margin-top: -50px;">
-                    <div class="col-sm-6 mb-3 mb-sm-0" style="margin-top: 35px;">
-                        <input class="form-control form-control-user" type="text" id="Team_Name" placeholder="Team Name" name="team_name" style="width: 450px;height: 50px;border-radius: 10px;margin-bottom: 15px;">
-                        <select class="form-select" name="olympic_category_id" id="select-category" style="height: 50px;padding-top: 3px;padding-bottom: 3px;font-size: 12px;width: 450px;border-radius: 10px;">
-                            <option value="" disabled hidden selected>Select a Game Category</option>
-                            @foreach ($olympics as $olympic)
-                                <option value="{{ $olympic->id }}">{{ $olympic->olympic_category_name }}</option>
-                            @endforeach
-                            {{-- <option value="1">Sport</option>
-                            <option value="2">eSport</option> --}}
-                        </select>
-
-                        <select class="form-select select-game" name="team_game_id" style="height: 50px;padding-top: 3px;padding-bottom: 3px;font-size: 12px;width: 450px;border-radius: 10px;margin-top: 16px;">
-                            <option value="" disabled hidden selected>Select a Sport</option>
-                            {{-- <option value="1">Test 1</option>
-                            <option value="2">Test 2</option> --}}
-                        </select>
-                    </div>
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="text-center">
+                    <h4 class="text-dark mb-4" style="height: 50px;font-weight: bold;width: 450px;">Create Team</h4>
                 </div>
-                <div class="mb-3"></div>
-                <div class="text-center"></div><button class="btn btn-primary d-block btn-user" type="submit" style="margin-top: 25px;width: 150px;margin-left: 300px;"><i class="fas fa-users-cog" style="margin-right: 10px;"></i>Create Team</button>
-                <div class="text-center"></div>
-            </form>
+                <form class="user" method="POST" action="{{url('store-team')}}">
+                    @csrf
+                    <div class="row mb-3" style="margin-top: -50px;">
+                        <div class="col-sm-6 mb-3 mb-sm-0" style="margin-top: 35px;">
+                            <input class="form-control form-control-user" type="text" id="Team_Name" placeholder="Team Name" name="team_name" style="width: 450px;height: 50px;border-radius: 10px;margin-bottom: 15px;">
+                            <select class="form-select" name="olympic_category_id" id="select-category" style="height: 50px;padding-top: 3px;padding-bottom: 3px;font-size: 12px;width: 450px;border-radius: 10px;">
+                                <option value="" disabled hidden selected>Select a Game Category</option>
+                                @foreach ($olympics as $olympic)
+                                    <option value="{{ $olympic->id }}">{{ $olympic->olympic_category_name }}</option>
+                                @endforeach
+                                {{-- <option value="1">Sport</option>
+                                <option value="2">eSport</option> --}}
+                            </select>
+
+                            <select class="form-select select-game" name="team_game_id" style="height: 50px;padding-top: 3px;padding-bottom: 3px;font-size: 12px;width: 450px;border-radius: 10px;margin-top: 16px;">
+                                <option value="" disabled hidden selected>Select a Sport</option>
+                                {{-- <option value="1">Test 1</option>
+                                <option value="2">Test 2</option> --}}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3"></div>
+                    <div class="text-center"></div><button class="btn btn-primary d-block btn-user" type="submit" style="margin-top: 25px;width: 150px;margin-left: 300px;"><i class="fas fa-users-cog" style="margin-right: 10px;"></i>Create Team</button>
+                    <div class="text-center"></div>
+                </form>
+
+            </div>
 
         </div>
-
-      </div>
     </div>
 </div>
 

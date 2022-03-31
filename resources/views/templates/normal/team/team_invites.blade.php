@@ -15,9 +15,7 @@
                         <table class="table my-0" id="dataTable">
                             <thead>
                                 <tr>
-                                    <th style="width: 500px;">Name</th>
-                                    <th style="width: 170px;">Birth Date</th>
-                                    <th style="width: 150px;">Course</th>
+                                    <th style="width: 500px;">Team Name</th>
                                     <th style="width: 170px;">Message</th>
                                     <th style="width: 170px;">Status</th>
                                 </tr>
@@ -25,19 +23,22 @@
                             <tbody>
                                 @foreach($team_invites as $team_invite)
                                 <tr>
-                                    <td style="width: 264.828px;">{{$team_invite->user->firstname}} {{$team_invite->user->lastname}}</td>
-                                    <td>{{$team_invite->user->birthdate}}</td>
-                                    <td>{{$team_invite->user->course}}</td>
-                                    <td>{{$team_invite->invite_message}}</td>
-                                    <td><a href="">JOIN</a></td>
+                                    <td style="width: 264.828px;">{{$team_invite->team->team_name}}</td>
+                                    <td>{{$team_invite->recruite_message}}</td>
+                                    <td>
+                                        @if(is_null($team_invite->status))
+                                            <a class="btn btn-primary btn-sm" href="{{url('join_invite/'.$team_invite->id.'/1')}}" role="button" >Accept</a>
+                                            <a class="btn btn-danger btn-sm" href="{{url('join_invite/'.$team_invite->id.'/2')}}" role="button" >Reject</a>
+                                        @else
+                                            <a class="btn btn-primary disabled" href="#" role="button" >Responded</a>
+                                        @endif
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th style="width: 500px;">Name</th>
-                                    <th style="width: 170px;">Birth Date</th>
-                                    <th style="width: 150px;">Course</th>
+                                    <th style="width: 500px;">Team Name</th>
                                     <th style="width: 170px;">Role/Position</th>
                                 </tr>
                             </tfoot>
@@ -55,5 +56,4 @@
         </div>
     </div>
 </div>
-
 @endsection

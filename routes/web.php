@@ -6,6 +6,7 @@ use App\Http\Controllers\Host\Tournament_management;
 use App\Http\Controllers\Host\Normal_management;
 use App\Http\Controllers\Normal\NewsFeedController;
 use App\Http\Controllers\Normal\Profile_management;
+use App\Http\Controllers\Normal\TeamController;
 use App\Models\Course;
 use App\Models\OlympicCategory;
 use App\Models\EsportCategory;
@@ -63,12 +64,12 @@ Route::get('/', function () {
 Route::post('register-user', [HomeController::class,'store'])->name('register-user');
 
 //Route::get('/', 'App\Http\Controllers\HomeController@logout')->name('logout');
+Route::get('dashboard', 'App\Http\Controllers\HomeController@index');
 Route::get('logout', 'App\Http\Controllers\HomeController@logout')->name('logout');
 Route::middleware(['auth'])->group(function () {
-    Route::get('dashboard', 'App\Http\Controllers\HomeController@index');
+    
     Route::middleware(['rolehost:host'])->group(function () {
         // Host Routes
-        
         Route::resource('tournament', Tournament_management::class);
         Route::resource('usermanagement', Normal_management::class);
         Route::resource('news-feed', NewsFeedController::class);
@@ -102,6 +103,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/tournament-join/{id}', 'App\Http\Controllers\Normal\TournamentManagement@joining')->name('tournament.join');
         Route::get('/stream', 'StreamController@index')->name('stream');
         Route::get('/invites/{id}', 'App\Http\Controllers\Normal\TeamController@invites')->name('invites');
+        Route::get('join_invite/{id}/{respond}',[TeamController::class,'join_invite']);
     });
 
 });

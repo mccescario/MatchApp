@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{{ url('fonts/font-awesome.min.css');}}">
     <link rel="stylesheet" href="{{ url('fonts/fontawesome5-overrides.min.css');}}">
     <link rel="stylesheet" href="{{ url('css/Bold-BS4-Header-with-HTML5-Video-Background.css');}}">
-    <link rel="stylesheet" href="{{ url('css/Community-ChatComments.css');}}">
+    {{-- <link rel="stylesheet" href="{{ url('css/Community-ChatComments.css');}}"> --}}
     <link rel="stylesheet" href="{{ url('css/Form-Select---Full-Date---Month-Day-Year.css');}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightpick@1.3.4/css/lightpick.min.css">
@@ -62,6 +62,7 @@
     <script src="{{ asset('js/theme.js')}}"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+    @isset($olympics)
     <script>
         var olympics = @json($olympics);
         var olympic_id = null;
@@ -122,6 +123,7 @@
             }
         });
     </script>
+    @endisset
 
 </body>
 </html>
