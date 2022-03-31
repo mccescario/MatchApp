@@ -4,7 +4,7 @@
 
 
 <div class="container-fluid">
-    <h3 class="text-dark mb-4">{{ $tournament->tournament_name }}</h3><button class="btn btn-primary btn-sm" type="submit" style="margin-top: 18px;margin-left: 0px;"><i class="fas fa-code-branch" style="width: 20px;"></i>&nbsp;Generate Bracket</button>
+    <h3 class="text-dark mb-4">{{ $tournament->tournament_name }}</h3>
     <div class="row mb-3">
         <div class="col-lg-8" style="width: 897.6600000000002px;">
             <div class="row">
@@ -32,10 +32,7 @@
                                                     <option value="2">4</option>
                                                     <option value="3">8</option>
                                                     <option value="4">16</option>
-                                                    <option value="5">32</option>
-                                                    <option value="6">64</option>
-                                                    <option value="7">128</option>
-                                                </select>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -111,10 +108,6 @@
                                         <i class="fas fa-edit" style="width: 20px;"></i>Update
                                     </button>
                                 </form>
-
-                                    <button class="btn btn-primary btn-sm" type="submit">
-                                        <i class="fas fa-search" style="width: 20px;"></i>View Registrants
-                                    </button>
                                 </div>
 
                         </div>

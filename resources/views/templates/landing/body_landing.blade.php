@@ -134,7 +134,7 @@
                                                 <input class="form-control form-control-user" type="password" id="password" placeholder="Password" name="password" style="margin-top: 20px;">
                                             </div>
                                             <div class="col-sm-6" style="margin-top: 20px;">
-                                                <input class="form-control form-control-user" type="text" id="bday" placeholder="Birthdate" name="birthdate">
+                                                <input class="form-control form-control-user" type="date" id="bday" placeholder="Birthdate" name="birthdate">
                                                 <input class="form-control form-control-user" type="text" id="contnum" placeholder="Contact Number" name="contact_number" style="margin-top: 20px;">
                                             </div>
                                             <div class="col-sm-6" style="margin-top: 20px;">
