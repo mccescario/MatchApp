@@ -41,7 +41,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @foreach($teams as $team)
+                        @foreach($teams as $team)
                         <tr>
                             <td style="width: 264.828px;">
                                 <a href="{{ route('player-team',$team->team_id) }}">{{ $team->team_name }}</a>
@@ -59,8 +59,8 @@
                                 @endif
                             </td>
                         </tr>
-                        @endforeach --}}
-                        @foreach ($teams as $team)
+                        @endforeach --
+                        {{--@foreach ($teams as $team)
                         <tr>
                             <td >
                                 <a href="{{ route('player-team',$team->team_id) }}">{{ $team->team_name }}</a>
@@ -69,7 +69,7 @@
                             <td>Sports</td>
                             <td>Basketball</td>
                             <td>13</td>
-                            <td> representative </td>
+                            <td>{{ $team->users[0]->firstname }} {{ $team->users[0]->lastname }}</td>
                             <td>{{ $team->created_at }}</td>
                             <td>
                                 @if(isset($team->tournament_name))
@@ -79,7 +79,7 @@
                                 @endif
                             </td>
                         </tr>
-                        @endforeach
+                        @endforeach--}}
                     </tbody>
                     <tfoot>
                         <tr>
