@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{{ url('fonts/font-awesome.min.css');}}">
     <link rel="stylesheet" href="{{ url('fonts/fontawesome5-overrides.min.css');}}">
     <link rel="stylesheet" href="{{ url('css/Bold-BS4-Header-with-HTML5-Video-Background.css');}}">
-    <link rel="stylesheet" href="{{ url('css/Community-ChatComments.css');}}">
+    {{-- <link rel="stylesheet" href="{{ url('css/Community-ChatComments.css');}}"> --}}
     <link rel="stylesheet" href="{{ url('css/Form-Select---Full-Date---Month-Day-Year.css');}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightpick@1.3.4/css/lightpick.min.css">
@@ -62,7 +62,68 @@
     <script src="{{ asset('js/theme.js')}}"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+    @isset($olympics)
+    <script>
+        var olympics = @json($olympics);
+        var olympic_id = null;
+        $("#select-category").on("change",function(){
+            olympic_id = this.value;
+            let games = olympics.filter(x=> x.id == olympic_id);
+            var select_game = $('.select-game');
+            select_game.find('option').not(':first').remove();
+            select_game.val("").change();
+            if(games[0].olympic_category_name == 'Esport'){
+                var esports = games[0];
+                esports.esport_categories.forEach(function (esport) {
+                    select_game.append($('<option>', {
+                        value: esport.id,
+                        text: esport.esport_category_name
+                    }));
+                });
+            } else if(games[0].olympic_category_name == 'Sport'){
+                var sports = games[0];
+                sports.sport_categories.forEach(function (sport) {
+                    select_game.append($('<option>', {
+                        value: sport.id,
+                        text: sport.sport_category_name
+                    }));
+                });
+            }
+            // console.log(game[0].olympic_category_name);
+        });
 
+        $('.select-game').on("change",function(){
+            let game_id = this.value;
+            let games = olympics.filter(x=> x.id == olympic_id);
+            var select_role = $(".select-game-role");
+            select_role.find('option').not(':first').remove();
+            select_role.val("").change();
+            // let roles = games[0].esport_categories.filter(game => game.id == game_id);
+            if(games[0].olympic_category_name.toLowerCase() == 'esport'){
+                let roles = games[0].esport_categories.filter(game => game.id == game_id)[0];
+                if(typeof roles !== 'undefined'){
+                    roles.esport_roles.forEach(function (role) {
+                        select_role.append($('<option>', {
+                            value: role.id,
+                            text: role.esport_role_name
+                        }));
+                    });
+                }
+                
+            } else if(games[0].olympic_category_name.toLowerCase() == 'sport'){
+                let roles = games[0].sport_categories.filter(game => game.id == game_id)[0];
+                if(typeof roles !== 'undefined'){
+                    roles.sport_positions.forEach(function (position) {
+                        select_role.append($('<option>', {
+                            value: position.id,
+                            text: position.sport_position_name
+                        }));
+                    });
+                }
+            }
+        });
+    </script>
+    @endisset
 
 </body>
 </html>

@@ -34,7 +34,7 @@
                                     <td>{{$invite->user->course}}</td>
                                     <td></td>
                                     <td>{{$invite->invite_message}}</td>
-                                    <td>{{$invite->invite_status}}</td>
+                                    <td>{{ ($invite->status == null ? 'PENDING' :  ($invite->status == 1 ? 'ACCEPTED' : 'REJECTED')) }}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -76,7 +76,7 @@
             <div class="row mb-3" style="margin-top: -50px;">
                 <div class="col-sm-6 mb-3 mb-sm-0" style="margin-top: 35px;">
                     <input class="form-control form-control-user" type="hidden" name="team_id" value="{{ request()->id }}" style="width: 450px;height: 50px;border-radius: 10px;margin-bottom: 15px;">
-                    <input class="form-control form-control-user" type="hidden" name="invite_status" value="SENT INVITE" style="width: 450px;height: 50px;border-radius: 10px;margin-bottom: 15px;">
+                    {{-- <input class="form-control form-control-user" type="hidden" name="invite_status" value="SENT INVITE" style="width: 450px;height: 50px;border-radius: 10px;margin-bottom: 15px;"> --}}
                     <label>Select player/user<label>
                     <select class="form-select" name="user_id" style="height: 50px;padding-top: 3px;padding-bottom: 3px;font-size: 12px;width: 450px;border-radius: 10px;">
                         <option value="0" selected="">Select a User to add to the team</option>
