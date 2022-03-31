@@ -58,7 +58,7 @@ class HomeController extends Controller
                 'birthdate' => ['required','string'],
                 'role' => ['required']
             ]);
-            
+
         } else if ($request->role == 3) {
             // $rules = [
             //     'firstname' => ['required'],
@@ -140,7 +140,7 @@ class HomeController extends Controller
             $olympic_id = $request->category;
             $game_id = $request->game;
             $game_role_id = $request->game_role;
-            
+
             if($olympic_id == 1){
                 $registerUser->sport()->create([
                     'sport_primary_position_id' => $game_role_id,
