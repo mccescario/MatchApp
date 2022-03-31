@@ -106,12 +106,6 @@
                                         8
                                     @elseif ($tournament->tournament_size == 4)
                                         16
-                                    @elseif ($tournament->tournament_size == 5)
-                                        32
-                                    @elseif ($tournament->tournament_size == 6)
-                                        64
-                                    @elseif ($tournament->tournament_size == 7)
-                                        128
                                     @endif
 
                                 </td>

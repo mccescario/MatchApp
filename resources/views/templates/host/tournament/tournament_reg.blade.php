@@ -90,9 +90,6 @@
                                                     <option value="2">4</option>
                                                     <option value="3">8</option>
                                                     <option value="4">16</option>
-                                                    <option value="5">32</option>
-                                                    <option value="6">64</option>
-                                                    <option value="7">128</option>
                                                 </select>
                                             </div>
                                             <div class="mb-3">

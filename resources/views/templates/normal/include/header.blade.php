@@ -1,8 +1,11 @@
 <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
     <div class="container-fluid">
-        <button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
+        <button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button">
+            <i class="fas fa-bars"></i></button>
         <ul class="navbar-nav flex-nowrap ms-auto">
-            <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><i class="fas fa-search"></i></a>
+            <li class="nav-item dropdown d-sm-none no-arrow">
+                <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">
+                    <i class="fas fa-search"></i></a>
                 <div class="dropdown-menu dropdown-menu-end p-3 animated--grow-in" aria-labelledby="searchDropdown">
                     <form class="me-auto navbar-search w-100">
                         <div class="input-group">
@@ -46,7 +49,7 @@
                         <h6 class="dropdown-header bg-dark border-0">alerts center</h6>
                         <a class="dropdown-item d-flex align-items-center" href="#">
                             <div class="dropdown-list-image me-3">
-                                <img class="rounded-circle" src="{{ asset('img/avatars/avatar4.jpeg') }}">
+                                <img class="rounded-circle" src="{{asset('/images/'.Auth::user()->profile_photo_path) }}">
                                 <div class="bg-success status-indicator"></div>
                             </div>
                             <div class="fw-bold">
@@ -63,7 +66,7 @@
                 <div class="nav-item dropdown no-arrow">
                     <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">
                         <span class="d-none d-lg-inline me-2 text-gray-600 small">{{ Auth::user()->firstname }}</span>
-                        <img class="border rounded-circle img-profile"></a>
+                        <img class="border rounded-circle img-profile" src="{{asset('/images/'.Auth::user()->profile_photo_path) }}"></a>
                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
                         <a class="dropdown-item" href="#">
                             <i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a>

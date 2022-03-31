@@ -6,31 +6,31 @@
     include('app/Builder.php');
     $tournament = $_POST['tournament_model_id'];
     $query = mysqli_query($con,"
-        SELECT 
+        SELECT
         t.id, t.team_name
         FROM tioszfko_matchapp.team_participants tp
         left join tournament_models tm on tp.tournament_model_id = tm.id
         left join teams t on tp.team_id = t.id
         where tournament_model_id=$tournament");
-    
+
     $default_teams = array();
     foreach($query as $data) {
         $default_teams[] = $data['team_name'];
     }
     $_POST['teams'] = $default_teams;
     $_POST['typeof'] = 1;
-    
+
     if(!$_POST) {
         $_POST['teams'] = $default_teams;
         $_POST['typeof'] = 1;
     }
-    
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
    <head>
         <!-- <meta name="csrf-token" content="{{ csrf_token() }}"> -->
-        <title>Tournament Brackets Visualizer and Generator</title>
+        <title>Tournament Brackets Generator</title>
         <link href="/bracket/assets/css/bootstrap.min.css" rel="stylesheet">
         <link href="/bracket/assets/css/bracketlyStyle.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Saira+Semi+Condensed:100,200,300,400,500,600&display=swap" rel="stylesheet">
@@ -83,15 +83,18 @@
                 <br>
                 Tournament: <br>
                 <div class="control-group">
-                    
+
                     <select name="tournament_model_id" class="form-control">
-                        <option value="1" <?php if($_POST['tournament_model_id'] == 1){ echo 'selected'; } ?>>Test 1</option>
-                        <option value="2" <?php if($_POST['tournament_model_id'] == 2){ echo 'selected'; } ?>>Test 2</option>
+
+                        <option value="<?php $_POST['tournament_model_id'] ?>" <?php if($_POST['tournament_model_id'] == 1){ echo 'selected'; } ?>><?php $_POST['team_id']?></option>
+
+
+
                     </select>
                     <div class="control__indicator"></div>
                 </div>
-                
-                <div class="title">List of team</div>
+
+                <div class="title">List of team/s</div>
                 <div class="list" sortable-list="sortable-list">
                     <?php if(!empty($_POST['teams'])):?>
                     <?php foreach( $_POST['teams'] as $sKey => $iQty ):?>
@@ -114,7 +117,7 @@
                     <button type="submit" class="btn btn-light">Generate bracket</button>
                 </div>
             </form>
-            
+
             <?php endif; ?>
         </div>
         <div class="grid-r">
@@ -148,14 +151,14 @@
                     $teams_d = array();
                     $teams_h = array();
                     $teams_a = array();
-    
+
                     foreach($obj->matches as $match){
                         $teams_h["name"] = $match->team1;
                         $teams_h["score"] = $match->score1;
-    
+
                         $teams_a["name"] = $match->team2;
                         $teams_a["score"] = $match->score2;
-    
+
                         $teams_d[] = $teams_h;
                         $teams_d[] = $teams_a;
                     }
@@ -165,7 +168,7 @@
                     //3. Bronze match availabel in list but we need correction true or false
                     $settings = array('image'=>false, 'bronze'=>false, 'nobronze' => false);
                     $brackets = new Visualizer($teams_d, $settings);
-                    echo $brackets->RenderFromData();  
+                    echo $brackets->RenderFromData();
                 }
                 ?>
         </div>
@@ -194,7 +197,7 @@
                     var sTeam = ($(this).attr("team") == 'home' ? 'score1' : 'score2');
                     var score = $(this).val();
                     var tournament = $("select[name='tournament_model_id'] option:selected").val();
-                    
+
                     $.ajaxSetup({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -203,14 +206,14 @@
                     $.ajax({
                         type:'POST',
                         url:"/api/update-bracket",
-                        data:{ 
+                        data:{
                             num: num, tournament_model_id: tournament, team_col: cTeam, team_data: dTeam, score_col: sTeam, score_data: score, _token: '{!! csrf_token() !!}'
                         },
                         success:function(data){
                             console.log(data);
                         }
                     });
-                    
+
                 });
             });
         </script>

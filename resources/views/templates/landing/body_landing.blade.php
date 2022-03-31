@@ -26,7 +26,7 @@
                     @endif
 
                     <form method="POST" action="{{ route('login') }}">
-                    @csrf
+                        @csrf
 
                     <div class="row">
                         <div class="col-lg-5 d-none d-lg-flex" style="">
@@ -41,13 +41,13 @@
                                         <div class="col-sm-6 mb-3 mb-sm-0" style="margin-top: 35px;">
                                             <!--<input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Email" name="email"></div>-->
 
-                                            <x-jet-input id="email" class="form-control form-control-user" type="email" name="email" :value="old('email')" required autofocus placeholder="{{ __('Email') }}" />
+                                            <x-jet-input id="loginemail" class="form-control form-control-user" type="email" name="email" :value="old('email')" required autofocus placeholder="{{ __('Email') }}" />
                                         </div>
 
                                         <div class="col-sm-6" style="margin-top: 35px;">
                                             <!--<input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Password" name="password"></div>-->
 
-                                            <x-jet-input id="password" class="form-control form-control-user" type="password" name="password" required autocomplete="current-password" placeholder="{{ __('Password') }}" />
+                                            <x-jet-input id="loginpassword" class="form-control form-control-user" type="password" name="password" required autocomplete="current-password" placeholder="{{ __('Password') }}" />
 
                                         </div>
 
