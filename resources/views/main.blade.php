@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title','MatchApp') </title>
     <link rel="shortcut icon" href="{{ url('images/matchapp-icon.png'); }}">
-    <link rel="stylesheet" href="{{ url('bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ url('bootstrap/css/bootstrapp.min.css')}}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cabin:700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web:400,600,700">
@@ -19,15 +19,14 @@
 
     @include('templates.landing.nav_landing')
     @include('templates.landing.body_landing')
+    @include('templates.landing.footer_landing')
 
     <div class="map-clean"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="{{ asset('bootstrap/js/bootstrap.min.js')}}"></script>
+    <!--<script src="{{ asset('bootstrap/js/bootstrapp.min.js')}}"></script>-->
     <script>
         var olympics = @json($olympics);
         var olympic_id = null;
@@ -75,7 +74,7 @@
                         }));
                     });
                 }
-                
+
             } else if(games[0].olympic_category_name.toLowerCase() == 'sport'){
                 let roles = games[0].sport_categories.filter(game => game.id == game_id)[0];
                 if(typeof roles !== 'undefined'){

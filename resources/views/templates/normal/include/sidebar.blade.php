@@ -10,7 +10,7 @@
             <li class="nav-item"><a class="nav-link" href="{{ route('team', Auth::user()->id ) }}"><i class="fas fa-users" style="width: 20px;"></i><span style="color: rgba(255, 255, 255, 0.8);">Teams</span></a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('invites', Auth::user()->id ) }}"><i class="fas fa-users" style="width: 20px;"></i><span style="color: rgba(255, 255, 255, 0.8);">Team Invites</span></a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route("player-tournament") }}"><i class="fas fa-trophy" style="width: 20px;"></i><span>Tournaments</span></a></li>
-            <li class="nav-item"><a class="nav-link" href="{{ route("stream")}}"><i class="fab fa-twitch" style="width: 20px;"></i><span>Livestream</span></a></li>
+
 
         </ul>
         <div class="text-center d-none d-md-inline">

@@ -28,7 +28,7 @@
                 <i class="fas fa-plus"></i><strong>&nbsp;Add Tournament</strong>
               </button>
                 <p class="text-primary m-0 fw-bold" style="width: 978px;">List of Tournaments </p>
-                
+
             </div>
             <div class="card-body">
             <a href="/bracket?data=tournament&type=generator" target="_blank" class="btn btn-sm btn-primary"><i class="fas fa-code-branch" style="width: 20px;"></i>&nbsp;Generate Bracket</a>
@@ -55,7 +55,7 @@
                                 <th style="background: transparent;color: rgb(133,135,150);">Size</th>
                                 <th style="background: transparent;color: rgb(133,135,150);height: 25px;">Format</th>
                                 <th style="background: transparent;color: rgb(133,135,150);">Schedule</th>
-                                <th style="background: transparent;color: rgb(133,135,150);">Manage</th>
+                                <th class="text-center" style="background: transparent;color: rgb(133,135,150);">Delete</th>
                             </tr>
                         </thead>
                     @if (count($tournaments) > 0)
@@ -126,13 +126,10 @@
                                 </td>
                                 <td> {{$tournament->tournament_date_from }} - {{$tournament->tournament_date_to }} </td>
 
-                                <td class="text-center align-middle" style="max-height: 60px;height: 40px;width: 114px;">
+                                <td class="text-center align-middle">
                                     <form action="{{ route('tournament.destroy',$tournament->id)}} " method="POST">
-
                                         @method('DELETE')
                                         @csrf
-                                    <a class="btn btnMaterial btn-flat success semicircle" role="button" href="{{ route('tournament.edit',$tournament->id) }}" style="margin: -15px;">
-                                        <i class="fas fa-pen"></i></a>
                                     <button class="btn btnMaterial btn-flat accent btnNoBorders checkboxHover" role="button" style="margin: 0px;margin-left: 5px;" data-bs-toggle="modal" data-bs-target="#delete-modal" href="#">
                                         <i class="fas fa-trash btnNoBorders" style="color: #DC3545;"></i></button>
                                 </td>

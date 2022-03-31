@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container-fluid">
-    <h3 class="text-dark mb-4">Teams (Static)</h3>
+    <h3 class="text-dark mb-4">Teams</h3>
     <div class="card shadow">
         <div class="card-header py-3">
             <p class="text-primary m-0 fw-bold">View Teams</p>
@@ -46,26 +46,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @foreach($teams as $team)
-                        <tr>
-                            <td style="width: 264.828px;">
-                                <a href="{{ route('player-team',$team->team_id) }}">{{ $team->team_name }}</a>
-                            </td>
-                            <td>Sports</td>
-                            <td>Basketball</td>
-                            <td>13</td>
-                            <td>{{ $team->firstname }} {{ $team->lastname }}</td>
-                            <td>{{ $team->created_at }}</td>
-                            <td>
-                                @if(isset($team->tournament_name))
-                                <strong>{{ $team->tournament_name }}</strong><br><span class="btn btn-sm btn-warning">{{ $team->status }}</span>
-                                @else
-                                <a class="btn btn-sm btn-dark m-0 shadow " href="/player-tournament">Tournament list</a>
-                                @endif
-                            </td>
-                        </tr>
-                        @endforeach --}}
-                        @foreach ($teams as $team)
+                        @foreach($teams as $team)
                         <tr>
                             <td style="width: 264.828px;">
                                 <a href="{{ route('player-team',$team->id) }}">{{ $team->team_name }}</a>
@@ -84,6 +65,25 @@
                             </td>
                         </tr>
                         @endforeach
+                        {{--@foreach ($teams as $team)
+                        <tr>
+                            <td style="width: 264.828px;">
+                                <a href="{{ route('player-team',$team->id) }}">{{ $team->team_name }}</a>
+                            </td>
+                            <td>{{$team->olympic_category->olympic_category_name}}</td>
+                            <td>{{$team->game}}</td>
+                            <td>{{$team->users_count}}</td>
+                            <td>{{ $team->users[0]->firstname }} {{ $team->users[0]->lastname }}</td>
+                            <td>{{ $team->created_at }}</td>
+                            <td>
+                                @if(isset($team->tournament_name))
+                                <strong>{{ $team->tournament_name }}</strong><br><span class="btn btn-sm btn-warning">{{ $team->status }}</span>
+                                @else
+                                <a class="btn btn-sm btn-dark m-0 shadow " href="/player-tournament">Tournament list</a>
+                                @endif
+                            </td>
+                        </tr>
+                        @endforeach--}}
                     </tbody>
                     <tfoot>
                         <tr>
