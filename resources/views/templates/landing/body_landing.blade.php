@@ -67,9 +67,9 @@
                         <div class="col-lg-5 d-none d-lg-flex" style="">
                             <img src="{{ asset('images/matchapp-icon.png') }}" style="height: 300px;width: 300px;margin: 100px;margin-top: 170px;"></div>
                         <div class="col-lg-7">
-                            <div class="p-5 ms-10%">
+                            <div class="p-5 ms-10% m-4">
                                 <div class="text-center">
-                                    <h4 class="text-dark mb-4" style="height: 50px;">Login</h4>
+                                    <h4 class="text-dark m-4" style="height: 50px;">Login</h4>
                                 </div>
                                 <form class="user">
                                     <div class="row mb-3">
@@ -92,7 +92,7 @@
                                 </form>
                                 <!--<div class="text-center"><a class="small" href="forgot-password.html">Forgot Password?</a></div>-->
                                 <div class="text-center">
-                                    <a class="small text-grey" data-bs-toggle="modal" data-bs-target="#register">Don't have an account? Register</a>
+                                    <a class="link-secondary" data-bs-toggle="modal" data-bs-target="#register" style="cursor: pointer; text-decoration: none;">Don't have an account? Register</a>
                                 </div>
                             </div>
                         </div>
@@ -111,7 +111,8 @@
               <div class="modal-content">
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-lg-5 d-none d-lg-flex"><img src="{{ asset('images/matchapp-icon.png') }}" style="height: 300px;width: 300px;margin: 115px;margin-top: 170px;"></div>
+                        <div class="col-lg-5 d-none d-lg-flex">
+                            <img src="{{ asset('images/matchapp-icon.png') }}" style="height: 300px;width: 300px;margin: 115px;margin-top: 170px;"></div>
                         <div class="col-lg-7">
                             <div class="p-5">
                                 <div class="text-center">
@@ -130,19 +131,19 @@
                                                 <input class="form-control form-control-user" type="text" id="email" placeholder="Email" name="email" style="margin-top: 20px;"></div>
                                             <div class="col-sm-6" style="margin-top: 35px;">
                                                 <input class="form-control form-control-user" type="text" id="lastname" placeholder="Last Name" name="lastname" >
-                                                <input class="form-control form-control-user" type="text" id="password" placeholder="Password" name="password" style="margin-top: 20px;">
+                                                <input class="form-control form-control-user" type="password" id="password" placeholder="Password" name="password" style="margin-top: 20px;">
                                             </div>
                                             <div class="col-sm-6" style="margin-top: 20px;">
                                                 <input class="form-control form-control-user" type="text" id="bday" placeholder="Birthdate" name="birthdate">
                                                 <input class="form-control form-control-user" type="text" id="contnum" placeholder="Contact Number" name="contact_number" style="margin-top: 20px;">
                                             </div>
                                             <div class="col-sm-6" style="margin-top: 20px;">
-                                                <select class="form-control form-control-user" name="gender">
+                                                <select class="form-select form-control-user" name="gender">
                                                     <option value="" disabled selected hidden>Gender</option>
                                                     <option value="Male">Male</option>
                                                     <option value="Female">Female</option>
                                                 </select>
-                                                <select class="form-control form-control-user select-role" name="role" style="margin-top: 20px;">
+                                                <select class="form-select form-control-user select-role transition" name="role" style="margin-top: 20px;">
                                                     <option value="2" selected>Host</option>
                                                     <option value="3">Player</option>
                                                 </select>
@@ -152,24 +153,24 @@
                                         <div class="row player-fields">
                                             <hr style="margin-top: 15px;">
                                             <div class="col-sm-6" style="margin-top: 15px;">
-                                                <select class="form-control form-control-user" id="select-category" name="category">
+                                                <select class="form-select form-control-user" id="select-category" name="category">
                                                     <option value="" disabled selected hidden>Category</option>
                                                     @foreach ($olympics as $olympic)
                                                         <option value="{{ $olympic->id }}">{{ $olympic->olympic_category_name }}</option>
                                                     @endforeach
                                                 </select>
-                                                <select class="form-control form-control-user select-game" name="game" style="margin-top: 20px;">
+                                                <select class="form-select form-control-user select-game" name="game" style="margin-top: 20px;">
                                                     <option value="" disabled selected hidden>Game</option>
                                                 </select>
                                             </div>
                                             <div class="col-sm-6" style="margin-top: 15px;">
-                                                <select class="form-control form-control-user" name="course">
+                                                <select class="form-select form-control-user" name="course">
                                                     <option value="" disabled selected hidden>Course/Program</option>
                                                     @foreach ($courses as $course)
                                                         <option value="{{ $course->id }}">{{ $course->course_title }}</option>
                                                     @endforeach
                                                 </select>
-                                                <select class="form-control form-control-user select-game-role" name="game_role" style="margin-top: 20px;">
+                                                <select class="form-select form-control-user select-game-role" name="game_role" style="margin-top: 20px;">
                                                     <option value="" disabled selected hidden>Game role</option>
                                                 </select>
                                             </div>
@@ -179,7 +180,7 @@
                                         </div>
                                     </div>
                                     <div class="mb-3"></div><button class="btn btn-primary d-block btn-user w-100" type="submit" style="background: #1b1b1b;margin-top: 20px;">Register Account</button>
-                                    <hr>
+
                                 </form>
                             </div>
                         </div>
