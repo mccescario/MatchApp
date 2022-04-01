@@ -80,6 +80,6 @@ class NewsFeed extends Model
 
     public function getImgPathAttribute($value)
     {
-        return url("/images/{$value}");
+        return url("public/images/{$value}");
     }
 }
