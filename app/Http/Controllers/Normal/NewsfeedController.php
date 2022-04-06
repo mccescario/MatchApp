@@ -51,7 +51,7 @@ class NewsFeedController extends Controller
         $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'img_path' => 'required|mimes:png,jpg|max:5048'
+            'img_path' => 'mimes:png,jpg|max:5048'
         ]);
 
         $newImageName = uniqid().'-'.now()->timestamp.'.'.
@@ -70,7 +70,22 @@ class NewsFeedController extends Controller
             'user_id' => Auth::user()->id
         ]);
 
-        return redirect()->route('news-feed.store')->with('success','New news Added successfully');
+        $role = Auth::user()->role;
+
+        if ($role == 1) {
+            return redirect()->route('admin-dashboard');
+        }
+        elseif ($role == 2) {
+            return redirect()->route('host-dashboard');
+        }
+        elseif ($role == 3) {
+            return redirect()->route('player-dashboard');
+        }
+        else {
+            return redirect('/');
+        }
+
+        // return redirect()->route('news-feed.store')->with('success','New news Added successfully');
     }
 
     /**

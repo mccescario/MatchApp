@@ -60,6 +60,8 @@ class NewsFeed extends Model
     protected $appends = [
         'author',
         'date',
+        'img_path_host',
+        'img_path_public'
     ];
 
     public function getAuthorAttribute()
@@ -78,8 +80,18 @@ class NewsFeed extends Model
         return $this->created_at->format('F d, Y');
     }
 
-    public function getImgPathAttribute($value)
+    // public function getImgPathAttribute($value)
+    // {
+    //     return url("public/images/{$value}");
+    // }
+
+    public function getImgPathPublicAttribute()
     {
-        return url("public/images/{$value}");
+        return url("public/images/{$this->img_path}");
+    }
+
+    public function getImgPathHostAttribute()
+    {
+        return url("images/{$this->img_path}");
     }
 }

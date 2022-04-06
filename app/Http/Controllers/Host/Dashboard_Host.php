@@ -10,8 +10,7 @@ class Dashboard_Host extends Controller
 {
     //
     public function index(Request $request)
-    {
-
+    {   
         return view('templates.host.dashboard')
                 ->with('news_feed',NewsFeed::orderBy('updated_at','DESC')->get());
     }
