@@ -11,25 +11,25 @@
                     <div class="mb-3">
 
                     <script src= "https://player.twitch.tv/js/embed/v1.js"></script>
-	<div class="twitch-container">
-    <h4 class="text-light mb-4">Currently Streaming</h3>
-  		<div id="twitch-video" class="hide">
-  		</div></br>
-          <h4 class="text-light mb-4">Live Chat</h3>
-        <div class="twitch-chat">
-              <!-- Change the CHANNELNAME to the desired twitch handle.  
-        Change the parent website in the URL here to the actual place you're running the script from, otherwise twitch will throw an error.  
-        Must do versions with and without www. Only put the root URL of your website, no need to put in the specific page.-->
-    	<iframe
-      	frameborder="0"
-      	scrolling="no"
-      	src="https://www.twitch.tv/embed/HostTesting123/chat?parent=YOURWEBSITE.com&parent=www.YOURWEBSITE.com" 
-      	height="100%"
-      	width="100%"
-        allow="autoplay">
-    	</iframe>
-  </div>
-  	</div>
+                        <div class="twitch-container">
+                            <h4 class="text-light mb-4">Currently Streaming</h3>
+                            <div id="twitch-video" class="hide">
+                            </div><br>
+                            <h4 class="text-light mb-4">Live Chat</h3>
+                                <div class="twitch-chat">
+                                        <!-- Change the CHANNELNAME to the desired twitch handle.
+                                    Change the parent website in the URL here to the actual place you're running the script from, otherwise twitch will throw an error.
+                                    Must do versions with and without www. Only put the root URL of your website, no need to put in the specific page.-->
+                                    <iframe
+                                    frameborder="0"
+                                    scrolling="no"
+                                    src="https://www.twitch.tv/embed/HostTesting123/chat?parent=YOURWEBSITE.com&parent=www.YOURWEBSITE.com"
+                                    height="100%"
+                                    width="100%"
+                                    allow="autoplay">
+                                    </iframe>
+                                </div>
+                        </div>
                     </div>
                 </div>
             </div>

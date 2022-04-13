@@ -19,16 +19,6 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-                'firstname'          => 'Admin',
-                'lastname'           => 'Testing',
-                'email'              => 'admin@gmail.com',
-                'role'               => 1,
-                'email_verified_at'  => now(),
-                'password'           => bcrypt('secret12'),
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
                 'firstname'          => 'Host',
                 'lastname'           => 'Testing',
                 'email'              => 'host@gmail.com',
@@ -47,7 +37,7 @@ class UsersTableSeeder extends Seeder
                 'lastname'           => 'Testing',
                 'email'              => 'normal@gmail.com',
                 'student_number' => "2016".rand(10000,99999),
-                'age' => rand(20,25),
+
                 'course' => Course::all()->random()->course_title,
                 'role'               => 3,
                 'email_verified_at'  => now(),
@@ -57,11 +47,10 @@ class UsersTableSeeder extends Seeder
 
             ],
             [
-                'firstname'          => 'Jason',
-                'lastname'           => 'Doe',
-                'email'              => 'jasondoe@gmail.com',
-                'student_number' => "2016".rand(10000,99999),
-                'age' => rand(20,25),
+                'firstname'          => 'Marthen Christ',
+                'lastname'           => 'Escario',
+                'email'              => 'mccescario@gmail.com',
+                'student_number' => "201811926",
                 'course' => Course::all()->random()->course_title,
                 'role'               => 3,
                 'email_verified_at'  => now(),

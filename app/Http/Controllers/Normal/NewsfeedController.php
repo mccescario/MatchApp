@@ -70,7 +70,7 @@ class NewsFeedController extends Controller
             'user_id' => Auth::user()->id
         ]);
 
-        return redirect()->route('news-feed.store')->with('success','New news Added successfully');;
+        return redirect()->route('news-feed.store')->with('success','New news Added successfully');
     }
 
     /**

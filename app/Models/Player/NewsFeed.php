@@ -77,9 +77,9 @@ class NewsFeed extends Model
     {
         return $this->created_at->format('F d, Y');
     }
-    
+
     public function getImgPathAttribute($value)
     {
-        return url("/images/{$value}");
+        return url("public/images/{$value}");
     }
 }

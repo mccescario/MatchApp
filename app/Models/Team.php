@@ -61,12 +61,12 @@ class Team extends Model
 
     public function EsportCategory()
     {
-        return $this->belongsTo(EsportCategory::class,'team_game_id','id');
+        return $this->belongsTo(EsportCategory::class, 'team_game_id', 'id');
     }
 
     public function SportCategory()
     {
-        return $this->belongsTo(SportCategory::class,'team_game_id','id');
+        return $this->belongsTo(SportCategory::class, 'team_game_id', 'id');
     }
 
     public function getGameAttribute()
@@ -95,5 +95,35 @@ class Team extends Model
     public function team_invitations()
     {
         return $this->hasMany(TeamInvitation::class);
+    }
+
+    public function matches_one()
+    {
+        return $this->hasMany(TournamentMatch::class, 'team_1_id');
+    }
+
+    public function matches_two()
+    {
+        return $this->hasMany(TournamentMatch::class, 'team_2_id');
+    }
+
+    public function getMatchesAttribute()
+    {
+        return $this->matches_one->merge($this->matches_two);
+    }
+
+    public function getWinsOneAttribute()
+    {
+        return $this->matches_one()->where('winning_team', 1)->get();
+    }
+
+    public function getWinsTwoAttribute()
+    {
+        return $this->matches_two()->where('winning_team', 2)->get();
+    }
+
+    public function getWinCountAttribute()
+    {
+        return $this->wins_one->merge($this->wins_two)->count();
     }
 }

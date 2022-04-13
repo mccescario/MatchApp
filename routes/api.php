@@ -13,6 +13,7 @@ use App\Models\EsportRole;
 use App\Models\Team;
 use App\Models\TeamInvitation;
 use App\Models\User;
+use App\Models\TeamBracket;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 
@@ -44,7 +45,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 });
 
-
+Route::post('/update-bracket', 'App\Http\Controllers\Host\Tournament_management@updatebracket')->name('update.bracket');
+Route::get('/data-bracket/{transaction_model_id}', 'App\Http\Controllers\Host\Tournament_management@databracket')->name('data.bracket');
 
 // for mobile api
 Route::prefix('mobile')->group(function () {
@@ -113,11 +115,11 @@ Route::prefix('mobile')->group(function () {
         Route::post('invite-response', [TeamController::class,'inviteResponse']);
 
         Route::get('all-members/{id}/{category_id}', function ($id,$category_id) {
-        
+
         });
     });
 
-    Route::prefix('tournament')->group(function () {
-        Route::get('tournaments', [TournamentController::class,'tournamentList']);
-    });
+    // Route::prefix('tournament')->group(function () {
+    //     Route::get('tournaments', [TournamentController::class,'tournamentList']);
+    // });
 });

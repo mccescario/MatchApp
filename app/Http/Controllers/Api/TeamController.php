@@ -410,7 +410,7 @@ class TeamController extends Controller
 
     public function inviteResponse(Request $request)
     {
-        $status = $request->status;
+        $status = $request->status == 1 ? 1 : 2;
         $invite_message = $request->invite_message;
         $category_id = $request->category_id;
 

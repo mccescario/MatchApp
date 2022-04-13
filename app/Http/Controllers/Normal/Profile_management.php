@@ -12,25 +12,27 @@ use Auth;
 class Profile_management extends Controller
 {
     //
-    public function index($id)
+    public function index()
     {
-        $profile = DB::table('sport_profile')->where('user_id','=',$id)->get();
-        $team = DB::table('users')
-                    ->join('team','users.id','=','team.id')
-                    ->where('team.id',$id)
-                    ->get('team.team_name');
+        //$profile = DB::table('sport_profile')->where('user_id','=',$id)->get();
+        //$team = DB::table('users')->join('team','users.id','=','team.id')->where('team.id',$id)->get('team.team_name');
+        //$player = DB::table('users')->where('id','=',$id)->get();
+        //$sport_stat = DB::table('users');
 
-        return view('templates.normal.profile',compact('profile','team'));
+        return view('templates.normal.profile');//,compact('player')
     }
 
-    public function update(Request $request, $user)
+    public function update(Request $request,$id)
     {
         //
-        $profile = PlayerProfile::find($user);
-        $user = User::find($user);
+        // $profile = PlayerProfile::find($request->id);
+        $user = User::find($id);
 
-        $user->update($request->all());
-        $profile->update($request->all());
+        $user->fill($request->all());
+        $user->save();
+        // $profile->fill($request->all());
+        // $profile->save();
+        
 
         return redirect()->route('profile')->with('success','Profile updated successfully');
 
