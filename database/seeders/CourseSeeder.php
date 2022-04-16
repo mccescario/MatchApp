@@ -34,6 +34,46 @@ class CourseSeeder extends Seeder
                 'course_title' => 'BSITAGD',
                 'created_at' => now(),
                 'updated_at' => now()
+            ],
+            [
+                'course_title' => 'BSCSDS',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'course_title' => 'BSCSSE',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'course_title' => 'BSMADA',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'course_title' => 'BSCE',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'course_title' => 'BSEE',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'course_title' => 'BSECE',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'course_title' => 'BSCPE',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'course_title' => 'BSME',
+                'created_at' => now(),
+                'updated_at' => now()
             ]
         ]);
     }

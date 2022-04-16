@@ -39,19 +39,19 @@ class EsportRoleSeeder extends Seeder
             ],
             [
                 "esport_category_id" => 1,
-                "esport_role_name" => "Support",
+                "esport_role_name" => "Support (Roamer)",
                 "is_captain" => false,
                 "created_at" => now(),
                 "updated_at" => now()
             ],
             [
                 "esport_category_id" => 1,
-                "esport_role_name" => "Representative",
-                "is_captain" => true,
+                "esport_role_name" => "Support (Babysitter)",
+                "is_captain" => false,
                 "created_at" => now(),
                 "updated_at" => now()
             ],
-            
+
 
             //for valorant
             [
@@ -82,13 +82,191 @@ class EsportRoleSeeder extends Seeder
                 "created_at" => now(),
                 "updated_at" => now()
             ],
+
+            //for LoL
             [
-                "esport_category_id" => 2,
-                "esport_role_name" => "Representative",
-                "is_captain" => true,
+                "esport_category_id" => 3,
+                "esport_role_name" => "Marksman",
+                "is_captain" => false,
                 "created_at" => now(),
                 "updated_at" => now()
             ],
+            [
+                "esport_category_id" => 3,
+                "esport_role_name" => "Support",
+                "is_captain" => false,
+                "created_at" => now(),
+                "updated_at" => now()
+            ],
+            [
+                "esport_category_id" => 3,
+                "esport_role_name" => "Jungler",
+                "is_captain" => false,
+                "created_at" => now(),
+                "updated_at" => now()
+            ],
+            [
+                "esport_category_id" => 3,
+                "esport_role_name" => "Top Lane",
+                "is_captain" => false,
+                "created_at" => now(),
+                "updated_at" => now()
+            ],
+            [
+                "esport_category_id" => 3,
+                "esport_role_name" => "Middle Lane",
+                "is_captain" => false,
+                "created_at" => now(),
+                "updated_at" => now()
+            ],
+
+            //for LoL - Wild Rift
+            [
+                "esport_category_id" => 4,
+                "esport_role_name" => "Marksman",
+                "is_captain" => false,
+                "created_at" => now(),
+                "updated_at" => now()
+            ],
+            [
+                "esport_category_id" => 4,
+                "esport_role_name" => "Support",
+                "is_captain" => false,
+                "created_at" => now(),
+                "updated_at" => now()
+            ],
+            [
+                "esport_category_id" => 4,
+                "esport_role_name" => "Jungler",
+                "is_captain" => false,
+                "created_at" => now(),
+                "updated_at" => now()
+            ],
+            [
+                "esport_category_id" => 4,
+                "esport_role_name" => "Top Lane",
+                "is_captain" => false,
+                "created_at" => now(),
+                "updated_at" => now()
+            ],
+            [
+                "esport_category_id" => 4,
+                "esport_role_name" => "Middle Lane",
+                "is_captain" => false,
+                "created_at" => now(),
+                "updated_at" => now()
+            ],
+
+            //for CS:GO
+            [
+                "esport_category_id" => 5,
+                "esport_role_name" => "Entry Fragger",
+                "is_captain" => false,
+                "created_at" => now(),
+                "updated_at" => now()
+            ],
+            [
+                "esport_category_id" => 5,
+                "esport_role_name" => "Support",
+                "is_captain" => false,
+                "created_at" => now(),
+                "updated_at" => now()
+            ],
+            [
+                "esport_category_id" => 5,
+                "esport_role_name" => "In Game Leader",
+                "is_captain" => false,
+                "created_at" => now(),
+                "updated_at" => now()
+            ],
+            [
+                "esport_category_id" => 5,
+                "esport_role_name" => "Lurker",
+                "is_captain" => false,
+                "created_at" => now(),
+                "updated_at" => now()
+            ],
+            [
+                "esport_category_id" => 5,
+                "esport_role_name" => "AWPer",
+                "is_captain" => false,
+                "created_at" => now(),
+                "updated_at" => now()
+            ],
+
+            //for Call of duty: Mobile
+            [
+                "esport_category_id" => 6,
+                "esport_role_name" => "Slayer",
+                "is_captain" => false,
+                "created_at" => now(),
+                "updated_at" => now()
+            ],
+            [
+                "esport_category_id" => 6,
+                "esport_role_name" => "Anchor",
+                "is_captain" => false,
+                "created_at" => now(),
+                "updated_at" => now()
+            ],
+            [
+                "esport_category_id" => 6,
+                "esport_role_name" => "Support",
+                "is_captain" => false,
+                "created_at" => now(),
+                "updated_at" => now()
+            ],
+            [
+                "esport_category_id" => 6,
+                "esport_role_name" => "Objective",
+                "is_captain" => false,
+                "created_at" => now(),
+                "updated_at" => now()
+            ],
+
+            //for Mobile Legends
+            [
+                "esport_category_id" => 7,
+                "esport_role_name" => "Tank",
+                "is_captain" => false,
+                "created_at" => now(),
+                "updated_at" => now()
+            ],
+            [
+                "esport_category_id" => 7,
+                "esport_role_name" => "Assassin",
+                "is_captain" => false,
+                "created_at" => now(),
+                "updated_at" => now()
+            ],
+            [
+                "esport_category_id" => 7,
+                "esport_role_name" => "Marksman",
+                "is_captain" => false,
+                "created_at" => now(),
+                "updated_at" => now()
+            ],
+            [
+                "esport_category_id" => 7,
+                "esport_role_name" => "Fighter",
+                "is_captain" => false,
+                "created_at" => now(),
+                "updated_at" => now()
+            ],
+            [
+                "esport_category_id" => 7,
+                "esport_role_name" => "Mage",
+                "is_captain" => false,
+                "created_at" => now(),
+                "updated_at" => now()
+            ],
+            [
+                "esport_category_id" => 7,
+                "esport_role_name" => "Support",
+                "is_captain" => false,
+                "created_at" => now(),
+                "updated_at" => now()
+            ]
         ]);
     }
 }
