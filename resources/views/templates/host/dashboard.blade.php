@@ -56,11 +56,7 @@
                                             <span class="by" style="font-family: Nunito, sans-serif;">by</span>
                                             <a href="#" style="font-family: Nunito, sans-serif;">{{ Auth::user()->lastname }}</a>
                                             <span class="date" style="font-family: Nunito, sans-serif;">{{ date('jS M Y ', strtotime($news->created_at))}}</span></p>
-<<<<<<< HEAD
-                                            <img class="img-fluid" src="{{ $news->img_path_host }}" style="background: url(&quot;https://cdn.bootstrapstudio.io/placeholders/1400x800.png&quot;);">
-=======
                                             <img class="img-fluid" src="./images/{{ $news->img_path }}" style="background: url(&quot;https://cdn.bootstrapstudio.io/placeholders/1400x800.png&quot;);">
->>>>>>> dev/MC-revisions
                                     </div>
 
                                     <div class="text"><!--news body-->

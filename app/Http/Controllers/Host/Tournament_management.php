@@ -8,15 +8,10 @@ use App\Http\Helpers\Bracket\Visualizer;
 use App\Models\Host\TournamentModel;
 use App\Models\TeamParticipant;
 use App\Models\TeamBracket;
-<<<<<<< HEAD
-use Illuminate\Http\Request;
-use DB;
-=======
 use Builder;
 use Illuminate\Http\Request;
 use DB;
 use Illuminate\Support\Arr;
->>>>>>> dev/MC-revisions
 
 class Tournament_management extends Controller
 {
@@ -69,11 +64,7 @@ class Tournament_management extends Controller
         TournamentModel::create($request->all());
 
         return redirect()->route('tournament_manage')
-<<<<<<< HEAD
-                        ->with('success','New tournament has been created successfully.');
-=======
             ->with('success', 'New tournament has been created successfully.');
->>>>>>> dev/MC-revisions
     }
 
     /**
@@ -86,17 +77,10 @@ class Tournament_management extends Controller
     {
         //
         $tournament = TournamentModel::find($tournamentModel);
-<<<<<<< HEAD
-        $joining_participants = TeamParticipant::where('tournament_model_id', $tournamentModel)->where('status','JOINING')->get();
-        //dd($joining_participants);
-        $participants = TeamParticipant::where('tournament_model_id', $tournamentModel)->where('status','ACCEPTED')->get();
-        return view('templates.host.tournament.tournament_view',compact('tournament', 'participants', 'joining_participants'));
-=======
         $joining_participants = TeamParticipant::where('tournament_model_id', $tournamentModel)->where('status', 'JOINING')->get();
         //dd($joining_participants);
         $participants = TeamParticipant::where('tournament_model_id', $tournamentModel)->where('status', 'ACCEPTED')->get();
         return view('templates.host.tournament.tournament_view', compact('tournament', 'participants', 'joining_participants'));
->>>>>>> dev/MC-revisions
     }
 
     /**
@@ -197,10 +181,10 @@ class Tournament_management extends Controller
     public function updatebracket(Request $request)
     {
         $input = $request->all();
-        
+
         $results = DB::select('select * from team_brackets where num = ? and tournament_model_id = ?', [$input['num'], $input['tournament_model_id']]);
         if($results) {
-            DB::update("update team_brackets set ".$input['team_col']." = '".$input['team_data']."', ".$input['score_col']." = '".$input['score_data']."' where num = ? and tournament_model_id = ?", [$input['num'], $input['tournament_model_id']]);    
+            DB::update("update team_brackets set ".$input['team_col']." = '".$input['team_data']."', ".$input['score_col']." = '".$input['score_data']."' where num = ? and tournament_model_id = ?", [$input['num'], $input['tournament_model_id']]);
         }else{
             DB::insert("insert into team_brackets (num, tournament_model_id, ".$input['team_col'].", ".$input['score_col'].") values (?, ?, ?, ?)", [$input['num'], $input['tournament_model_id'], $input['team_data'], $input['score_data']]);
         }
@@ -209,7 +193,7 @@ class Tournament_management extends Controller
     }
 
     public function databracket($tournament_model_id)
-    {        
+    {
         //$results = DB::select('select num, team1, team2, score1, score2 from team_brackets where tournament_model_id = ?', [$tournament_model_id]);
         $results = TeamBracket::where('tournament_model_id', $tournament_model_id)
             ->select('num', 'team1', 'team2', 'score1', 'score2')

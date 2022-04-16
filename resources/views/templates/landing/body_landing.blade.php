@@ -37,7 +37,6 @@
                                     <h4 class="text-dark m-4" style="height: 50px;">Login</h4>
                                 </div>
                                 <form class="user">
-<<<<<<< HEAD
                                     <div class="row">
                                         <div class="col-md-12">
                                             @if ($errors->any())
@@ -51,27 +50,17 @@
                                             @endif
                                         </div>
                                     </div>
-=======
->>>>>>> dev/MC-revisions
                                     <div class="row mb-3">
                                         <div class="col-sm-6 mb-3 mb-sm-0" style="margin-top: 35px;">
                                             <!--<input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Email" name="email"></div>-->
 
-<<<<<<< HEAD
                                             <input id="loginemail" class="form-control form-control-user" type="email" name="email" value="{{old('email')}}" required autofocus placeholder="{{ __('Email') }}" />
-=======
-                                            <x-jet-input id="loginemail" class="form-control form-control-user" type="email" name="email" :value="old('email')" required autofocus placeholder="{{ __('Email') }}" />
->>>>>>> dev/MC-revisions
                                         </div>
 
                                         <div class="col-sm-6" style="margin-top: 35px;">
                                             <!--<input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Password" name="password"></div>-->
 
-<<<<<<< HEAD
                                             <input id="loginpassword" class="form-control form-control-user" type="password" name="password" required autocomplete="current-password" placeholder="{{ __('Password') }}" />
-=======
-                                            <x-jet-input id="loginpassword" class="form-control form-control-user" type="password" name="password" required autocomplete="current-password" placeholder="{{ __('Password') }}" />
->>>>>>> dev/MC-revisions
 
                                         </div>
 
@@ -108,7 +97,7 @@
                                     <h4 class="text-dark mb-4" style="height: 50px;">Create an Account!</h4>
                                 </div>
                                 @if($errors->any())
-                                    {{ implode('', $errors->all('<div>:message</div>')) }}
+                                    {{ implode('', $errors->all('message')) }}
                                 @endif
                                 <form class="user" method="POST" action="{{ route('register-user') }}">
                                     @csrf

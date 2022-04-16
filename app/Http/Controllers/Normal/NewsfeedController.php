@@ -70,26 +70,7 @@ class NewsFeedController extends Controller
             'user_id' => Auth::user()->id
         ]);
 
-<<<<<<< HEAD
-        $role = Auth::user()->role;
-
-        if ($role == 1) {
-            return redirect()->route('admin-dashboard');
-        }
-        elseif ($role == 2) {
-            return redirect()->route('host-dashboard');
-        }
-        elseif ($role == 3) {
-            return redirect()->route('player-dashboard');
-        }
-        else {
-            return redirect('/');
-        }
-
-        // return redirect()->route('news-feed.store')->with('success','New news Added successfully');
-=======
         return redirect()->route('news-feed.store')->with('success','New news Added successfully');
->>>>>>> dev/MC-revisions
     }
 
     /**

@@ -3,18 +3,12 @@
 namespace App\Http\Controllers\Normal;
 
 use App\Http\Controllers\Controller;
-<<<<<<< HEAD
-=======
 use App\Http\Helpers\Bracket\Visualizer;
->>>>>>> dev/MC-revisions
 use App\Models\Host\TournamentModel;
 use Illuminate\Http\Request;
 use App\Models\Player\TeamUser;
 use App\Models\TeamParticipant;
-<<<<<<< HEAD
-=======
 use App\Models\TournamentMatch;
->>>>>>> dev/MC-revisions
 use Auth;
 use DB;
 
@@ -36,24 +30,13 @@ class TournamentManagement extends Controller
         dd(implode(',', $userteam)); */
         //$tournaments = TournamentModel::leftJoin('team_participants', 'team_participants.tournament_model_id','=','tournament_models.id')
         $tournaments = DB::table('tournament_models')
-<<<<<<< HEAD
-            
-=======
-
->>>>>>> dev/MC-revisions
             ->select('tournament_models.*')
             ->get();
         //dd($tournaments);
         $teams = TeamUser::where('user_id', Auth::id())
-<<<<<<< HEAD
-            ->join('teams','teams.id','=','team_user.team_id')
-            ->join('users','team_user.user_id','=','users.id')->get();
-        
-=======
             ->join('teams', 'teams.id', '=', 'team_user.team_id')
             ->join('users', 'team_user.user_id', '=', 'users.id')->get();
 
->>>>>>> dev/MC-revisions
         return view('templates.normal.tournament.tournament_view', compact('tournaments', 'teams'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -64,38 +47,22 @@ class TournamentManagement extends Controller
         $team_participated = DB::table('team_participants')->where('tournament_model_id', $id)->get();
         //dd($team_participated);
         $teams = DB::table('team_user')
-<<<<<<< HEAD
-            ->join('teams','teams.id','=','team_user.team_id')
-            ->join('users','team_user.user_id','=','users.id')
-            ->leftJoin('team_participants', 'team_user.team_id','=','team_participants.team_id')
-=======
             ->join('teams', 'teams.id', '=', 'team_user.team_id')
             ->join('users', 'team_user.user_id', '=', 'users.id')
             ->leftJoin('team_participants', 'team_user.team_id', '=', 'team_participants.team_id')
->>>>>>> dev/MC-revisions
             ->whereNull('team_participants.tournament_model_id')
             ->select('teams.*')->get();
         //dd($teams);
         $tournament = TournamentModel::find($id);
 
-<<<<<<< HEAD
-        return view('templates.normal.tournament.tournament_join',compact('tournament', 'teams'));
-=======
         return view('templates.normal.tournament.tournament_join', compact('tournament', 'teams'));
->>>>>>> dev/MC-revisions
     }
 
     public function joining(Request $request, $id)
     {
-<<<<<<< HEAD
-        
-        TeamParticipant::create($request->all());
-        
-=======
 
         TeamParticipant::create($request->all());
 
->>>>>>> dev/MC-revisions
         return redirect()->route('player-tournament');
     }
     /**
@@ -125,11 +92,6 @@ class TournamentManagement extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-<<<<<<< HEAD
-    public function show($id)
-    {
-        //
-=======
     public function show(TournamentModel $tournamentModel)
     {
         $latestCurrent = $tournamentModel->matches()->where('is_current', true)->orderBy('updated_at')->first();
@@ -181,7 +143,6 @@ class TournamentManagement extends Controller
 
         return view('templates.normal.tournament.match')
             ->with('match', $tournamentMatch);
->>>>>>> dev/MC-revisions
     }
 
     /**

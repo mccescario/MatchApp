@@ -31,20 +31,19 @@ class HomeController extends Controller
         }
     }
 
-<<<<<<< HEAD
     public function login(Request $request)
     {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
- 
+
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
- 
+
             return redirect()->intended('dashboard');
         }
- 
+
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ])->withInput(
@@ -52,8 +51,6 @@ class HomeController extends Controller
         );
     }
 
-=======
->>>>>>> dev/MC-revisions
     public function store(Request $request)
     {
         $validator = [];
@@ -182,15 +179,7 @@ class HomeController extends Controller
 
     public function logout(Request $request)
     {
-<<<<<<< HEAD
-        Auth::logout();
- 
-        // $request->session()->invalidate();
-    
-        // $request->session()->regenerateToken();
-=======
         $logout = $request->session()->flush();
->>>>>>> dev/MC-revisions
         return redirect('/');
     }
 
