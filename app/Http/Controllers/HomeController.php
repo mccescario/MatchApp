@@ -31,6 +31,7 @@ class HomeController extends Controller
         }
     }
 
+<<<<<<< HEAD
     public function login(Request $request)
     {
         $credentials = $request->validate([
@@ -51,6 +52,8 @@ class HomeController extends Controller
         );
     }
 
+=======
+>>>>>>> dev/MC-revisions
     public function store(Request $request)
     {
         $validator = [];
@@ -179,11 +182,15 @@ class HomeController extends Controller
 
     public function logout(Request $request)
     {
+<<<<<<< HEAD
         Auth::logout();
  
         // $request->session()->invalidate();
     
         // $request->session()->regenerateToken();
+=======
+        $logout = $request->session()->flush();
+>>>>>>> dev/MC-revisions
         return redirect('/');
     }
 

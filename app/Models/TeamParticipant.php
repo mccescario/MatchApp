@@ -15,6 +15,17 @@ class TeamParticipant extends Model
         'status'
     ];
 
+<<<<<<< HEAD
+=======
+    protected $appends = [
+        'name',
+    ];
+
+    protected $with = [
+        'team'
+    ];
+
+>>>>>>> dev/MC-revisions
     public function tournament()
     {
         return $this->belongsTo(Host\TournamentModel::class, 'tournament_model_id');
@@ -24,4 +35,12 @@ class TeamParticipant extends Model
     {
         return $this->belongsTo(Team::class, 'team_id');
     }
+<<<<<<< HEAD
+=======
+
+    public function getNameAttribute()
+    {
+        return $this->team->team_name;
+    }
+>>>>>>> dev/MC-revisions
 }

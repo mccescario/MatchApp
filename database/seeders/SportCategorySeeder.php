@@ -21,11 +21,18 @@ class SportCategorySeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now()
             ],
-            // [
-            //     'esport_category_name' => 'Volleybal',
-            //     'created_at' => now(),
-            //     'updated_at' => now()
-            // ]
+            [
+                'olympic_category_id' => 1,
+                'sport_category_name' => 'Volleybal',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'olympic_category_id' => 1,
+                'sport_category_name' => 'Football',
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
         ]);
     }
 }

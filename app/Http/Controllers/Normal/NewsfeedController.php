@@ -70,6 +70,7 @@ class NewsFeedController extends Controller
             'user_id' => Auth::user()->id
         ]);
 
+<<<<<<< HEAD
         $role = Auth::user()->role;
 
         if ($role == 1) {
@@ -86,6 +87,9 @@ class NewsFeedController extends Controller
         }
 
         // return redirect()->route('news-feed.store')->with('success','New news Added successfully');
+=======
+        return redirect()->route('news-feed.store')->with('success','New news Added successfully');
+>>>>>>> dev/MC-revisions
     }
 
     /**

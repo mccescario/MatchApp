@@ -170,7 +170,11 @@ p {
     font-size: 20px;
     color: #0E254E;
   }
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> dev/MC-revisions
   .list {
     margin: 0 auto;
     width: 100%;
@@ -385,4 +389,8 @@ form#team-list-generator {
 
   .visualizer-data {
     padding: 30px;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> dev/MC-revisions

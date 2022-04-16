@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web:400,600,700">
     <link rel="stylesheet" href="{{url('fonts/font-awesome.min.css');}}">
     <link rel="stylesheet" href="{{url('css/Button-Change-Text-on-Hover.css');}}">
+    @livewireStyles
 </head>
 
 <body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="77">
@@ -23,9 +24,21 @@
 
     <div class="map-clean"></div>
 
+<<<<<<< HEAD
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+=======
+    @livewireScripts
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+>>>>>>> dev/MC-revisions
     <!--<script src="{{ asset('bootstrap/js/bootstrapp.min.js')}}"></script>-->
     <script>
         var olympics = @json($olympics);
@@ -146,77 +159,84 @@
 {{--
 <x-guest-layout class="color-green">
 
-        @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ session('status') }}
+    @if (session('status'))
+    <div class="mb-4 text-sm font-medium text-green-600">
+        {{ session('status') }}
+    </div>
+    @endif
+
+    @if (Route::has('login'))
+
+    @auth
+
+    <a href="{{ url('/dashboard') }}" class="text-sm btn dark:text-gray-500">Already Logged-in</a>
+    @else
+
+    <x-jet-button>
+        <a href="{{ route('login') }}" class="text-sm dark:text-gray-500 ">Log in</a>
+    </x-jet-button>
+
+    @if (Route::has('register'))
+    <x-jet-button>
+        <a href="{{ route('register') }}" class="text-sm text-green-700 dark:text-gray-500">Register</a>
+    </x-jet-button>
+
+    @endif
+
+
+    <body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="77">
+        <nav class="navbar navbar-light navbar-expand-md fixed-top" id="mainNav">
+            <div class="container"><a class="navbar-brand" href="#">
+                    <img src="assets/img/matchapp-icon.png" style="height: 28px;width: 28px;">&nbsp;MatchAPP</a>
+                <button data-bs-toggle="collapse" class="navbar-toggler navbar-toggler-right"
+                    data-bs-target="#navbarResponsive" type="button" aria-controls="navbarResponsive"
+                    aria-expanded="false" aria-label="Toggle navigation" value="Menu">
+                    <i class="fa fa-bars"></i></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item nav-link"><a class="nav-link active" href="#about">Sign in</a></li>
+                        <li class="nav-item nav-link"></li>
+                        <li class="nav-item nav-link"></li>
+                    </ul>
+                </div>
             </div>
-        @endif
+        </nav>
+        <header class="masthead" style="background-image:url('assets/img/intro-bg.jpg');">
+            <div class="intro-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="mx-auto col-lg-8">
+                            <h1 class="brand-heading" style="color: var(--bs-white);">MaTCHAPP</h1>
+                            <p class="intro-text" style="color: var(--bs-white);">A Sports and eSports Tournament
+                                Management App.</p><a class="btn btn-link btn-circle" role="button" href="#about"><i
+                                    class="fa fa-angle-double-down animated"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <section class="text-center content-section" id="about" style="background: #000000;">
+            <div class="container">
+                <div class="row">
+                    <div class="mx-auto col-lg-8">
+                        <h2></h2>
+                        <button class="button" type="button" data-hover="PROCEED"><span>SIGN IN</span></button>
+                        <button class="button" type="button" data-hover="REGISTER"><span>DON'T HAVE AN
+                                ACCOUNT?</span></button>
+                        <p style="margin: 40px;">&nbsp;MatchApp is a tournament management app specialized for sports
+                            and eSports available through web and mobile platform with key features such as tournament
+                            hosting, real-time management, livestreaming, and team matchmaking.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="map-clean"></div>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/js/grayscale.js"></script>
+    </body>
+    @endauth
 
-        @if (Route::has('login'))
-
-                    @auth
-
-                        <a href="{{ url('/dashboard') }}" class=" btn text-sm dark:text-gray-500 ">Already Logged-in</a>
-                    @else
-
-                        <x-jet-button>
-                            <a href="{{ route('login') }}" class="text-sm dark:text-gray-500 ">Log in</a>
-                        </x-jet-button>
-
-                        @if (Route::has('register'))
-                        <x-jet-button>
-                            <a href="{{ route('register') }}" class="text-sm text-green-700 dark:text-gray-500">Register</a>
-                        </x-jet-button>
-
-                        @endif
-
-
-                    <body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="77">
-                        <nav class="navbar navbar-light navbar-expand-md fixed-top" id="mainNav">
-                            <div class="container"><a class="navbar-brand" href="#">
-                              <img src="assets/img/matchapp-icon.png" style="height: 28px;width: 28px;">&nbsp;MatchAPP</a>
-                              <button data-bs-toggle="collapse" class="navbar-toggler navbar-toggler-right" data-bs-target="#navbarResponsive" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" value="Menu">
-                                <i class="fa fa-bars"></i></button>
-                                <div class="collapse navbar-collapse" id="navbarResponsive">
-                                    <ul class="navbar-nav ms-auto">
-                                        <li class="nav-item nav-link"><a class="nav-link active" href="#about">Sign in</a></li>
-                                        <li class="nav-item nav-link"></li>
-                                        <li class="nav-item nav-link"></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </nav>
-                        <header class="masthead" style="background-image:url('assets/img/intro-bg.jpg');">
-                            <div class="intro-body">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-lg-8 mx-auto">
-                                            <h1 class="brand-heading" style="color: var(--bs-white);">MaTCHAPP</h1>
-                                            <p class="intro-text" style="color: var(--bs-white);">A Sports and eSports Tournament Management App.</p><a class="btn btn-link btn-circle" role="button" href="#about"><i class="fa fa-angle-double-down animated"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </header>
-                        <section class="text-center content-section" id="about" style="background: #000000;">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-8 mx-auto">
-                                        <h2></h2>
-                                        <button class="button" type="button" data-hover="PROCEED"><span>SIGN IN</span></button>
-                                        <button class="button" type="button" data-hover="REGISTER"><span>DON'T HAVE AN ACCOUNT?</span></button>
-                                        <p style="margin: 40px;">&nbsp;MatchApp is a tournament management app specialized for sports and eSports available through web and mobile platform with key features such as tournament hosting, real-time management, livestreaming, and team matchmaking.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                        <div class="map-clean"></div>
-                        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-                        <script src="assets/js/grayscale.js"></script>
-                    </body>
-                    @endauth
-
-            @endif
+    @endif
 
 
 </x-guest-layout>

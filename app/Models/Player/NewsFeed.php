@@ -80,6 +80,7 @@ class NewsFeed extends Model
         return $this->created_at->format('F d, Y');
     }
 
+<<<<<<< HEAD
     // public function getImgPathAttribute($value)
     // {
     //     return url("public/images/{$value}");
@@ -93,5 +94,10 @@ class NewsFeed extends Model
     public function getImgPathHostAttribute()
     {
         return url("images/{$this->img_path}");
+=======
+    public function getImgPathAttribute($value)
+    {
+        return url("public/images/{$value}");
+>>>>>>> dev/MC-revisions
     }
 }

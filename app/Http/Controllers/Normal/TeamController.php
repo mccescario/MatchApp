@@ -42,7 +42,11 @@ class TeamController extends Controller
         //     } else {
         //         unset($olympic->sport_categories);
         //     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> dev/MC-revisions
         //     if($olympic->esport_categories->count() != 0){
         //         $olympic->esport_categories->each(function($esport){
         //             $esport->esport_roles;
@@ -56,6 +60,7 @@ class TeamController extends Controller
 
         // return view('templates.normal.team.team',$data,compact('teams'));
 
+<<<<<<< HEAD
         $sport_team = Team::with(['users' => function ($q){
             $q->whereHas('sport.sport_position1',function(Builder $q1){
                 $q1->where('is_captain',1);
@@ -71,6 +76,23 @@ class TeamController extends Controller
         }])->whereHas('users',function($q){
             $q->where('users.id',Auth::id());
         })->where('olympic_category_id',2)->withCount('users')->get();
+=======
+        $sport_team = Team::with(['users' => function ($q) {
+            $q->whereHas('sport.sport_position1', function (Builder $q1) {
+                $q1->where('is_captain', 1);
+            });
+        }])->whereHas('users', function ($q) {
+            $q->where('users.id', Auth::id());
+        })->where('olympic_category_id', 1)->withCount('users')->get();
+
+        $esport_team = Team::with(['users' => function ($q) {
+            $q->whereHas('esport.esport_role', function (Builder $q1) {
+                $q1->where('is_captain', 1);
+            });
+        }])->whereHas('users', function ($q) {
+            $q->where('users.id', Auth::id());
+        })->where('olympic_category_id', 2)->withCount('users')->get();
+>>>>>>> dev/MC-revisions
 
         $teams = $sport_team->merge($esport_team);
 
@@ -78,35 +100,59 @@ class TeamController extends Controller
         // // echo json_encode($teams);
         // die;
 
+<<<<<<< HEAD
         $olympics = OlympicCategory::all()->each(function($olympic){
             $olympic->makeVisible(['sport_categories','esport_categories']);
             if($olympic->sport_categories->count() != 0){
                 $olympic->sport_categories->each(function($sport){
+=======
+        $olympics = OlympicCategory::all()->each(function ($olympic) {
+            $olympic->makeVisible(['sport_categories', 'esport_categories']);
+            if ($olympic->sport_categories->count() != 0) {
+                $olympic->sport_categories->each(function ($sport) {
+>>>>>>> dev/MC-revisions
                     $sport->sport_positions;
                 });
             } else {
                 unset($olympic->sport_categories);
             }
+<<<<<<< HEAD
     
             if($olympic->esport_categories->count() != 0){
                 $olympic->esport_categories->each(function($esport){
+=======
+
+            if ($olympic->esport_categories->count() != 0) {
+                $olympic->esport_categories->each(function ($esport) {
+>>>>>>> dev/MC-revisions
                     $esport->esport_roles;
                 });
             } else {
                 unset($olympic->esport_categories);
             }
         });
+<<<<<<< HEAD
         
         $data['olympics'] = $olympics;
 
         return view('templates.normal.team.team',$data,compact('teams'));
+=======
+
+        $data['olympics'] = $olympics;
+
+        return view('templates.normal.team.team', $data, compact('teams'));
+>>>>>>> dev/MC-revisions
     }
 
     public function show($id)
     {
         $team = Team::find($id);
         $users = User::get();
+<<<<<<< HEAD
         return view('templates.normal.team.team_member',compact('team', 'users'));
+=======
+        return view('templates.normal.team.team_member', compact('team', 'users'));
+>>>>>>> dev/MC-revisions
     }
 
     public function store(Request $request)
@@ -118,18 +164,31 @@ class TeamController extends Controller
         // $team->users()->attach([Auth::id()]);
 
         $categoryId = $request->olympic_category_id;
+<<<<<<< HEAD
         $category = OlympicCategory::where('id',$categoryId)->first();
+=======
+        $category = OlympicCategory::where('id', $categoryId)->first();
+>>>>>>> dev/MC-revisions
         $game = [];
         $teamGameId = $request->team_game_id;
         $message = '';
         $response = [];
 
+<<<<<<< HEAD
         if($categoryId == 1){
             $category = $category->makeVisible('sport_categories');
             $game = collect($category->sport_categories)->firstWhere('id',$teamGameId);
         } else if($categoryId == 2){
             $category = $category->makeVisible('esport_categories');
             $game = collect($category->esport_categories)->firstWhere('id',$teamGameId);
+=======
+        if ($categoryId == 1) {
+            $category = $category->makeVisible('sport_categories');
+            $game = collect($category->sport_categories)->firstWhere('id', $teamGameId);
+        } else if ($categoryId == 2) {
+            $category = $category->makeVisible('esport_categories');
+            $game = collect($category->esport_categories)->firstWhere('id', $teamGameId);
+>>>>>>> dev/MC-revisions
         }
 
         $user_id = Auth::id();
@@ -147,6 +206,7 @@ class TeamController extends Controller
             ]);
 
             $team->users()->attach([$user_id]);
+<<<<<<< HEAD
             
             if ($gameCategory == 'esport') {
                 $role = collect($game->esport_roles)->filter(function ($r){
@@ -154,6 +214,15 @@ class TeamController extends Controller
                 })->first();
 
                 if($user->esport == null){
+=======
+
+            if ($gameCategory == 'esport') {
+                $role = collect($game->esport_roles)->filter(function ($r) {
+                    return $r->is_captain == true;
+                })->first();
+
+                if ($user->esport == null) {
+>>>>>>> dev/MC-revisions
                     $esportInstance = Esport::firstOrNew([
                         'esport_role_id' => $role->id,
                         'esport_category_id' => $esport_category_id,
@@ -170,6 +239,7 @@ class TeamController extends Controller
                 $position = collect($game->sport_positions)->filter(function ($r) use ($column) {
                     return $r->is_captain == true;
                 })->first();
+<<<<<<< HEAD
                 
                 $sportInstance = collect();
                 
@@ -195,6 +265,33 @@ class TeamController extends Controller
     
         return redirect()->route('team')
                         ->with('response',$response);
+=======
+
+                $sportInstance = collect();
+
+                if ($user->sport == null) {
+                    $sportInstance = new Sport([
+                        'sport_primary_position_id' => $position->id,
+                        'sport_category_id' => $sport_category_id,
+                    ]);
+                    $user->sport()->save($sportInstance);
+                } else {
+                    $user->sport->sport_primary_position_id = $position->id;
+                    $user->push();
+                }
+            }
+
+            $response['error'] = false;
+            $response['message'] = 'New team has been created successfully.';
+        } else {
+            $response['error'] = true;
+            $response['message'] = 'You already have ' . ucfirst($gameCategory) . ' team';
+        }
+
+
+        return redirect()->route('team')
+            ->with('response', $response);
+>>>>>>> dev/MC-revisions
     }
 
     public function add_member(Request $request)
@@ -207,11 +304,19 @@ class TeamController extends Controller
 
     public function invites($id)
     {
+<<<<<<< HEAD
         $team_invites = TeamInvitation::with(['team'])->where('user_id', Auth::id())->where('status',null)->get();
         return view('templates.normal.team.team_invites',compact('team_invites'));
     }
 
     public function join_invite($id,$respond)
+=======
+        $team_invites = TeamInvitation::with(['team'])->where('user_id', Auth::id())->where('status', null)->get();
+        return view('templates.normal.team.team_invites', compact('team_invites'));
+    }
+
+    public function join_invite($id, $respond)
+>>>>>>> dev/MC-revisions
     {
         $team_invite = TeamInvitation::find($id);
         $team_invite->status = $respond;
@@ -220,7 +325,11 @@ class TeamController extends Controller
         $user_id = $team_invite->user_id;
         $team = Team::find($team_invite->team_id);
         $team->users()->attach([$user_id]);
+<<<<<<< HEAD
         return redirect()->route('invites',$user_id);
+=======
+        return redirect()->route('invites', $user_id);
+>>>>>>> dev/MC-revisions
     }
 
     public function team_manage($id)
@@ -228,17 +337,36 @@ class TeamController extends Controller
         $i = 0;
         $user = User::find($id);
         $team = TeamModel::find($user->team);
+<<<<<<< HEAD
         $members = TeamMembers:://where('team_id','=',$user->team)
                     join('users','users.team','=','team_members.team_id')
                     //->('sport_profile','sport_profile.id','=','team_members.sport_profile_id')
                     ->get([/*'sport_profile.ign','sport_profile.position',*/'users.name']);
 
         return view('templates.normal.team',compact('team','members','i','user'));
+=======
+        $members = TeamMembers:: //where('team_id','=',$user->team)
+            join('users', 'users.team', '=', 'team_members.team_id')
+            //->('sport_profile','sport_profile.id','=','team_members.sport_profile_id')
+            ->get([/*'sport_profile.ign','sport_profile.position',*/'users.name']);
+
+        return view('templates.normal.team', compact('team', 'members', 'i', 'user'));
+>>>>>>> dev/MC-revisions
     }
 
     public function member_view($id)
     {
         $user = User::find($id);
+<<<<<<< HEAD
         return view('templates.normal.team.player_profile',compact('user'));
+=======
+        return view('templates.normal.team.player_profile', compact('user'));
+    }
+
+    public function profile(Team $team)
+    {
+        return view('templates.normal.team-profile')
+            ->with('team', $team);
+>>>>>>> dev/MC-revisions
     }
 }
