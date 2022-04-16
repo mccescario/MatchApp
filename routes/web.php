@@ -167,8 +167,4 @@ Route::group(['middleware' => 'auth'], function() {
 
 
 }
-<<<<<<< HEAD
 );*/
-=======
-);*/
->>>>>>> dev/MC-revisions
