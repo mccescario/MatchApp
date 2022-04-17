@@ -51,7 +51,7 @@ class NewsFeedController extends Controller
         $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'img_path' => 'required|mimes:png,jpg|max:5048'
+            'img_path' => 'mimes:png,jpg|max:5048'
         ]);
 
         $newImageName = uniqid().'-'.now()->timestamp.'.'.

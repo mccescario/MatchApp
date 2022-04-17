@@ -37,17 +37,30 @@
                                     <h4 class="text-dark m-4" style="height: 50px;">Login</h4>
                                 </div>
                                 <form class="user">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            @if ($errors->any())
+                                                <div class="alert alert-danger">
+                                                    <ul>
+                                                        @foreach ($errors->all() as $error)
+                                                            <li>{{ $error }}</li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
                                     <div class="row mb-3">
                                         <div class="col-sm-6 mb-3 mb-sm-0" style="margin-top: 35px;">
                                             <!--<input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Email" name="email"></div>-->
 
-                                            <x-jet-input id="loginemail" class="form-control form-control-user" type="email" name="email" :value="old('email')" required autofocus placeholder="{{ __('Email') }}" />
+                                            <input id="loginemail" class="form-control form-control-user" type="email" name="email" value="{{old('email')}}" required autofocus placeholder="{{ __('Email') }}" />
                                         </div>
 
                                         <div class="col-sm-6" style="margin-top: 35px;">
                                             <!--<input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Password" name="password"></div>-->
 
-                                            <x-jet-input id="loginpassword" class="form-control form-control-user" type="password" name="password" required autocomplete="current-password" placeholder="{{ __('Password') }}" />
+                                            <input id="loginpassword" class="form-control form-control-user" type="password" name="password" required autocomplete="current-password" placeholder="{{ __('Password') }}" />
 
                                         </div>
 
@@ -84,7 +97,7 @@
                                     <h4 class="text-dark mb-4" style="height: 50px;">Create an Account!</h4>
                                 </div>
                                 @if($errors->any())
-                                    {{ implode('', $errors->all('<div>:message</div>')) }}
+                                    {{ implode('', $errors->all('message')) }}
                                 @endif
                                 <form class="user" method="POST" action="{{ route('register-user') }}">
                                     @csrf

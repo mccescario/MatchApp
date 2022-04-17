@@ -71,6 +71,7 @@ Route::post('register-user', [HomeController::class, 'store'])->name('register-u
 //Route::get('/', 'App\Http\Controllers\HomeController@logout')->name('logout');
 Route::get('dashboard', 'App\Http\Controllers\HomeController@index');
 Route::get('logout', 'App\Http\Controllers\HomeController@logout')->name('logout');
+Route::post('login', [HomeController::class,'login'])->name('login');
 Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['rolehost:host'])->group(function () {

@@ -8,7 +8,7 @@
             <h3 class="text-dark mb-4">{{$team->team_name}}</h3>
         </div>
         <div class="col-1">
-            <a href="{{ route('team.profile', $team->id) }}" class="btn btn-info text-white">Profile</a>
+            <a href="{{ route('team.profile', $team->id) }}" class="btn btn-info text-white">Profile</a>s
         </div>
     </div>
     <div class="row mb-3">
@@ -58,7 +58,7 @@
                             </tfoot>
                         </table>
                     </div>
-                    <div class="row">
+                    <!--<div class="row">
                         <div class="col-md-6 align-self-center">
                             <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite"
                                 style="margin-bottom: 0px;color: rgb(78,115,223);">Team Representative: Marthen Christ
@@ -68,7 +68,7 @@
                             <p id="dataTable_info-1" class="dataTables_info" role="status" aria-live="polite"
                                 style="color: rgb(78,115,223);">Game Type: Basketball</p>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>

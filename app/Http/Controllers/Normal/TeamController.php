@@ -42,7 +42,6 @@ class TeamController extends Controller
         //     } else {
         //         unset($olympic->sport_categories);
         //     }
-
         //     if($olympic->esport_categories->count() != 0){
         //         $olympic->esport_categories->each(function($esport){
         //             $esport->esport_roles;

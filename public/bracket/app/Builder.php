@@ -79,7 +79,6 @@ class Builder
 
             $getTeams = $OutputTeams;
         }
-
         if ($this->Type == 0) {
             $RandomizedTeams = array();
             $ShuffledTeams = array_filter($getTeams);
@@ -91,7 +90,6 @@ class Builder
 
             $getTeams = $RandomizedTeams;
         }
-
         $Matches = array_chunk($getTeams, 2);
 
         if ($this->AvailableTeams > 2) {

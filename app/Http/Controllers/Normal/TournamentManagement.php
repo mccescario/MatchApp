@@ -30,7 +30,6 @@ class TournamentManagement extends Controller
         dd(implode(',', $userteam)); */
         //$tournaments = TournamentModel::leftJoin('team_participants', 'team_participants.tournament_model_id','=','tournament_models.id')
         $tournaments = DB::table('tournament_models')
-
             ->select('tournament_models.*')
             ->get();
         //dd($tournaments);

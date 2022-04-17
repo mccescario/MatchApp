@@ -168,4 +168,5 @@ class Tournament_management extends Controller
         return view('templates.host.tournament.bracket')
             ->with('tournament', $tournament);
     }
+
 }

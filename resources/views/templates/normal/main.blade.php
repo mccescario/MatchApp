@@ -127,7 +127,6 @@
                         }));
                     });
                 }
-
             } else if(games[0].olympic_category_name.toLowerCase() == 'sport'){
                 let roles = games[0].sport_categories.filter(game => game.id == game_id)[0];
                 if(typeof roles !== 'undefined'){
