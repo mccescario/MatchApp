@@ -49,7 +49,8 @@ class Sport extends Model
         'sport_primary_position',
         'sport_secondary_position',
         'is_captain',
-        'game'
+        'game',
+        'sport_name'
     ];
 
     public function user()
@@ -83,6 +84,11 @@ class Sport extends Model
     }
 
     public function getGameAttribute()
+    {
+        return $this->sport_category != null ? $this->sport_category->sport_category_name : null;
+    }
+
+    public function getSportNameAttribute()
     {
         return $this->sport_category != null ? $this->sport_category->sport_category_name : null;
     }

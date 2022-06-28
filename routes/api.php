@@ -119,7 +119,10 @@ Route::prefix('mobile')->group(function () {
         });
     });
 
-    // Route::prefix('tournament')->group(function () {
-    //     Route::get('tournaments', [TournamentController::class,'tournamentList']);
-    // });
+    Route::prefix('tournament')->group(function () {
+        Route::get('bracket/{tournament}',[TeamController::class,'tournament_bracket']);
+        Route::get('tournaments', [TournamentController::class,'tournament_list']);
+        Route::post('join-tournament',[TournamentController::class,'join_tournament']);
+        Route::get('teams/{id}',[TournamentController::class,'tournament_teams']);
+    });
 });

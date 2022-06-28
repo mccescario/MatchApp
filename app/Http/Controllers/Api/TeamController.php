@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\RecruiteMail;
 use App\Models\Course;
 use App\Models\Esport;
+use App\Models\Host\TournamentModel;
 use App\Models\OlympicCategory;
 use App\Models\Recruite;
 use App\Models\Sport;
@@ -146,11 +147,10 @@ class TeamController extends Controller
 
         $game_id = $filters->game_id;
         $category_id = $filters->category_id;
-        $age = $filters->age;
+        $student_number = $filters->student_number;
         $course = $filters->course;
         $filter_one = $filters->filter_one;
-        $filter_two = $filters->filter_two;
-        $filter_three = $filters->filter_three;
+        
 
         $user = collect();
         if ($category_id == 1) {
@@ -169,18 +169,20 @@ class TeamController extends Controller
                 });
             }
     
-            if($filter_two != null){
-                $user->whereHas('sport',function(Builder $q) use ($filter_two){
-                    $q->where('sport_height','LIKE',"%$filter_two%");
-                });
-            }
+            // if($filter_two != null){
+            //     $user->whereHas('sport',function(Builder $q) use ($filter_two){
+            //         $q->where('sport_height','LIKE',"%$filter_two%");
+            //     });
+            // }
     
-            if ($filter_three != null) {
-                $user->whereHas('sport',function(Builder $q) use ($filter_three){
-                    $q->where('sport_weight','LIKE',"%$filter_three%");
-                });
-            }
+            // if ($filter_three != null) {
+            //     $user->whereHas('sport',function(Builder $q) use ($filter_three){
+            //         $q->where('sport_weight','LIKE',"%$filter_three%");
+            //     });
+            // }
         } else {
+            $filter_two = $filters->filter_two;
+            $filter_three = $filters->filter_three;
             $user = User::with('esport')->whereHas('esport',function(Builder $query) use ($game_id){
                 $query->whereHas('esport_role',function(Builder $query2) {
                     $query2->where('is_captain',false);
@@ -210,8 +212,8 @@ class TeamController extends Controller
         }
 
 
-        if ($age != null) {
-            $user->where('age', $age);
+        if ($student_number != null) {
+            $user->where('student_number', $student_number);
         }
 
         if ($course != null) {
@@ -304,10 +306,14 @@ class TeamController extends Controller
                     }
                 }
 
+                $user = $user->refresh();
+                $information = $gameCategory == 'sport' ? $user->sport : $user->esport;
+
                 $data = [
                     'category_id' => $category->id,
                     'team_id' => $team->id,
-                    'game_id' => $game->id
+                    'game_id' => $game->id,
+                    'information' => $information
                 ];
 
                 $response['success'] = true;
@@ -457,5 +463,11 @@ class TeamController extends Controller
         }
 
         return $return;
+    }
+
+    public function tournament_bracket(TournamentModel $tournament)
+    {
+        return view('api.bracket')
+            ->with('tournament', $tournament);
     }
 }

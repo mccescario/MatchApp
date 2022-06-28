@@ -18,7 +18,7 @@ class SportPositionSeeder extends Seeder
             [
                 'sport_category_id' => 1,
                 'sport_position_name' => 'Center',
-                "is_captain" => false,
+                "is_captain" => TRUE,
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -55,7 +55,7 @@ class SportPositionSeeder extends Seeder
             [
                 'sport_category_id' => 2,
                 'sport_position_name' => 'Setter',
-                "is_captain" => true,
+                "is_captain" => TRUE,
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -99,7 +99,7 @@ class SportPositionSeeder extends Seeder
             [
                 'sport_category_id' => 3,
                 'sport_position_name' => 'Goalkeeper',
-                "is_captain" => true,
+                "is_captain" => TRUE,
                 'created_at' => now(),
                 'updated_at' => now()
             ],

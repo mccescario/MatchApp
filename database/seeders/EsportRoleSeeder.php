@@ -19,7 +19,7 @@ class EsportRoleSeeder extends Seeder
             [
                 "esport_category_id" => 1,
                 "esport_role_name" => "Carry",
-                "is_captain" => false,
+                "is_captain" => TRUE,
                 "created_at" => now(),
                 "updated_at" => now()
             ],
@@ -57,7 +57,7 @@ class EsportRoleSeeder extends Seeder
             [
                 "esport_category_id" => 2,
                 "esport_role_name" => "Sentinel",
-                "is_captain" => false,
+                "is_captain" => TRUE,
                 "created_at" => now(),
                 "updated_at" => now()
             ],
@@ -87,7 +87,7 @@ class EsportRoleSeeder extends Seeder
             [
                 "esport_category_id" => 3,
                 "esport_role_name" => "Marksman",
-                "is_captain" => false,
+                "is_captain" => TRUE,
                 "created_at" => now(),
                 "updated_at" => now()
             ],
@@ -124,7 +124,7 @@ class EsportRoleSeeder extends Seeder
             [
                 "esport_category_id" => 4,
                 "esport_role_name" => "Marksman",
-                "is_captain" => false,
+                "is_captain" => TRUE,
                 "created_at" => now(),
                 "updated_at" => now()
             ],
@@ -161,7 +161,7 @@ class EsportRoleSeeder extends Seeder
             [
                 "esport_category_id" => 5,
                 "esport_role_name" => "Entry Fragger",
-                "is_captain" => false,
+                "is_captain" => TRUE,
                 "created_at" => now(),
                 "updated_at" => now()
             ],
@@ -198,7 +198,7 @@ class EsportRoleSeeder extends Seeder
             [
                 "esport_category_id" => 6,
                 "esport_role_name" => "Slayer",
-                "is_captain" => false,
+                "is_captain" => TRUE,
                 "created_at" => now(),
                 "updated_at" => now()
             ],
@@ -228,7 +228,7 @@ class EsportRoleSeeder extends Seeder
             [
                 "esport_category_id" => 7,
                 "esport_role_name" => "Tank",
-                "is_captain" => false,
+                "is_captain" => TRUE,
                 "created_at" => now(),
                 "updated_at" => now()
             ],
