@@ -2,133 +2,112 @@
 
 namespace App\Models;
 
-use App\Models\Player\NewsFeed;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Fortify\TwoFactorAuthenticatable;
-use Laravel\Jetstream\HasProfilePhoto;
-// use Laravel\Jetstream\HasTeams;
-use Laravel\Sanctum\HasApiTokens;
+use Orchid\Filters\Filterable;
+use Orchid\Platform\Models\User as Authenticatable;
+use Orchid\Screen\AsSource;
 
 class User extends Authenticatable
 {
-    use HasApiTokens;
-    use HasFactory;
-    // use HasProfilePhoto;
-    // use HasTeams;
-    use Notifiable;
-    // use TwoFactorAuthenticatable;
+    use AsSource, Filterable;
 
     /**
      * The attributes that are mass assignable.
      *
-     * @var string[]
+     * @var array
      */
-
-    protected $table = 'users';
-
     protected $fillable = [
-        'firstname',
-        'lastname',
-        'birthdate',
-        'gender',
-        'contact_number',
-        'age',
+        'name',
         'email',
-        'username',
-        'student_number',
-        'course',
         'password',
-        'role',
-        'host_key',
-        'address',
-        'contact_number',
-        'status',
-        'verification_code',
-        'profile_photo_url',
-        'profile_photo_path',
-        'email_verified_at'
+        'permissions',
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
+     * The attributes excluded from the model's JSON form.
      *
      * @var array
      */
     protected $hidden = [
-        'created_at',
-        'updated_at',
         'password',
         'remember_token',
-        'two_factor_recovery_codes',
-        'two_factor_secret',
-        'pivot'
+        'permissions',
     ];
 
     /**
-     * The attributes that should be cast.
+     * The attributes that should be cast to native types.
      *
      * @var array
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'permissions'          => 'array',
+        'email_verified_at'    => 'datetime',
     ];
 
-    protected $dates = ['birthdate'];
-
     /**
-     * The accessors to append to the model's array form.
+     * The attributes for which you can use filters in url.
      *
      * @var array
      */
-    protected $appends = [
-        // 'profile_photo_url',
-        'fullname',
-        'userrole',
+    protected $allowedFilters = [
+        'id',
+        'name',
+        'email',
+        'permissions',
     ];
 
+    /**
+     * The attributes for which can use sort in url.
+     *
+     * @var array
+     */
+    protected $allowedSorts = [
+        'id',
+        'name',
+        'email',
+        'updated_at',
+        'created_at',
+    ];
 
-
-    public function getFullnameAttribute()
+    public function profile()
     {
-        return "{$this->firstname} {$this->lastname}";
+        return $this->hasOne(UserProfile::class);
     }
 
-    public function getUserRoleAttribute()
+    public function player_profile()
     {
-        $userRole = "";
-        $roleInt = $this->role;
-        if($roleInt == 1){
-            $userRole = "Administrator";
-        } else if($roleInt == 2){
-            $userRole = "Host";
-        } else if($roleInt == 3) {
-            $userRole = "Player";
+        return $this->hasOne(PlayerProfile::class);
+    }
+
+    public function getIsPlayerAttribute()
+    {
+        return $this->hasAccess('player');
+    }
+
+    public function getIsOwnerAttribute()
+    {
+        return $this->team_owned ? true : false;
+    }
+
+    public function team_owned()
+    {
+        return $this->hasOne(Team::class, 'owner_id');
+    }
+
+    public function memberships()
+    {
+        return $this->hasMany(TeamMember::class, 'member_id');
+    }
+
+    public function team()
+    {
+        $member = TeamMember::where('member_id', $this->id)
+            ->whereIn('status', ['approved', 'owner'])
+            ->first();
+
+        if ($member) {
+            return $member->team;
         }
 
-        return $userRole;
-    }
-
-
-    public function esport()
-    {
-        return $this->hasOne(Esport::class);
-    }
-
-    public function sport()
-    {
-        return $this->hasOne(Sport::class);
-    }
-
-    public function teams()
-    {
-        return $this->belongsToMany(Team::class)->withTimestamps();
-    }
-
-    public function team_invitations()
-    {
-        return $this->hasMany(TeamInvitation::class);
+        return null;
     }
 }

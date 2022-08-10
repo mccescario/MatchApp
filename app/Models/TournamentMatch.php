@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
-use App\Models\Host\TournamentModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Orchid\Filters\Filterable;
+use Orchid\Screen\AsSource;
 
 class TournamentMatch extends Model
 {
-    use HasFactory;
+    use HasFactory, AsSource, Filterable;
 
     protected $fillable = [
         'team_1_id',
@@ -23,18 +24,9 @@ class TournamentMatch extends Model
         'tournament_id',
     ];
 
-    protected $appends = [
-        'team_one_name',
-        'team_two_name',
-    ];
-
-    protected $casts = [
-        'is_current' => 'boolean',
-    ];
-
     public function tournament()
     {
-        return $this->belongsTo(TournamentModel::class, 'tournament_id');
+        return $this->belongsTo(Tournament::class);
     }
 
     public function team_one()
@@ -42,18 +34,13 @@ class TournamentMatch extends Model
         return $this->belongsTo(Team::class, 'team_1_id');
     }
 
-    public function getTeamOneNameAttribute()
-    {
-        return $this->team_one()->exists() ? $this->team_one->team_name : '';
-    }
-
     public function team_two()
     {
-        return $this->belongsTo(Team::class, 'team_2_id', 'id');
+        return $this->belongsTo(Team::class, 'team_2_id');
     }
 
-    public function getTeamTwoNameAttribute()
+    public function getNameAttribute()
     {
-        return  $this->team_two()->exists() ? $this->team_two->team_name : '';
+        return $this->team_one->name . _(' vs ') . $this->team_two->name;
     }
 }

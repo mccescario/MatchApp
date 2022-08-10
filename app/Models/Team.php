@@ -4,97 +4,38 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Laravel\Jetstream\Events\TeamCreated;
-use Laravel\Jetstream\Events\TeamDeleted;
-use Laravel\Jetstream\Events\TeamUpdated;
-use Laravel\Jetstream\Team as JetstreamTeam;
+use Orchid\Filters\Filterable;
+use Orchid\Screen\AsSource;
 
 class Team extends Model
 {
-    use HasFactory;
+    use HasFactory, AsSource, Filterable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var string[]
-     */
     protected $fillable = [
-        'olympic_category_id',
-        'team_game_id',
-        'team_name',
-        'team_logo',
+        'name',
+        'image',
+        'owner_id',
+        'sport_id',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        // 'olympic_category_id',
-        'team_game_id',
-        'created_at',
-        'updated_at',
-        'pivot',
-        'team_members',
-        // 'users',
-        'EsportCategory',
-        'SportCategory',
-    ];
-
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array
-     */
-    protected $appends = [
-        'team_members',
-        'game',
-        'game_id'
-    ];
-
-
-    public function users()
+    public function owner()
     {
-        return $this->belongsToMany(User::class)->withTimestamps();
+        return $this->belongsTo(User::class, 'owner_id');
     }
 
-    public function EsportCategory()
+    public function sport()
     {
-        return $this->belongsTo(EsportCategory::class, 'team_game_id', 'id');
-    }
-
-    public function SportCategory()
-    {
-        return $this->belongsTo(SportCategory::class, 'team_game_id', 'id');
-    }
-
-    public function getGameAttribute()
-    {
-        $game = $this->olympic_category_id == 2 ? $this->EsportCategory->esport_category_name : $this->SportCategory->sport_category_name;
-        return $game;
-    }
-
-    public function getGameIdAttribute()
-    {
-        $game_id = $this->olympic_category_id == 2 ? $this->EsportCategory->id : $this->SportCategory->id;
-        return $game_id;
+        return $this->belongsTo(Sport::class);
     }
 
     public function members()
     {
-        $members = $this->olympic_category_id == 2 ? $this->users()->union($this->users()->esport) : $this->users()->union($this->users()->sport);
-        return $members;
+        return $this->hasMany(TeamMember::class)->whereIn('status', [TeamMember::APPROVED, TeamMember::OWNER]);
     }
 
-    public function olympic_category()
+    public function requests()
     {
-        return $this->belongsTo(OlympicCategory::class);
-    }
-
-    public function team_invitations()
-    {
-        return $this->hasMany(TeamInvitation::class);
+        return $this->hasMany(TeamMember::class)->where('status', TeamMember::PENDING);
     }
 
     public function matches_one()

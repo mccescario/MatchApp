@@ -1,27 +1,13 @@
 <?php return array (
-  'cviebrock/eloquent-sluggable' => 
+  'barryvdh/laravel-debugbar' => 
   array (
     'providers' => 
     array (
-      0 => 'Cviebrock\\EloquentSluggable\\ServiceProvider',
-    ),
-  ),
-  'facade/ignition' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Facade\\Ignition\\IgnitionServiceProvider',
+      0 => 'Barryvdh\\Debugbar\\ServiceProvider',
     ),
     'aliases' => 
     array (
-      'Flare' => 'Facade\\Ignition\\Facades\\Flare',
-    ),
-  ),
-  'fruitcake/laravel-cors' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Fruitcake\\Cors\\CorsServiceProvider',
+      'Debugbar' => 'Barryvdh\\Debugbar\\Facades\\Debugbar',
     ),
   ),
   'laravel/sail' => 
@@ -38,22 +24,18 @@
       0 => 'Laravel\\Sanctum\\SanctumServiceProvider',
     ),
   ),
+  'laravel/scout' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laravel\\Scout\\ScoutServiceProvider',
+    ),
+  ),
   'laravel/tinker' => 
   array (
     'providers' => 
     array (
       0 => 'Laravel\\Tinker\\TinkerServiceProvider',
-    ),
-  ),
-  'livewire/livewire' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Livewire\\LivewireServiceProvider',
-    ),
-    'aliases' => 
-    array (
-      'Livewire' => 'Livewire\\Livewire',
     ),
   ),
   'nesbot/carbon' => 
@@ -68,6 +50,65 @@
     'providers' => 
     array (
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
+    ),
+  ),
+  'orchid/blade-icons' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Orchid\\Icons\\IconServiceProvider',
+    ),
+  ),
+  'orchid/crud' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Orchid\\Crud\\CrudServiceProvider',
+    ),
+  ),
+  'orchid/platform' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Orchid\\Platform\\Providers\\FoundationServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Alert' => 'Orchid\\Support\\Facades\\Alert',
+      'Dashboard' => 'Orchid\\Support\\Facades\\Dashboard',
+    ),
+  ),
+  'spatie/laravel-ignition' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Spatie\\LaravelIgnition\\IgnitionServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Flare' => 'Spatie\\LaravelIgnition\\Facades\\Flare',
+    ),
+  ),
+  'tabuna/breadcrumbs' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Tabuna\\Breadcrumbs\\BreadcrumbsServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Breadcrumbs' => 'Tabuna\\Breadcrumbs\\Breadcrumbs',
+    ),
+  ),
+  'watson/active' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Watson\\Active\\ActiveServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Active' => 'Watson\\Watson\\Facades\\Active',
     ),
   ),
 );

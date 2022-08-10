@@ -440,7 +440,7 @@ class Visualizer
 
         foreach ($roundTitles as $key => $roundTitle) {
             $left = $key * ($this->MatchContainerWidth + $this->RoundSpacing - 1);
-            $html .= '<div class="match-title" style="left: ' . $left . 'px; width: ' . $this->MatchContainerWidth . 'px;">' . $roundTitle . '</div>';
+            $html .= '<div class="match-title" style="color: black !important; left: ' . $left . 'px; width: ' . $this->MatchContainerWidth . 'px;">' . $roundTitle . '</div>';
         }
 
         $html .= '</div>';

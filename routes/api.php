@@ -1,21 +1,11 @@
 <?php
 
+use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\ProfileController;
+use App\Http\Controllers\API\ResourcesController;
+use App\Http\Controllers\API\TeamsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\CustomAuthController;
-use App\Http\Controllers\Api\LoginController;
-use App\Http\Controllers\Api\NewsFeedController;
-use App\Http\Controllers\Api\ProfileController;
-use App\Http\Controllers\Api\TeamController;
-use App\Http\Controllers\Api\TournamentController;
-use App\Models\Esport;
-use App\Models\EsportRole;
-use App\Models\Team;
-use App\Models\TeamInvitation;
-use App\Models\User;
-use App\Models\TeamBracket;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,101 +18,40 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    //return $request->user();
-//});
-
-Route::post('login',[CustomAuthController::class,'login']);
-Route::post('register',[CustomAuthController::class,'register']);
-
-Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::get('/profile', function(Request $request) {
-        return Auth::user();
-    });
-
-    // API route for logout user
-    Route::post('logout', [CustomAuthController::class,'logout']);
-
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
 });
 
-Route::post('/update-bracket', 'App\Http\Controllers\Host\Tournament_management@updatebracket')->name('update.bracket');
-Route::get('/data-bracket/{transaction_model_id}', 'App\Http\Controllers\Host\Tournament_management@databracket')->name('data.bracket');
+Route::group(['prefix' => 'mobile'], function () {
 
-// for mobile api
-Route::prefix('mobile')->group(function () {
-    Route::get('users', function () {
-        $users = User::with(['esport'])->get();
-        return response()->json($users, 200);
+    // Auth
+    Route::post('login', [AuthController::class, 'login']);
+    Route::group(['middleware' => 'auth:sanctum'], function () {
+        Route::get('profile', [AuthController::class, 'profile']);
+        Route::post('logout', [AuthController::class, 'logout']);
+    });
+    Route::post('register-player', [AuthController::class, 'register_player']);
+    Route::post('register-host', [AuthController::class, 'register_host']);
+
+    Route::group(['prefix' => 'profile'], function () {
+        Route::post('update/{user}', [ProfileController::class, 'update_player']);
+        Route::post('change-password', [AuthController::class, 'change_password']);
     });
 
-    //LoginController
-    Route::post('login',[LoginController::class,'login']);
-    Route::post('register',[LoginController::class,'register']);
-    Route::post('verify',[LoginController::class,'submit_verification']);
-    Route::post('resend-verification',[LoginController::class,'resend_verification']);
-    Route::get('register-details',[LoginController::class,'register_details']);
-
-
-    //ProfileController
-    Route::prefix('profile')->group(function () {
-        Route::patch('update/{id}',[ProfileController::class,'update']);
-        Route::get('courses',[ProfileController::class,'getCourses']);
-
-        Route::get('esport-categories',[ProfileController::class,'getEsportsCategories']);
-        Route::get('sport-categories',[ProfileController::class,'getSportsCategories']);
-
-        Route::patch('player-update/{id}',[ProfileController::class,'updatePlayerProfile']);
-
-        Route::get('player-profile-fields/{user_id}/{olympic_category_id}', [ProfileController::class,'updatePlayerProfileFields']);
-
-        Route::post('insert-update-usersport', [ProfileController::class,'insertOrUpdateNewUserSport']);
-
-        Route::post('insert-update-useresport', [ProfileController::class,'insertOrUpdateNewUserEsport']);
-
-        Route::post('change-password',[ProfileController::class,'changePassword']);
-
-        Route::post('update-profile-photo', [ProfileController::class,'updateProfilePhoto']);
+    Route::group(['prefix' => 'resources'], function () {
+        Route::get('user-filter', [ResourcesController::class, 'user_filter']);
+        Route::get('courses', [ResourcesController::class, 'courses']);
+        Route::get('sport-categories', [ResourcesController::class, 'sport_categories']);
+        Route::get('sport-categories/{sportCategory}/sports', [ResourcesController::class, 'sports_by_category']);
+        Route::get('sports', [ResourcesController::class, 'sports']);
+        Route::get('teams', [ResourcesController::class, 'teams']);
+        Route::get('teams/{id}', [ResourcesController::class, 'team']);
     });
 
-    //NewsFeedController
-    Route::prefix('feed')->group(function () {
-        Route::get('news', [NewsFeedController::class,'news']);
-        Route::post('create', [NewsFeedController::class,'create']);
-    });
-
-    //TeamController
-    Route::prefix('team')->group(function () {
-        Route::get('teams',[TeamController::class,'teams']);
-        Route::get('my-esport-teams/{id}',[TeamController::class,'esport_user_teams']);
-        Route::get('my-sport-teams/{id}',[TeamController::class,'sport_user_teams']);
-
-        Route::get('team-members/{user_id}/{olympic_category_id}',[TeamController::class,'get_team_members']);
-
-        // Route::get('esport-team-members/{team_id}/{user_id}',[TeamController::class,'get_esport_team_members']);
-        // Route::get('sport-team-members/{team_id}/{user_id}',[TeamController::class,'get_sport_team_members']);
-
-        Route::get('game-categories', [TeamController::class,'game_categories']);
-        Route::get('get-games-by-category-name/{olympic_category_name}', [TeamController::class,'getGameByCategoryName']);
-
-        Route::post('create-team', [TeamController::class,'createTeam']);
-        Route::get('get-filters/{game_id}/{category_id}', [TeamController::class,'getFilters']);
-        Route::get('filter-user', [TeamController::class,'filterUser']);
-
-        Route::post('recruite-member',[TeamController::class,'recruiteMember']);
-
-        Route::get('invitations/{user_id}/{category_id}', [TeamController::class,'invitations']);
-        Route::get('invitations-category', [TeamController::class,'invitationsCategory']);
-        Route::post('invite-response', [TeamController::class,'inviteResponse']);
-
-        Route::get('all-members/{id}/{category_id}', function ($id,$category_id) {
-
-        });
-    });
-
-    Route::prefix('tournament')->group(function () {
-        Route::get('bracket/{tournament}',[TeamController::class,'tournament_bracket']);
-        Route::get('tournaments', [TournamentController::class,'tournament_list']);
-        Route::post('join-tournament',[TournamentController::class,'join_tournament']);
-        Route::get('teams/{id}',[TournamentController::class,'tournament_teams']);
+    Route::group(['prefix' => 'teams'], function () {
+        Route::post('store', [TeamsController::class, 'store']);
+        Route::post('invite', [TeamsController::class, 'invite']);
+        Route::post('invitations', [TeamsController::class, 'invitations']);
+        Route::post('invite-response', [TeamsController::class, 'invite_response']);
     });
 });
