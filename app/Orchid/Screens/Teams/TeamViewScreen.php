@@ -57,7 +57,7 @@ class TeamViewScreen extends Screen
             Button::make(__('Join'))
                 ->type(Color::INFO())
                 ->icon('user-follow')
-                ->canSee((Auth::user()->team() == null && !isset($this->membership)) || ($this->membership->status != TeamMember::APPROVED && $this->membership->status != TeamMember::PENDING && $this->membership->status != TeamMember::OWNER && $this->membership->status != TeamMember::INVITE_PENDING))
+                ->canSee((Auth::user()->team() == null && !isset($this->membership)) || ($this->membership && $this->membership->status != TeamMember::APPROVED && $this->membership->status != TeamMember::PENDING && $this->membership->status != TeamMember::OWNER && $this->membership->status != TeamMember::INVITE_PENDING))
                 ->method('joinTeam', ['team_id' => $this->team->id, 'membership_id' => $this->membership ? $this->membership->id : null]),
             Button::make(__('Accept Invitation'))
                 ->type(Color::SUCCESS())

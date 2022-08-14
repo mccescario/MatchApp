@@ -99,11 +99,12 @@ class TournamentFormScreen extends Screen
     public function layout(): iterable
     {
         $series = array(1   => 'Knock-out',2   => 'Best of 3',3   => 'Best of 5',4   => 'Best of 7');
+        //dd($this->tournament);
         return [
             Layout::columns([
                 Layout::metrics([
                     'Participants Count' => 'metrics.participants_count',
-                    'Required Participants' => 'metrics.size'
+                    'Required Participants' => 'tournament.size'
                 ])->canSee($this->tournament->id !== null)
             ]),
             Layout::columns([
@@ -119,13 +120,13 @@ class TournamentFormScreen extends Screen
                             16   => '16',
                         ])
                         ->value($this->tournament->size)
-                        ->empty($this->tournament->size, $this->tournament->size)
+                        ->empty($this->tournament->id ? $this->tournament->size : 'No Selected', $this->tournament->id ? $this->tournament->size : '')
                         ->required()
                         ->title('Size'),
                     Select::make('tournament.series')
                         ->options($series)
                         ->value($this->tournament->series)
-                        ->empty($series[$this->tournament->series], $this->tournament->series)
+                        ->empty($this->tournament->id ? $series[$this->tournament->series] : 'No Selected', $this->tournament->id ? $this->tournament->series : '')
                         ->required()
                         ->title('Series'),
                     DateTimer::make('tournament.start')
